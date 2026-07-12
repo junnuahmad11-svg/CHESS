@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess with Coach Zaira</title>
+    <title>Chess Master - Coach Zaira</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1a1a2e;
-            color: #e0e0e0;
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
             height: 100vh;
             overflow: hidden;
         }
@@ -32,7 +32,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.8s ease;
         }
 
         .splash-screen.hidden {
@@ -40,44 +40,40 @@
             pointer-events: none;
         }
 
-        .splash-content {
-            text-align: center;
-            animation: fadeInUp 1s ease;
-        }
-
-        .chess-icon {
-            font-size: 8em;
+        .splash-icon {
+            font-size: 10em;
             margin-bottom: 30px;
-            animation: bounce 2s infinite;
+            animation: bounce 1.5s infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
         }
 
-        .made-by {
-            font-size: 2.5em;
-            color: white;
+        .splash-text {
+            font-size: 2.8em;
             font-weight: 300;
-            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
         }
 
-        .made-by .highlight {
-            font-size: 1.3em;
-            font-weight: 700;
+        .splash-highlight {
+            font-size: 1.4em;
+            font-weight: 800;
             display: block;
-            margin-top: 15px;
-            text-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            margin-top: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .made-by .heart {
+        .splash-heart {
             color: #ff6b6b;
             display: inline-block;
-            animation: heartbeat 1.5s infinite;
+            animation: heartbeat 1.2s infinite;
             font-size: 1.2em;
         }
 
         .loading-bar {
             width: 400px;
-            height: 6px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 20px;
             margin-top: 50px;
             overflow: hidden;
         }
@@ -87,330 +83,327 @@
             background: white;
             width: 0%;
             animation: loading 2.5s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-30px); }
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             25% { transform: scale(1.3); }
-            50% { transform: scale(1); }
         }
 
         @keyframes loading {
             to { width: 100%; }
         }
 
-        /* ==================== ONBOARDING SCREEN ==================== */
+        /* ==================== ONBOARDING ==================== */
         .onboarding-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             z-index: 9998;
             padding: 20px;
-            overflow-y: auto;
         }
 
         .onboarding-screen.active {
             display: flex;
         }
 
-        .onboarding-content {
-            background: #16213e;
+        .onboarding-card {
+            background: white;
             border-radius: 30px;
-            padding: 40px;
-            max-width: 550px;
+            padding: 50px;
+            max-width: 600px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            animation: slideDown 0.5s ease;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            animation: slideUp 0.6s ease;
+            color: #1a1a2e;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-50px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .onboarding-content h2 {
+        .onboarding-card h2 {
             color: #667eea;
-            font-size: 2.2em;
-            margin-bottom: 30px;
+            font-size: 2.8em;
+            margin-bottom: 40px;
             text-align: center;
+            font-weight: 800;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .form-group label {
             display: block;
-            color: #a0a0a0;
-            margin-bottom: 10px;
-            font-size: 1em;
+            color: #555;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
         }
 
-        .form-group input {
+        .form-input {
             width: 100%;
-            padding: 14px;
-            background: #0f3460;
-            border: 2px solid #667eea;
-            border-radius: 12px;
-            color: white;
-            font-size: 1em;
+            padding: 18px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.1em;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
-        .form-group input:focus {
+        .form-input:focus {
             outline: none;
-            border-color: #764ba2;
-            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+            box-shadow: 0 0 0 5px rgba(102, 126, 234, 0.1);
         }
 
-        .gender-options {
-            display: flex;
-            gap: 12px;
-        }
-
-        .gender-btn {
-            flex: 1;
-            padding: 14px;
-            background: #0f3460;
-            border: 2px solid #667eea;
-            border-radius: 12px;
-            color: white;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .gender-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .gender-btn.selected {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-color: #764ba2;
+        .gender-options, .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
         .avatar-grid {
-            display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-top: 15px;
+        }
+
+        .option-btn {
+            padding: 18px;
+            background: #f5f5f5;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #555;
+            text-align: center;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: #667eea;
+            color: white;
+            transform: scale(1.05);
         }
 
         .avatar-option {
             aspect-ratio: 1;
-            background: #0f3460;
-            border: 3px solid #667eea;
-            border-radius: 50%;
-            font-size: 2.5em;
+            font-size: 3em;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #f5f5f5;
+            border: 3px solid #e0e0e0;
+            border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .avatar-option:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .avatar-option.selected {
-            border-color: #f093fb;
+            border-color: #667eea;
             background: linear-gradient(135deg, #667eea, #764ba2);
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-        .start-btn {
+        .continue-btn {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #28a745, #20c997);
+            padding: 20px;
+            background: linear-gradient(135deg, #58cc02, #00cd9c);
             border: none;
             border-radius: 15px;
             color: white;
-            font-size: 1.2em;
-            font-weight: 700;
+            font-size: 1.4em;
+            font-weight: 800;
             cursor: pointer;
-            margin-top: 25px;
             transition: all 0.3s;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(88, 204, 2, 0.3);
         }
 
-        .start-btn:hover:not(:disabled) {
+        .continue-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 12px 30px rgba(88, 204, 2, 0.4);
         }
 
-        .start-btn:disabled {
+        .continue-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        /* ==================== HOME SCREEN ==================== */
-        .home-screen {
+        /* ==================== DIFFICULTY SELECTION ==================== */
+        .difficulty-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             z-index: 9997;
             padding: 20px;
         }
 
-        .home-screen.active {
+        .difficulty-screen.active {
             display: flex;
         }
 
-        .home-content {
+        .difficulty-content {
             text-align: center;
-            max-width: 600px;
-            animation: fadeInUp 0.6s ease;
+            max-width: 900px;
+            animation: slideUp 0.6s ease;
         }
 
-        .home-title {
-            font-size: 4em;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+        .difficulty-title {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
         }
 
-        .welcome-message {
-            font-size: 1.8em;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .user-info {
-            background: #16213e;
-            padding: 30px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border: 2px solid #667eea;
-        }
-
-        .user-avatar-large {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            margin: 0 auto 20px;
-            border: 5px solid #0f3460;
-        }
-
-        .user-details {
-            color: #a0a0a0;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .coach-preview {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 30px 0;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .coach-avatar-preview {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3em;
-            flex-shrink: 0;
-        }
-
-        .coach-intro {
-            text-align: left;
-            color: white;
-        }
-
-        .coach-intro h3 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        .coach-intro p {
-            font-size: 1.1em;
+        .difficulty-subtitle {
+            font-size: 1.5em;
+            margin-bottom: 50px;
             opacity: 0.9;
         }
 
-        .play-btn {
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            border-radius: 15px;
-            color: white;
-            font-size: 1.5em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        .difficulty-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .play-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        @media (max-width: 768px) {
+            .difficulty-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .difficulty-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            color: #1a1a2e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .difficulty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #58cc02, #00cd9c);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .difficulty-card.moderate::before {
+            background: linear-gradient(90deg, #ffa500, #ff6b6b);
+        }
+
+        .difficulty-card.hard::before {
+            background: linear-gradient(90deg, #ff4757, #c0392b);
+        }
+
+        .difficulty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .difficulty-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .difficulty-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .difficulty-name {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .difficulty-features {
+            text-align: left;
+            color: #888;
+            font-size: 0.95em;
+        }
+
+        .difficulty-features li {
+            margin: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .difficulty-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #58cc02;
+            font-weight: bold;
         }
 
         /* ==================== MAIN GAME ==================== */
         .main-game {
             display: none;
             height: 100vh;
-            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         }
 
         .main-game.active {
-            display: block;
-        }
-
-        .game-layout {
             display: grid;
             grid-template-rows: auto 1fr;
-            height: 100vh;
         }
 
         .game-header {
-            background: #16213e;
-            padding: 15px 20px;
-            border-bottom: 2px solid #667eea;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -422,217 +415,295 @@
             gap: 15px;
         }
 
-        .player-avatar-small {
-            width: 50px;
-            height: 50px;
+        .player-avatar {
+            width: 55px;
+            height: 55px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8em;
+            font-size: 2em;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .player-name {
-            font-size: 1.2em;
-            color: white;
-            font-weight: 600;
+        .player-details h3 {
+            font-size: 1.3em;
+            margin-bottom: 3px;
         }
 
-        .timer-box {
-            background: #0f3460;
-            padding: 10px 25px;
-            border-radius: 10px;
-            border: 2px solid #667eea;
+        .player-details p {
+            font-size: 0.9em;
+            opacity: 0.8;
         }
 
         .timer-display {
-            font-size: 2em;
-            font-weight: 700;
-            color: #667eea;
+            font-size: 2.5em;
+            font-weight: 800;
             font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
         }
 
-        .game-body {
+        .game-container {
             display: grid;
-            grid-template-columns: 320px 1fr 320px;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1400px;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            padding: 30px;
+            align-items: center;
+            max-width: 1600px;
             margin: 0 auto;
-            height: 100%;
-            overflow-y: auto;
         }
 
         @media (max-width: 1200px) {
-            .game-body {
+            .game-container {
                 grid-template-columns: 1fr;
-                overflow-y: auto;
+                padding: 20px;
             }
-            .coach-panel { order: 1; }
-            .board-section { order: 2; }
-            .info-panel { order: 3; }
+            .left-panel { order: 2; }
+            .board-area { order: 1; }
+            .right-panel { order: 3; }
         }
 
-        /* ==================== COACH PANEL ==================== */
-        .coach-panel {
-            background: #16213e;
-            border-radius: 20px;
-            padding: 20px;
-            border: 2px solid #667eea;
-            height: fit-content;
+        /* ==================== ZAIRA COACH AREA ==================== */
+        .coach-area {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coach-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
         }
 
         .coach-character {
-            text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .coach-avatar-large {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 15px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
             background: linear-gradient(135deg, #f093fb, #f5576c);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4em;
-            border: 4px solid #0f3460;
+            font-size: 8em;
+            border: 8px solid #fff;
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.4);
             animation: float 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .coach-face {
+            font-size: 8em;
+            transition: all 0.3s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
         }
 
-        .coach-name {
-            font-size: 1.6em;
-            color: white;
-            font-weight: 700;
-        }
-
-        .coach-mood {
-            text-align: center;
-            font-size: 3em;
-            margin: 15px 0;
-        }
-
-        .coach-expression {
+        .coach-name-tag {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 18px;
-            border-radius: 15px;
-            min-height: 100px;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-size: 1.5em;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .coach-mood-indicator {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: moodChange 0.5s ease;
+        }
+
+        @keyframes moodChange {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .coach-speech-bubble {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            font-size: 1.3em;
+            line-height: 1.6;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .expression-text {
-            color: white;
-            font-size: 1.05em;
             text-align: center;
-            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            animation: bubblePop 0.4s ease;
         }
 
-        .thinking-animation {
+        @keyframes bubblePop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .coach-speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #764ba2;
+        }
+
+        .thinking-indicator {
             display: none;
-            text-align: center;
-            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
         }
 
-        .thinking-animation.active {
+        .thinking-indicator.active {
             display: block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         .thinking-dots {
             font-size: 2.5em;
-            animation: thinking 1.5s infinite;
-        }
-
-        @keyframes thinking {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
         }
 
         .thinking-text {
-            color: #a0a0a0;
-            margin-top: 8px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 10px;
             font-style: italic;
         }
 
+        .sound-notification {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #667eea;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: slideInRight 0.4s ease;
+            display: none;
+        }
+
+        .sound-notification.active {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
         /* ==================== CHESS BOARD ==================== */
-        .board-section {
+        .board-area {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
         }
 
         .board-container {
-            background: #16213e;
-            padding: 20px;
-            border-radius: 20px;
+            background: white;
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            position: relative;
         }
 
-        .board-labels-top {
+        .board-top-label {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 8px;
-            padding: 0 8px;
+            margin-bottom: 10px;
+            padding: 0 10px;
         }
 
         .board-label {
             width: 12.5%;
             text-align: center;
             color: #667eea;
-            font-weight: 700;
-            font-size: 1em;
+            font-weight: 800;
+            font-size: 1.2em;
         }
 
-        .board-with-labels {
+        .board-main {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .row-labels {
+        .board-left-label {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            padding: 8px 0;
+            padding: 10px 0;
         }
 
         .row-label {
             color: #667eea;
-            font-weight: 700;
-            font-size: 1em;
-            height: 12.5%;
-            display: flex;
-            align-items: center;
+            font-weight: 800;
+            font-size: 1.2em;
+            text-align: center;
         }
 
         .chessboard {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(8, 80px);
+            grid-template-rows: repeat(8, 80px);
             gap: 0;
-            border: 5px solid #667eea;
-            border-radius: 10px;
+            border: 6px solid #667eea;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
-            width: 520px;
-            height: 520px;
+            box-shadow: 
+                0 0 0 3px white,
+                0 0 40px rgba(102, 126, 234, 0.6),
+                inset 0 0 20px rgba(102, 126, 234, 0.1);
         }
 
         .square {
-            width: 65px;
-            height: 65px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5em;
+            font-size: 4.5em;
             cursor: pointer;
             transition: all 0.2s;
             user-select: none;
+            position: relative;
         }
 
         .square.light {
@@ -645,7 +716,13 @@
 
         .square.selected {
             background: #baca44 !important;
-            box-shadow: inset 0 0 0 4px #829709;
+            box-shadow: inset 0 0 0 5px #829709;
+            animation: selectedPulse 0.5s ease;
+        }
+
+        @keyframes selectedPulse {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1); }
         }
 
         .square.valid-move {
@@ -654,89 +731,144 @@
 
         .square.valid-move::after {
             content: '';
-            width: 25%;
-            height: 25%;
-            background: rgba(0, 0, 0, 0.25);
+            width: 30%;
+            height: 30%;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 50%;
             position: absolute;
+            animation: dotPulse 1s infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .square.last-move {
-            background: #aaa23b !important;
+            background: #cdd26a !important;
+            box-shadow: inset 0 0 10px rgba(130, 151, 9, 0.3);
         }
 
         .square:hover {
-            filter: brightness(1.1);
+            filter: brightness(1.15);
+            transform: scale(1.02);
         }
 
         .square {
             text-shadow: 
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000,
-                0 0 3px rgba(0,0,0,0.5);
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                0 0 8px rgba(0,0,0,0.5);
+        }
+
+        .piece-move-animation {
+            animation: pieceMove 0.3s ease;
+        }
+
+        @keyframes pieceMove {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3) rotate(5deg); }
+            100% { transform: scale(1); }
         }
 
         /* ==================== INFO PANEL ==================== */
         .info-panel {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .info-card {
-            background: #16213e;
-            padding: 18px;
-            border-radius: 15px;
-            border: 2px solid #667eea;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #1a1a2e;
         }
 
         .info-card h3 {
             color: #667eea;
-            font-size: 1.2em;
-            margin-bottom: 12px;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .turn-indicator {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #58cc02, #00cd9c);
             color: white;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.3em;
+            font-weight: 800;
+            box-shadow: 0 5px 20px rgba(88, 204, 2, 0.3);
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1em;
             font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-badge.easy {
+            background: linear-gradient(135deg, #58cc02, #00cd9c);
+            color: white;
+        }
+
+        .difficulty-badge.moderate {
+            background: linear-gradient(135deg, #ffa500, #ff6b6b);
+            color: white;
+        }
+
+        .difficulty-badge.hard {
+            background: linear-gradient(135deg, #ff4757, #c0392b);
+            color: white;
         }
 
         .captured-display {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            min-height: 45px;
+            gap: 8px;
+            min-height: 60px;
         }
 
         .captured-piece {
-            font-size: 1.8em;
+            font-size: 2.2em;
+            animation: capturedAppear 0.4s ease;
         }
 
-        .btn {
-            padding: 14px;
+        @keyframes capturedAppear {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        .action-btn {
+            padding: 16px;
             border: none;
-            border-radius: 12px;
-            font-size: 1em;
-            font-weight: 700;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .btn-new-game {
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #58cc02, #00cd9c);
             color: white;
         }
 
         .btn-new-game:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(88, 204, 2, 0.4);
         }
 
         .btn-home {
@@ -745,8 +877,8 @@
         }
 
         .btn-home:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         /* ==================== MODALS ==================== */
@@ -757,11 +889,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 10000;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .modal.active {
@@ -769,23 +902,29 @@
         }
 
         .modal-content {
-            background: #16213e;
-            border-radius: 25px;
-            padding: 35px;
-            max-width: 600px;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 700px;
             width: 100%;
-            max-height: 85vh;
+            max-height: 90vh;
             overflow-y: auto;
-            border: 2px solid #667eea;
-            animation: slideDown 0.4s ease;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+            animation: modalAppear 0.4s ease;
+            color: #1a1a2e;
+        }
+
+        @keyframes modalAppear {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .modal-content::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
 
         .modal-content::-webkit-scrollbar-track {
-            background: #0f3460;
+            background: #f0f0f0;
             border-radius: 10px;
         }
 
@@ -798,50 +937,53 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #667eea;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
         }
 
         .modal-header h2 {
             color: #667eea;
-            font-size: 2em;
+            font-size: 2.5em;
+            font-weight: 800;
         }
 
         .close-btn {
-            font-size: 2.5em;
+            font-size: 3em;
             cursor: pointer;
-            color: #a0a0a0;
+            color: #999;
             transition: all 0.3s;
             line-height: 1;
         }
 
         .close-btn:hover {
-            color: #f5576c;
+            color: #ff4757;
             transform: rotate(90deg);
         }
 
-        .game-over-content {
+        .winner-section {
             text-align: center;
+            margin: 30px 0;
         }
 
         .winner-avatar {
-            font-size: 6em;
+            font-size: 8em;
             margin: 20px 0;
+            animation: bounce 1s infinite;
         }
 
         .game-stats {
-            background: #0f3460;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
         }
 
         .stat-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #667eea;
+            padding: 12px 0;
+            border-bottom: 2px solid #e0e0e0;
         }
 
         .stat-row:last-child {
@@ -849,99 +991,102 @@
         }
 
         .stat-label {
-            color: #a0a0a0;
+            color: #666;
+            font-weight: 600;
         }
 
         .stat-value {
-            color: white;
-            font-weight: 700;
+            color: #1a1a2e;
+            font-weight: 800;
         }
 
         .mistake-item {
-            background: #0f3460;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 5px solid #f5576c;
+            background: #fff5f5;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 6px solid #ff4757;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
         .mistake-item h4 {
-            color: #f5576c;
-            font-size: 1.2em;
-            margin-bottom: 12px;
+            color: #ff4757;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 800;
         }
 
         .suggestion {
-            color: #28a745;
-            font-weight: 600;
-            margin-top: 12px;
+            color: #58cc02;
+            font-weight: 700;
+            margin-top: 15px;
             display: block;
-            padding: 12px;
-            background: rgba(40, 167, 69, 0.1);
-            border-radius: 8px;
+            padding: 15px;
+            background: #f0fff4;
+            border-radius: 10px;
+            border-left: 4px solid #58cc02;
         }
 
         .perfect-game {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         .perfect-game .trophy {
-            font-size: 6em;
-            margin-bottom: 25px;
-            animation: bounce 2s infinite;
+            font-size: 10em;
+            margin-bottom: 30px;
+            animation: bounce 1.5s infinite;
         }
 
         .perfect-game h3 {
-            color: #28a745;
-            font-size: 2em;
-            margin-bottom: 15px;
+            color: #58cc02;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 800;
         }
 
         .control-buttons {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 25px;
         }
     </style>
 </head>
 <body>
     <!-- ==================== SPLASH SCREEN ==================== -->
     <div class="splash-screen" id="splashScreen">
-        <div class="splash-content">
-            <div class="chess-icon">♟️</div>
-            <div class="made-by">
-                Made with <span class="heart">❤️</span> by
-                <span class="highlight">Mohammad Zubair Ahmed</span>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
+        <div class="splash-icon">♟️</div>
+        <div class="splash-text">
+            Made with <span class="splash-heart">❤️</span> by
+            <span class="splash-highlight">Mohammad Zubair Ahmed</span>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
         </div>
     </div>
 
-    <!-- ==================== ONBOARDING SCREEN ==================== -->
+    <!-- ==================== ONBOARDING ==================== -->
     <div class="onboarding-screen" id="onboardingScreen">
-        <div class="onboarding-content">
+        <div class="onboarding-card">
             <h2>👋 Welcome!</h2>
             
             <div class="form-group">
                 <label>What's your name?</label>
-                <input type="text" id="playerName" placeholder="Enter your name">
+                <input type="text" class="form-input" id="playerName" placeholder="Enter your name">
             </div>
 
             <div class="form-group">
                 <label>How old are you?</label>
-                <input type="number" id="playerAge" placeholder="Enter your age" min="5" max="100">
+                <input type="number" class="form-input" id="playerAge" placeholder="Enter your age" min="5" max="100">
             </div>
 
             <div class="form-group">
                 <label>Gender</label>
                 <div class="gender-options">
-                    <div class="gender-btn" onclick="selectGender('male')">👨 Male</div>
-                    <div class="gender-btn" onclick="selectGender('female')">👩 Female</div>
-                    <div class="gender-btn" onclick="selectGender('other')">👤 Other</div>
+                    <div class="option-btn" onclick="selectGender('male')">👨 Male</div>
+                    <div class="option-btn" onclick="selectGender('female')">👩 Female</div>
+                    <div class="option-btn" onclick="selectGender('other')">👤 Other</div>
                 </div>
             </div>
 
@@ -959,139 +1104,162 @@
                 </div>
             </div>
 
-            <button class="start-btn" id="startBtn" onclick="goToHome()" disabled>
+            <button class="continue-btn" id="continueBtn" onclick="goToDifficulty()" disabled>
                 Continue →
             </button>
         </div>
     </div>
 
-    <!-- ==================== HOME SCREEN ==================== -->
-    <div class="home-screen" id="homeScreen">
-        <div class="home-content">
-            <div class="home-title">♟️ Chess Master</div>
-            <div class="welcome-message">Welcome back, <span id="welcomeName"></span>! 👋</div>
+    <!-- ==================== DIFFICULTY SELECTION ==================== -->
+    <div class="difficulty-screen" id="difficultyScreen">
+        <div class="difficulty-content">
+            <div class="difficulty-title">Choose Your Challenge</div>
+            <div class="difficulty-subtitle">Select difficulty level to play with Coach Zaira</div>
             
-            <div class="user-info">
-                <div class="user-avatar-large" id="homeAvatar">😊</div>
-                <div class="user-details" id="userDetails"></div>
-            </div>
+            <div class="difficulty-cards">
+                <div class="difficulty-card easy" onclick="selectDifficulty('easy')">
+                    <div class="difficulty-icon">🌱</div>
+                    <div class="difficulty-name">Easy</div>
+                    <div class="difficulty-desc">Perfect for beginners! Zaira will think carefully and make the game enjoyable. You'll have a great chance to win!</div>
+                    <ul class="difficulty-features">
+                        <li>Zaira thinks 5-8 seconds</li>
+                        <li>Makes occasional mistakes</li>
+                        <li>Focuses on teaching</li>
+                        <li>High win chance for you</li>
+                    </ul>
+                </div>
 
-            <div class="coach-preview">
-                <div class="coach-avatar-preview">👩‍🏫</div>
-                <div class="coach-intro">
-                    <h3>Meet Coach Zaira</h3>
-                    <p>Your friendly chess mentor is ready to play and teach you amazing strategies!</p>
+                <div class="difficulty-card moderate" onclick="selectDifficulty('moderate')">
+                    <div class="difficulty-icon">⚡</div>
+                    <div class="difficulty-name">Moderate</div>
+                    <div class="difficulty-desc">Balanced challenge! Zaira thinks strategically but gives you a fair match. Great for improving skills!</div>
+                    <ul class="difficulty-features">
+                        <li>Zaira thinks 3-5 seconds</li>
+                        <li>Strategic gameplay</li>
+                        <li>Balanced difficulty</li>
+                        <li>Equal chances</li>
+                    </ul>
+                </div>
+
+                <div class="difficulty-card hard" onclick="selectDifficulty('hard')">
+                    <div class="difficulty-icon">🔥</div>
+                    <div class="difficulty-name">Hard</div>
+                    <div class="difficulty-desc">Ultimate challenge! Zaira plays fast and tries her best to win. Are you ready for the toughest game?</div>
+                    <ul class="difficulty-features">
+                        <li>Zaira thinks 1-2 seconds</li>
+                        <li>Aggressive strategy</li>
+                        <li>Maximum challenge</li>
+                        <li>Zaira plays to win</li>
+                    </ul>
                 </div>
             </div>
-
-            <button class="play-btn" onclick="startPlaying()">
-                🎮 Start Playing with Zaira
-            </button>
         </div>
     </div>
 
     <!-- ==================== MAIN GAME ==================== -->
     <div class="main-game" id="mainGame">
-        <div class="game-layout">
-            <div class="game-header">
-                <div class="header-content">
-                    <div class="player-info">
-                        <div class="player-avatar-small" id="headerAvatar">😊</div>
-                        <div>
-                            <div class="player-name" id="headerName">Player</div>
-                            <div style="color: #a0a0a0; font-size: 0.9em;">⚪ White</div>
+        <div class="game-header">
+            <div class="player-info">
+                <div class="player-avatar" id="headerAvatar">😊</div>
+                <div class="player-details">
+                    <h3 id="headerName">Player</h3>
+                    <p>⚪ White Pieces</p>
+                </div>
+            </div>
+
+            <div class="timer-display" id="timerDisplay">10:00</div>
+
+            <div class="player-info">
+                <div class="player-details" style="text-align: right;">
+                    <h3>Coach Zaira</h3>
+                    <p>⚫ Black Pieces</p>
+                </div>
+                <div class="player-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    👩‍🏫
+                </div>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <!-- Left Panel - Coach Zaira -->
+            <div class="left-panel">
+                <div class="coach-area">
+                    <div class="sound-notification" id="soundNotification">🔊 Sound Effect</div>
+                    
+                    <div class="coach-character">
+                        <div class="coach-avatar-large">
+                            <div class="coach-face" id="coachFace">👩‍🏫</div>
                         </div>
+                        <div class="coach-name-tag">Coach Zaira</div>
+                        <div class="coach-mood-indicator" id="coachMood">😊</div>
                     </div>
 
-                    <div class="timer-box">
-                        <div class="timer-display" id="timerDisplay">10:00</div>
+                    <div class="coach-speech-bubble" id="coachSpeech">
+                        Hi! I'm so excited to play chess with you! Let's have an amazing game! 🎉
                     </div>
 
-                    <div class="player-info">
-                        <div style="text-align: right;">
-                            <div class="player-name">Coach Zaira</div>
-                            <div style="color: #a0a0a0; font-size: 0.9em;">⚫ Black</div>
-                        </div>
-                        <div class="player-avatar-small" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👩‍🏫</div>
+                    <div class="thinking-indicator" id="thinkingIndicator">
+                        <div class="thinking-dots">🤔 💭 🎯</div>
+                        <div class="thinking-text">Zaira is thinking...</div>
                     </div>
                 </div>
             </div>
 
-            <div class="game-body">
-                <!-- Coach Panel -->
-                <div class="coach-panel">
-                    <div class="coach-character">
-                        <div class="coach-avatar-large">👩‍🏫</div>
-                        <div class="coach-name">Coach Zaira</div>
+            <!-- Center - Chess Board -->
+            <div class="board-area">
+                <div class="board-container">
+                    <div class="board-top-label">
+                        <div class="board-label">a</div>
+                        <div class="board-label">b</div>
+                        <div class="board-label">c</div>
+                        <div class="board-label">d</div>
+                        <div class="board-label">e</div>
+                        <div class="board-label">f</div>
+                        <div class="board-label">g</div>
+                        <div class="board-label">h</div>
                     </div>
-
-                    <div class="coach-mood" id="coachMood">😊</div>
-
-                    <div class="coach-expression">
-                        <div class="expression-text" id="coachExpression">
-                            Hi! Let's have an amazing chess game together! 🎉
+                    <div class="board-main">
+                        <div class="board-left-label">
+                            <div class="row-label">8</div>
+                            <div class="row-label">7</div>
+                            <div class="row-label">6</div>
+                            <div class="row-label">5</div>
+                            <div class="row-label">4</div>
+                            <div class="row-label">3</div>
+                            <div class="row-label">2</div>
+                            <div class="row-label">1</div>
                         </div>
-                    </div>
-
-                    <div class="thinking-animation" id="thinkingAnimation">
-                        <div class="thinking-dots">🤔💭</div>
-                        <div class="thinking-text">Zaira is thinking...</div>
+                        <div class="chessboard" id="chessboard"></div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Chess Board -->
-                <div class="board-section">
-                    <div class="board-container">
-                        <div class="board-labels-top">
-                            <div class="board-label">a</div>
-                            <div class="board-label">b</div>
-                            <div class="board-label">c</div>
-                            <div class="board-label">d</div>
-                            <div class="board-label">e</div>
-                            <div class="board-label">f</div>
-                            <div class="board-label">g</div>
-                            <div class="board-label">h</div>
-                        </div>
-                        <div class="board-with-labels">
-                            <div class="row-labels">
-                                <div class="row-label">8</div>
-                                <div class="row-label">7</div>
-                                <div class="row-label">6</div>
-                                <div class="row-label">5</div>
-                                <div class="row-label">4</div>
-                                <div class="row-label">3</div>
-                                <div class="row-label">2</div>
-                                <div class="row-label">1</div>
-                            </div>
-                            <div class="chessboard" id="chessboard"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Info Panel -->
+            <!-- Right Panel - Info -->
+            <div class="right-panel">
                 <div class="info-panel">
                     <div class="info-card">
-                        <h3>🎯 Turn</h3>
+                        <div class="difficulty-badge" id="difficultyBadge">Easy Mode</div>
+                        <h3>🎯 Current Turn</h3>
                         <div class="turn-indicator" id="turnIndicator">⚪ Your Turn!</div>
                     </div>
 
                     <div class="info-card">
                         <h3>⚪ Your Captures</h3>
                         <div class="captured-display" id="whiteCaptured">
-                            <span style="color: #666;">None yet</span>
+                            <span style="color: #999;">None yet</span>
                         </div>
                     </div>
 
                     <div class="info-card">
                         <h3>⚫ Zaira's Captures</h3>
                         <div class="captured-display" id="blackCaptured">
-                            <span style="color: #666;">None yet</span>
+                            <span style="color: #999;">None yet</span>
                         </div>
                     </div>
 
                     <div class="control-buttons">
-                        <button class="btn btn-new-game" onclick="resetGame()">🔄 New Game</button>
-                        <button class="btn btn-home" onclick="backToHome()">🏠 Home</button>
+                        <button class="action-btn btn-new-game" onclick="resetGame()">🔄 New Game</button>
+                        <button class="action-btn btn-home" onclick="backToHome()">🏠 Change Difficulty</button>
                     </div>
                 </div>
             </div>
@@ -1105,7 +1273,7 @@
                 <h2 id="gameOverTitle">Game Over!</h2>
                 <span class="close-btn" onclick="closeGameOver()">&times;</span>
             </div>
-            <div class="game-over-content">
+            <div class="winner-section">
                 <div class="winner-avatar" id="winnerAvatar">🏆</div>
                 <div class="game-stats">
                     <div class="stat-row">
@@ -1122,9 +1290,9 @@
                     </div>
                 </div>
                 <div class="control-buttons">
-                    <button class="btn btn-new-game" onclick="showAnalysis()">📚 View Analysis</button>
-                    <button class="btn btn-new-game" onclick="closeGameOver(); resetGame();">🔄 Play Again</button>
-                    <button class="btn btn-home" onclick="closeGameOver(); backToHome();">🏠 Home</button>
+                    <button class="action-btn btn-new-game" onclick="showAnalysis()">📚 View Game Analysis</button>
+                    <button class="action-btn btn-new-game" onclick="closeGameOver(); resetGame();">🔄 Play Again</button>
+                    <button class="action-btn btn-home" onclick="closeGameOver(); backToHome();">⚙️ Change Difficulty</button>
                 </div>
             </div>
         </div>
@@ -1157,24 +1325,24 @@
         let blackCaptured = [];
         let gameActive = false;
         let playerData = { name: '', age: 0, gender: '', avatar: '' };
+        let difficulty = 'easy';
         let lastMove = null;
         let gameStartTime = null;
         let timerInterval = null;
         let timeRemaining = 600;
 
-        const coachExpressions = {
-            greeting: { mood: '😊', text: "Hi! Let's have an amazing chess game together! 🎉" },
-            thinking: { mood: '🤔', text: "Hmm... let me think about this carefully..." },
-            impressed: { mood: '😮', text: "Wow! That was brilliant! You're improving! 💫" },
-            challenge: { mood: '😏', text: "Interesting! But can you handle this? 😈" },
-            mistake: { mood: '🤨', text: "Oops! That wasn't ideal. Keep trying! 💪" },
-            winning: { mood: '😊', text: "I'm doing well, but you're challenging me! 🌟" },
-            losing: { mood: '😤', text: "You're playing great! I need to focus! 🔥" },
-            capture: { mood: '😲', text: "Oh no! Nice capture! 👏" },
-            captured: { mood: '😅', text: "Got it! But the game continues! 💪" },
-            checkmate: { mood: '😢', text: "Congratulations! You won! Amazing game! 🏆" },
-            victory: { mood: '😊', text: "I won, but you played wonderfully! Try again? 🌟" },
-            encouragement: { mood: '😊', text: "You're doing great! Keep thinking ahead! 💡" }
+        // Zaira's expressions and voice reactions
+        const zairaExpressions = {
+            happy: { face: '😊', mood: '😊', speech: "Great move! You're doing wonderfully! 🌟", sound: '🎵 Cheerful' },
+            excited: { face: '🤩', mood: '🤩', speech: "Wow! That was brilliant! I'm impressed! ✨", sound: '🎉 Excited' },
+            thinking: { face: '🤔', mood: '🤔', speech: "Hmm... let me think about this carefully...", sound: '🎵 Thinking' },
+            surprised: { face: '😮', mood: '😲', speech: "Oh! I didn't see that coming! Nice! 👏", sound: '😮 Surprised' },
+            worried: { face: '😰', mood: '😰', speech: "Oh no! You're playing really well! I need to focus! 💪", sound: '😰 Worried' },
+            sad: { face: '😢', mood: '😢', speech: "You got me! Congratulations, you played amazingly! 🏆", sound: '😢 Defeated' },
+            confident: { face: '😎', mood: '😏', speech: "Interesting move! But I have a plan... 😈", sound: '😎 Confident' },
+            celebrating: { face: '🎉', mood: '🥳', speech: "I won this time! But you played wonderfully! Want to try again? 🌟", sound: '🎉 Victory' },
+            encouraging: { face: '👩‍🏫', mood: '💪', speech: "Don't give up! Every move is a chance to learn! You've got this! 💡", sound: '💪 Encouraging' },
+            teaching: { face: '👩‍🏫', mood: '📚', speech: "That's a learning moment! Try to think a few moves ahead! 🎯", sound: '📚 Teaching' }
         };
 
         // ==================== INITIALIZATION ====================
@@ -1194,7 +1362,7 @@
 
         function selectGender(gender) {
             selectedGender = gender;
-            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
             event.target.classList.add('selected');
             checkFormValid();
         }
@@ -1209,51 +1377,50 @@
         function checkFormValid() {
             const name = document.getElementById('playerName').value.trim();
             const age = document.getElementById('playerAge').value;
-            const startBtn = document.getElementById('startBtn');
-            startBtn.disabled = !(name && age && selectedGender && selectedAvatarEmoji);
+            const continueBtn = document.getElementById('continueBtn');
+            continueBtn.disabled = !(name && age && selectedGender && selectedAvatarEmoji);
         }
 
-        function goToHome() {
+        function goToDifficulty() {
             playerData.name = document.getElementById('playerName').value.trim();
             playerData.age = document.getElementById('playerAge').value;
             playerData.gender = selectedGender;
             playerData.avatar = selectedAvatarEmoji;
 
-            document.getElementById('welcomeName').textContent = playerData.name;
-            document.getElementById('homeAvatar').textContent = playerData.avatar;
-            document.getElementById('userDetails').innerHTML = `
-                ${playerData.age} years old • ${playerData.gender.charAt(0).toUpperCase() + playerData.gender.slice(1)}
-            `;
-
             document.getElementById('onboardingScreen').classList.remove('active');
-            document.getElementById('homeScreen').classList.add('active');
+            document.getElementById('difficultyScreen').classList.add('active');
         }
 
-        function startPlaying() {
+        // ==================== DIFFICULTY SELECTION ====================
+        function selectDifficulty(level) {
+            difficulty = level;
+            
             document.getElementById('headerName').textContent = playerData.name;
             document.getElementById('headerAvatar').textContent = playerData.avatar;
+            
+            const badge = document.getElementById('difficultyBadge');
+            badge.className = `difficulty-badge ${level}`;
+            badge.textContent = level.charAt(0).toUpperCase() + level.slice(1) + ' Mode';
 
-            document.getElementById('homeScreen').classList.remove('active');
+            document.getElementById('difficultyScreen').classList.remove('active');
             document.getElementById('mainGame').classList.add('active');
 
             initializeGame();
         }
 
         function backToHome() {
-            if (gameActive) {
-                if (!confirm('Are you sure? Current game will be lost.')) return;
-            }
+            if (gameActive && !confirm('Are you sure? Current game will be lost.')) return;
             if (timerInterval) clearInterval(timerInterval);
             gameActive = false;
             
             document.getElementById('mainGame').classList.remove('active');
-            document.getElementById('homeScreen').classList.add('active');
+            document.getElementById('difficultyScreen').classList.add('active');
         }
 
         // ==================== GAME INITIALIZATION ====================
         function initializeGame() {
             resetGame();
-            updateCoachExpression(coachExpressions.greeting);
+            updateZairaExpression(zairaExpressions.happy);
         }
 
         function resetGame() {
@@ -1285,7 +1452,7 @@
             updateTurnIndicator();
             updateCapturedPieces();
             renderBoard();
-            updateCoachExpression(coachExpressions.encouragement);
+            updateZairaExpression(zairaExpressions.encouraging);
         }
 
         function updateTimer() {
@@ -1305,12 +1472,38 @@
             const seconds = timeRemaining % 60;
             document.getElementById('timerDisplay').textContent = 
                 `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
 
-            if (timeRemaining <= 60) {
-                document.getElementById('timerDisplay').style.color = '#f5576c';
-            } else {
-                document.getElementById('timerDisplay').style.color = '#667eea';
-            }
+        // ==================== ZAIRA EXPRESSIONS ====================
+        function updateZairaExpression(expression) {
+            const coachFace = document.getElementById('coachFace');
+            const coachMood = document.getElementById('coachMood');
+            const coachSpeech = document.getElementById('coachSpeech');
+            const soundNotif = document.getElementById('soundNotification');
+
+            // Animate face change
+            coachFace.style.transform = 'scale(0)';
+            setTimeout(() => {
+                coachFace.textContent = expression.face;
+                coachFace.style.transform = 'scale(1)';
+            }, 150);
+
+            // Update mood
+            coachMood.textContent = expression.mood;
+            
+            // Update speech bubble with animation
+            coachSpeech.style.opacity = '0';
+            setTimeout(() => {
+                coachSpeech.textContent = expression.speech;
+                coachSpeech.style.opacity = '1';
+            }, 200);
+
+            // Show sound notification
+            soundNotif.textContent = expression.sound;
+            soundNotif.classList.add('active');
+            setTimeout(() => {
+                soundNotif.classList.remove('active');
+            }, 2000);
         }
 
         // ==================== BOARD RENDERING ====================
@@ -1461,24 +1654,30 @@
             if (capturedPiece) {
                 if (currentTurn === 'white') {
                     whiteCaptured.push(capturedPiece);
-                    updateCoachExpression(coachExpressions.capture);
+                    updateZairaExpression(zairaExpressions.surprised);
                 } else {
                     blackCaptured.push(capturedPiece);
-                    updateCoachExpression(coachExpressions.captured);
+                    updateZairaExpression(zairaExpressions.confident);
                 }
                 updateCapturedPieces();
             } else if (currentTurn === 'white') {
                 const random = Math.random();
-                if (random > 0.7) updateCoachExpression(coachExpressions.impressed);
-                else if (random > 0.4) updateCoachExpression(coachExpressions.challenge);
+                if (random > 0.7) updateZairaExpression(zairaExpressions.excited);
+                else if (random > 0.4) updateZairaExpression(zairaExpressions.thinking);
+                else updateZairaExpression(zairaExpressions.happy);
             }
 
             board[toRow][toCol] = piece;
             board[fromRow][fromCol] = '';
 
             if (capturedPiece && capturedPiece.toLowerCase() === 'k') {
-                endGame(currentTurn === 'white' ? '🎉 You Won!' : '😢 Zaira Wins!', currentTurn === 'white');
-                updateCoachExpression(currentTurn === 'white' ? coachExpressions.checkmate : coachExpressions.victory);
+                if (currentTurn === 'white') {
+                    endGame('🎉 You Won! Amazing!', true);
+                    updateZairaExpression(zairaExpressions.sad);
+                } else {
+                    endGame('👩‍🏫 Zaira Wins!', false);
+                    updateZairaExpression(zairaExpressions.celebrating);
+                }
                 return;
             }
 
@@ -1486,58 +1685,130 @@
             updateTurnIndicator();
             clearSelection();
 
-            if (currentTurn === 'black') setTimeout(makeCoachMove, 2000);
+            if (currentTurn === 'black') {
+                setTimeout(makeCoachMove, 500);
+            }
         }
 
-        // ==================== COACH AI ====================
+        // ==================== AI DIFFICULTY LEVELS ====================
         function makeCoachMove() {
             if (!gameActive) return;
 
-            document.getElementById('thinkingAnimation').classList.add('active');
-            updateCoachExpression(coachExpressions.thinking);
+            updateZairaExpression(zairaExpressions.thinking);
+            document.getElementById('thinkingIndicator').classList.add('active');
 
-            const thinkingTime = 2000 + Math.random() * 2000;
+            // Thinking time based on difficulty
+            let thinkingTime;
+            switch (difficulty) {
+                case 'easy':
+                    thinkingTime = 5000 + Math.random() * 3000; // 5-8 seconds
+                    break;
+                case 'moderate':
+                    thinkingTime = 3000 + Math.random() * 2000; // 3-5 seconds
+                    break;
+                case 'hard':
+                    thinkingTime = 1000 + Math.random() * 1000; // 1-2 seconds
+                    break;
+            }
 
             setTimeout(() => {
-                document.getElementById('thinkingAnimation').classList.remove('active');
+                document.getElementById('thinkingIndicator').classList.remove('active');
+                executeAIMove();
+            }, thinkingTime);
+        }
 
-                let possibleMoves = [];
-                for (let fromRow = 0; fromRow < 8; fromRow++) {
-                    for (let fromCol = 0; fromCol < 8; fromCol++) {
-                        const piece = board[fromRow][fromCol];
-                        if (piece && piece === piece.toLowerCase()) {
-                            for (let toRow = 0; toRow < 8; toRow++) {
-                                for (let toCol = 0; toCol < 8; toCol++) {
-                                    if (isValidMove(fromRow, fromCol, toRow, toCol)) {
-                                        const captureValue = board[toRow][toCol] ? getPieceValue(board[toRow][toCol]) : 0;
-                                        const pieceValue = getPieceValue(piece);
-                                        
-                                        possibleMoves.push({
-                                            from: [fromRow, fromCol],
-                                            to: [toRow, toCol],
-                                            piece,
-                                            captureValue,
-                                            priority: captureValue - (willBeUnderAttack(toRow, toCol, piece) ? pieceValue : 0)
-                                        });
-                                    }
+        function executeAIMove() {
+            let possibleMoves = getAllPossibleMoves('black');
+            
+            if (possibleMoves.length === 0) return;
+
+            let selectedMove;
+
+            switch (difficulty) {
+                case 'easy':
+                    // Easy: Sometimes makes random moves, prioritizes safety
+                    if (Math.random() < 0.4) {
+                        // 40% chance of random move
+                        selectedMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                    } else {
+                        // 60% chance of decent move
+                        possibleMoves.sort((a, b) => {
+                            const scoreA = a.captureValue - (a.danger ? 5 : 0);
+                            const scoreB = b.captureValue - (b.danger ? 5 : 0);
+                            return scoreB - scoreA;
+                        });
+                        const topMoves = possibleMoves.slice(0, Math.min(5, possibleMoves.length));
+                        selectedMove = topMoves[Math.floor(Math.random() * topMoves.length)];
+                    }
+                    break;
+
+                case 'moderate':
+                    // Moderate: Balanced strategy
+                    possibleMoves.sort((a, b) => {
+                        const scoreA = a.captureValue * 2 - (a.danger ? 3 : 0) + a.positional;
+                        const scoreB = b.captureValue * 2 - (b.danger ? 3 : 0) + b.positional;
+                        return scoreB - scoreA;
+                    });
+                    const goodMoves = possibleMoves.slice(0, Math.min(3, possibleMoves.length));
+                    selectedMove = goodMoves[Math.floor(Math.random() * goodMoves.length)];
+                    break;
+
+                case 'hard':
+                    // Hard: Best move always
+                    possibleMoves.sort((a, b) => {
+                        const scoreA = a.captureValue * 3 - (a.danger ? a.pieceValue : 0) + a.positional * 2;
+                        const scoreB = b.captureValue * 3 - (b.danger ? b.pieceValue : 0) + b.positional * 2;
+                        return scoreB - scoreA;
+                    });
+                    selectedMove = possibleMoves[0];
+                    break;
+            }
+
+            makeMove(selectedMove.from[0], selectedMove.from[1], selectedMove.to[0], selectedMove.to[1]);
+        }
+
+        function getAllPossibleMoves(player) {
+            let moves = [];
+            for (let fromRow = 0; fromRow < 8; fromRow++) {
+                for (let fromCol = 0; fromCol < 8; fromCol++) {
+                    const piece = board[fromRow][fromCol];
+                    if (piece && ((player === 'white' && piece === piece.toUpperCase()) || 
+                                  (player === 'black' && piece === piece.toLowerCase()))) {
+                        for (let toRow = 0; toRow < 8; toRow++) {
+                            for (let toCol = 0; toCol < 8; toCol++) {
+                                if (isValidMove(fromRow, fromCol, toRow, toCol)) {
+                                    const captureValue = board[toRow][toCol] ? getPieceValue(board[toRow][toCol]) : 0;
+                                    const pieceValue = getPieceValue(piece);
+                                    const danger = willBeUnderAttack(toRow, toCol, piece);
+                                    const positional = getPositionalValue(toRow, toCol, piece);
+                                    
+                                    moves.push({
+                                        from: [fromRow, fromCol],
+                                        to: [toRow, toCol],
+                                        piece,
+                                        captureValue,
+                                        pieceValue,
+                                        danger,
+                                        positional
+                                    });
                                 }
                             }
                         }
                     }
                 }
-
-                if (possibleMoves.length > 0) {
-                    possibleMoves.sort((a, b) => b.priority - a.priority);
-                    const topMoves = possibleMoves.slice(0, Math.min(3, possibleMoves.length));
-                    const move = topMoves[Math.floor(Math.random() * topMoves.length)];
-                    makeMove(move.from[0], move.from[1], move.to[0], move.to[1]);
-                }
-            }, thinkingTime);
+            }
+            return moves;
         }
 
         function getPieceValue(piece) {
             const values = { 'p': 1, 'n': 3, 'b': 3, 'r': 5, 'q': 9, 'k': 100 };
             return values[piece.toLowerCase()] || 0;
+        }
+
+        function getPositionalValue(row, col, piece) {
+            // Center control is better
+            const centerDistance = Math.abs(row - 3.5) + Math.abs(col - 3.5);
+            return 7 - centerDistance;
         }
 
         function willBeUnderAttack(row, col, piece) {
@@ -1547,7 +1818,8 @@
             for (let r = 0; r < 8; r++) {
                 for (let c = 0; c < 8; c++) {
                     const enemyPiece = board[r][c];
-                    if (enemyPiece && enemyPiece === enemyPiece.toUpperCase()) {
+                    if (enemyPiece && ((piece === piece.toUpperCase() && enemyPiece === enemyPiece.toLowerCase()) ||
+                                       (piece === piece.toLowerCase() && enemyPiece === enemyPiece.toUpperCase()))) {
                         if (isValidMove(r, c, row, col)) {
                             board[row][col] = originalPiece;
                             return true;
@@ -1560,7 +1832,7 @@
             return false;
         }
 
-        // ==================== ANALYSIS ====================
+        // ==================== MISTAKE ANALYSIS ====================
         function analyzeMoveForMistakes(move) {
             if (move.captured) {
                 const capturedValue = getPieceValue(move.captured);
@@ -1569,10 +1841,10 @@
                 if (movedValue > capturedValue + 2) {
                     mistakes.push({
                         move: `Move ${moveHistory.length}`,
-                        description: `You traded your ${getPieceName(move.piece)} (value: ${movedValue}) for ${getPieceName(move.captured)} (value: ${capturedValue})`,
-                        suggestion: "Try to capture pieces of equal or greater value!"
+                        description: `You traded your ${getPieceName(move.piece)} (value: ${movedValue}) for ${getPieceName(move.captured)} (value: ${capturedValue}). This gave Zaira an advantage!`,
+                        suggestion: "💡 Coach Zaira's Tip: Try to capture pieces of equal or greater value. Knights and Bishops are worth 3, Rooks are worth 5, and Queens are worth 9!"
                     });
-                    updateCoachExpression(coachExpressions.mistake);
+                    updateZairaExpression(zairaExpressions.teaching);
                 }
             }
 
@@ -1580,8 +1852,8 @@
             if (willBeUnderAttack(toRow, toCol, move.piece) && getPieceValue(move.piece) > 1) {
                 mistakes.push({
                     move: `Move ${moveHistory.length}`,
-                    description: `Your ${getPieceName(move.piece)} moved to a threatened square`,
-                    suggestion: "Always check if your piece will be safe after moving!"
+                    description: `Your ${getPieceName(move.piece)} moved to a square where it can be captured by Zaira's pieces.`,
+                    suggestion: "💡 Coach Zaira's Tip: Before moving, always check if the new square is safe. Look for enemy pieces that might attack that square!"
                 });
             }
         }
@@ -1592,16 +1864,11 @@
         }
 
         // ==================== UI UPDATES ====================
-        function updateCoachExpression(expression) {
-            document.getElementById('coachMood').textContent = expression.mood;
-            document.getElementById('coachExpression').textContent = expression.text;
-        }
-
         function updateTurnIndicator() {
             const indicator = document.getElementById('turnIndicator');
             if (currentTurn === 'white') {
                 indicator.textContent = '⚪ Your Turn!';
-                indicator.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                indicator.style.background = 'linear-gradient(135deg, #58cc02, #00cd9c)';
             } else {
                 indicator.textContent = '⚫ Zaira\'s Turn';
                 indicator.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
@@ -1614,11 +1881,11 @@
             
             whiteDiv.innerHTML = whiteCaptured.length > 0 ? 
                 whiteCaptured.map(p => `<span class="captured-piece">${pieces[p]}</span>`).join('') : 
-                '<span style="color: #666;">None yet</span>';
+                '<span style="color: #999;">None yet</span>';
             
             blackDiv.innerHTML = blackCaptured.length > 0 ? 
                 blackCaptured.map(p => `<span class="captured-piece">${pieces[p]}</span>`).join('') : 
-                '<span style="color: #666;">None yet</span>';
+                '<span style="color: #999;">None yet</span>';
         }
 
         // ==================== GAME END ====================
@@ -1651,15 +1918,16 @@
                 analysisList.innerHTML = `
                     <div class="perfect-game">
                         <div class="trophy">🏆</div>
-                        <h3>Outstanding!</h3>
-                        <p>No major mistakes detected. You played brilliantly!</p>
+                        <h3>Outstanding Performance!</h3>
+                        <p style="color: #666; font-size: 1.2em;">Coach Zaira didn't find any major mistakes in your game. You played brilliantly! Keep up the amazing work! 🌟</p>
                     </div>
                 `;
             } else {
                 analysisList.innerHTML = mistakes.map(mistake => `
                     <div class="mistake-item">
-                        <h4>⚠️ ${mistake.move}: ${mistake.description}</h4>
-                        <span class="suggestion">💡 ${mistake.suggestion}</span>
+                        <h4>⚠️ ${mistake.move}</h4>
+                        <p>${mistake.description}</p>
+                        <span class="suggestion">${mistake.suggestion}</span>
                     </div>
                 `).join('');
             }
@@ -1671,6 +1939,7 @@
             document.getElementById('analysisModal').classList.remove('active');
         }
 
+        // Close modals on outside click
         document.getElementById('analysisModal').addEventListener('click', (e) => {
             if (e.target.id === 'analysisModal') closeAnalysis();
         });
