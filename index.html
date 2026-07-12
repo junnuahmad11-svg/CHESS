@@ -12,14 +12,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow-x: hidden;
-            height: 100vh;
+            min-height: 100vh;
         }
 
-        /* ==================== SPLASH ==================== */
-        .splash {
+        /* SPLASH SCREEN */
+        .splash-screen {
             position: fixed;
             top: 0;
             left: 0;
@@ -34,7 +33,7 @@
             transition: opacity 0.5s;
         }
 
-        .splash.hide {
+        .splash-screen.fade-out {
             opacity: 0;
             pointer-events: none;
         }
@@ -42,12 +41,6 @@
         .splash-icon {
             font-size: 8em;
             margin-bottom: 20px;
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
 
         .splash-title {
@@ -58,91 +51,62 @@
         }
 
         .splash-made {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: white;
             text-align: center;
             margin-top: 20px;
-            padding: 0 20px;
         }
 
         .heart {
             color: #ff6b6b;
-            animation: heartbeat 1s infinite;
+            font-size: 1.3em;
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-        }
-
-        .load-bar {
-            width: 300px;
-            height: 6px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        .load-progress {
-            height: 100%;
-            background: white;
-            width: 0%;
-            animation: load 3s ease forwards;
-        }
-
-        @keyframes load {
-            to { width: 100%; }
-        }
-
-        /* ==================== MENU ==================== */
-        .menu {
+        /* MAIN MENU */
+        .main-menu {
             display: none;
             min-height: 100vh;
             background: #f7f7f7;
         }
 
-        .menu.active {
+        .main-menu.active {
             display: block;
         }
 
         .menu-header {
             background: linear-gradient(135deg, #58cc02, #46a302);
-            padding: 20px;
+            padding: 25px;
             color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
         .menu-title {
             font-size: 2.5em;
             font-weight: 800;
-            text-align: center;
         }
 
         .menu-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 30px;
+            gap: 25px;
+            padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .card {
+        .menu-card {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 35px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 3px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            border-color: #58cc02;
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
         }
 
         .card-icon {
@@ -153,37 +117,36 @@
         .card-title {
             font-size: 1.8em;
             font-weight: 800;
-            color: #3c3c3c;
+            color: #333;
             margin-bottom: 10px;
         }
 
         .card-desc {
             color: #666;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* ==================== GAME ==================== */
-        .game {
+        /* GAME SCREEN */
+        .game-screen {
             display: none;
-            height: 100vh;
+            min-height: 100vh;
             background: #f7f7f7;
         }
 
-        .game.active {
-            display: grid;
-            grid-template-rows: auto 1fr;
+        .game-screen.active {
+            display: block;
         }
 
         .game-header {
             background: white;
-            padding: 12px 20px;
+            padding: 15px 25px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .back-btn {
+        .back-button {
             background: #ff4b4b;
             color: white;
             border: none;
@@ -191,66 +154,62 @@
             border-radius: 20px;
             font-weight: 700;
             cursor: pointer;
+            font-size: 1em;
         }
 
-        .stats {
+        .game-stats {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .stat {
+        .stat-badge {
             background: #f7f7f7;
             padding: 8px 15px;
             border-radius: 15px;
             font-weight: 700;
         }
 
-        .game-body {
+        .game-container {
             display: grid;
-            grid-template-columns: 280px 1fr 280px;
-            gap: 15px;
-            padding: 15px;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        @media (max-width: 1000px) {
-            .game-body {
+        @media (max-width: 1100px) {
+            .game-container {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* ==================== ZAIRA ==================== */
-        .zaira {
+        /* ZAIRA PANEL */
+        .zaira-panel {
             background: white;
             border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .zaira-avatar {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             background: linear-gradient(135deg, #f093fb, #f5576c);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4em;
+            font-size: 4.5em;
             margin: 0 auto 15px;
-            border: 4px solid white;
-            box-shadow: 0 8px 20px rgba(240,147,251,0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(240,147,251,0.4);
         }
 
         .zaira-name {
             text-align: center;
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: 800;
-            color: #3c3c3c;
             margin-bottom: 5px;
         }
 
@@ -269,242 +228,157 @@
         .zaira-speech {
             background: linear-gradient(135deg, #58cc02, #46a302);
             color: white;
-            padding: 18px;
+            padding: 20px;
             border-radius: 15px;
-            font-size: 1.05em;
-            line-height: 1.5;
-            min-height: 80px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
         }
 
-        .zaira-speech::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-bottom: 12px solid #58cc02;
-        }
-
-        .thinking {
-            display: none;
-            text-align: center;
-            padding: 15px;
-            background: #f7f7f7;
-            border-radius: 12px;
-            margin-top: 12px;
-        }
-
-        .thinking.active {
-            display: block;
-        }
-
-        .dots {
-            font-size: 2em;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
-        /* ==================== BOARD ==================== */
-        .board-area {
+        /* BOARD */
+        .board-section {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .board-box {
+        .board-container {
             background: white;
-            padding: 18px;
+            padding: 20px;
             border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        .labels-top {
+        .board-labels-top {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
-        .label {
+        .board-label {
             width: 12.5%;
             text-align: center;
             color: #58cc02;
             font-weight: 800;
-            font-size: 0.9em;
         }
 
-        .board-main {
+        .board-wrapper {
             display: flex;
-            gap: 6px;
+            gap: 8px;
         }
 
-        .labels-left {
+        .board-labels-left {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
         }
 
-        .board {
+        .chessboard {
             display: grid;
-            grid-template-columns: repeat(8, 55px);
-            grid-template-rows: repeat(8, 55px);
-            gap: 0;
-            border: 4px solid #58cc02;
-            border-radius: 10px;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            border: 5px solid #58cc02;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(88,204,2,0.3);
+            box-shadow: 0 0 25px rgba(88,204,2,0.3);
         }
 
-        .sq {
-            width: 55px;
-            height: 55px;
+        .square {
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.8em;
+            font-size: 3em;
             cursor: pointer;
             user-select: none;
-            transition: all 0.2s;
-            position: relative;
         }
 
-        .sq.light { background: #f0d9b5; }
-        .sq.dark { background: #b58863; }
+        .square.light {
+            background: #f0d9b5;
+        }
 
-        .sq.selected {
+        .square.dark {
+            background: #b58863;
+        }
+
+        .square.selected {
             background: #ffc800 !important;
-            box-shadow: inset 0 0 0 3px #58cc02;
+            box-shadow: inset 0 0 0 4px #58cc02;
         }
 
-        .sq.valid {
+        .square.valid-move {
             background: #7fa650 !important;
         }
 
-        .sq.valid::after {
+        .square.valid-move::after {
             content: '';
             width: 25%;
             height: 25%;
-            background: rgba(88,204,2,0.6);
+            background: rgba(88,204,2,0.7);
             border-radius: 50%;
             position: absolute;
-            animation: glow 1s infinite;
         }
 
-        @keyframes glow {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 1; }
+        .square:hover {
+            filter: brightness(1.1);
         }
 
-        .sq.wrong {
-            animation: shake 0.5s, flash 0.5s;
-            background: #ff4b4b !important;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        @keyframes flash {
-            0%, 100% { box-shadow: none; }
-            50% { box-shadow: 0 0 20px #ff4b4b; }
-        }
-
-        .sq.correct {
-            animation: correctFlash 0.5s;
-        }
-
-        @keyframes correctFlash {
-            0%, 100% { box-shadow: none; }
-            50% { box-shadow: 0 0 20px #58cc02; }
-        }
-
-        .sq.hint {
-            animation: hintPulse 2s infinite;
-        }
-
-        @keyframes hintPulse {
-            0%, 100% { box-shadow: 0 0 0 rgba(88,204,2,0); }
-            50% { box-shadow: 0 0 20px rgba(88,204,2,0.8); }
-        }
-
-        .sq:hover { filter: brightness(1.1); }
-
-        .sq {
-            text-shadow: 
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000,
-                0 0 3px rgba(0,0,0,0.5);
-        }
-
-        /* ==================== INFO ==================== */
-        .info {
+        /* INFO PANEL */
+        .info-panel {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
 
         .info-card {
             background: white;
             border-radius: 15px;
-            padding: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .info-card h3 {
-            color: #3c3c3c;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            font-weight: 800;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            color: #333;
         }
 
-        .badge {
+        .difficulty-badge {
             display: inline-block;
             padding: 6px 15px;
             border-radius: 15px;
-            font-size: 0.85em;
             font-weight: 700;
             margin-bottom: 10px;
         }
 
-        .badge.easy {
+        .difficulty-badge.easy {
             background: linear-gradient(135deg, #58cc02, #46a302);
             color: white;
         }
 
-        .badge.medium {
+        .difficulty-badge.medium {
             background: linear-gradient(135deg, #ffc800, #ff9900);
             color: white;
         }
 
-        .badge.hard {
+        .difficulty-badge.hard {
             background: linear-gradient(135deg, #ff4b4b, #cc0000);
             color: white;
         }
 
-        .xp-bar {
+        .xp-bar-container {
             background: #e0e0e0;
-            height: 25px;
-            border-radius: 12px;
+            height: 28px;
+            border-radius: 14px;
             overflow: hidden;
         }
 
-        .xp-fill {
+        .xp-bar {
             height: 100%;
             background: linear-gradient(90deg, #58cc02, #46a302);
             transition: width 0.5s;
@@ -513,27 +387,27 @@
             justify-content: center;
             color: white;
             font-weight: 800;
-            font-size: 0.85em;
         }
 
-        .streak {
+        .streak-display {
             background: linear-gradient(135deg, #ff6b6b, #ff8e53);
             color: white;
-            padding: 12px;
+            padding: 15px;
             border-radius: 12px;
             text-align: center;
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: 800;
         }
 
-        .btn {
-            padding: 12px;
+        .action-button {
+            padding: 14px;
             border: none;
             border-radius: 12px;
-            font-size: 0.95em;
+            font-size: 1em;
             font-weight: 800;
             cursor: pointer;
             transition: all 0.3s;
+            margin-bottom: 8px;
         }
 
         .btn-primary {
@@ -551,12 +425,12 @@
             color: white;
         }
 
-        .btn:hover {
+        .action-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
 
-        /* ==================== MODAL ==================== */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -575,10 +449,10 @@
             display: flex;
         }
 
-        .modal-box {
+        .modal-content {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 35px;
             max-width: 600px;
             width: 100%;
             max-height: 85vh;
@@ -591,38 +465,37 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #58cc02;
+            border-bottom: 3px solid #58cc02;
         }
 
         .modal-header h2 {
-            color: #3c3c3c;
             font-size: 2em;
             font-weight: 800;
         }
 
-        .close {
+        .close-button {
             font-size: 2em;
             cursor: pointer;
-            color: #999;
             background: none;
             border: none;
+            color: #999;
         }
 
-        .close:hover {
+        .close-button:hover {
             color: #ff4b4b;
         }
 
-        .about-text {
+        .about-content {
             line-height: 1.8;
-            color: #3c3c3c;
+            color: #333;
         }
 
-        .about-text h3 {
+        .about-content h3 {
             color: #58cc02;
             margin: 20px 0 10px;
         }
 
-        .yt-section {
+        .youtube-section {
             background: #f7f7f7;
             padding: 20px;
             border-radius: 15px;
@@ -630,235 +503,224 @@
             text-align: center;
         }
 
-        .yt-btn {
+        .youtube-button {
             background: #ff0000;
             color: white;
             padding: 12px 25px;
             border: none;
             border-radius: 20px;
-            font-size: 1em;
             font-weight: 800;
             cursor: pointer;
             margin: 5px;
         }
-
-        .celebrate {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 10em;
-            pointer-events: none;
-            z-index: 10002;
-            animation: celebrate 2s ease;
-            display: none;
-        }
-
-        .celebrate.active {
-            display: block;
-        }
-
-        @keyframes celebrate {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-        }
     </style>
 </head>
 <body>
-    <!-- SPLASH -->
-    <div class="splash" id="splash">
+    <!-- SPLASH SCREEN -->
+    <div class="splash-screen" id="splashScreen">
         <div class="splash-icon">♟️</div>
         <div class="splash-title">Zaira Chess Coach</div>
-        <div class="load-bar">
-            <div class="load-progress"></div>
-        </div>
         <div class="splash-made">
             Made with <span class="heart">❤️</span> for friends by<br>
             <strong>Mohamad Zubeir</strong>
         </div>
     </div>
 
-    <!-- MENU -->
-    <div class="menu" id="menu">
+    <!-- MAIN MENU -->
+    <div class="main-menu" id="mainMenu">
         <div class="menu-header">
             <div class="menu-title">♟️ Zaira Chess Coach</div>
         </div>
         <div class="menu-cards">
-            <div class="card" onclick="start('easy')">
+            <div class="menu-card" onclick="startGame('easy')">
                 <div class="card-icon">🌱</div>
                 <div class="card-title">Learn Mode</div>
-                <div class="card-desc">Full support with hints, arrows, and step-by-step guidance!</div>
+                <div class="card-desc">Full support with hints, arrows, and step-by-step guidance. Perfect for beginners!</div>
             </div>
-            <div class="card" onclick="start('medium')">
+            <div class="menu-card" onclick="startGame('medium')">
                 <div class="card-icon">⚡</div>
                 <div class="card-title">Play Mode</div>
-                <div class="card-desc">Play freely with simple reactions. No hints!</div>
+                <div class="card-desc">Play freely with simple reactions. No hints, just encouragement!</div>
             </div>
-            <div class="card" onclick="start('hard')">
+            <div class="menu-card" onclick="startGame('hard')">
                 <div class="card-icon">🔥</div>
                 <div class="card-title">Hard Mode</div>
-                <div class="card-desc">Pure chess. Zero support. Real competitive play!</div>
+                <div class="card-desc">Pure chess experience. Zero support. Real competitive play!</div>
             </div>
-            <div class="card" onclick="showAbout()">
+            <div class="menu-card" onclick="showAboutModal()">
                 <div class="card-icon">ℹ️</div>
                 <div class="card-title">About</div>
-                <div class="card-desc">Learn about the creator and request apps!</div>
+                <div class="card-desc">Learn about the creator and request new apps!</div>
             </div>
         </div>
     </div>
 
-    <!-- GAME -->
-    <div class="game" id="game">
+    <!-- GAME SCREEN -->
+    <div class="game-screen" id="gameScreen">
         <div class="game-header">
-            <button class="back-btn" onclick="toMenu()">← Back</button>
-            <div class="stats">
-                <div class="stat">⭐ <span id="xp">0 XP</span></div>
-                <div class="stat">🔥 <span id="streak">0 Days</span></div>
-                <div class="stat">📊 <span id="level">Lvl 1</span></div>
+            <button class="back-button" onclick="backToMenu()">← Back</button>
+            <div class="game-stats">
+                <div class="stat-badge">⭐ <span id="xpStat">0 XP</span></div>
+                <div class="stat-badge">🔥 <span id="streakStat">0 Days</span></div>
+                <div class="stat-badge">📊 <span id="levelStat">Level 1</span></div>
             </div>
         </div>
-        <div class="game-body">
-            <div class="zaira">
+
+        <div class="game-container">
+            <!-- Zaira Panel -->
+            <div class="zaira-panel">
                 <div class="zaira-avatar">
-                    <div id="face">👩‍🏫</div>
+                    <div id="zairaFace">👩‍🏫</div>
                 </div>
                 <div class="zaira-name">Coach Zaira</div>
                 <div class="zaira-role">Your Chess Teacher</div>
-                <div class="zaira-mood" id="mood">😊</div>
-                <div class="zaira-speech" id="speech">
+                <div class="zaira-mood" id="zairaMood">😊</div>
+                <div class="zaira-speech" id="zairaSpeech">
                     Hi! I'm Zaira! Let's play chess together! 🎉
                 </div>
-                <div class="thinking" id="think">
-                    <div class="dots">🤔 💭 ⏳</div>
-                    <div style="color:#666;margin-top:8px;font-size:0.9em">Thinking...</div>
-                </div>
             </div>
-            <div class="board-area">
-                <div class="board-box">
-                    <div class="labels-top">
-                        <div class="label">a</div>
-                        <div class="label">b</div>
-                        <div class="label">c</div>
-                        <div class="label">d</div>
-                        <div class="label">e</div>
-                        <div class="label">f</div>
-                        <div class="label">g</div>
-                        <div class="label">h</div>
+
+            <!-- Chess Board -->
+            <div class="board-section">
+                <div class="board-container">
+                    <div class="board-labels-top">
+                        <div class="board-label">a</div>
+                        <div class="board-label">b</div>
+                        <div class="board-label">c</div>
+                        <div class="board-label">d</div>
+                        <div class="board-label">e</div>
+                        <div class="board-label">f</div>
+                        <div class="board-label">g</div>
+                        <div class="board-label">h</div>
                     </div>
-                    <div class="board-main">
-                        <div class="labels-left">
-                            <div class="label">8</div>
-                            <div class="label">7</div>
-                            <div class="label">6</div>
-                            <div class="label">5</div>
-                            <div class="label">4</div>
-                            <div class="label">3</div>
-                            <div class="label">2</div>
-                            <div class="label">1</div>
+                    <div class="board-wrapper">
+                        <div class="board-labels-left">
+                            <div class="board-label">8</div>
+                            <div class="board-label">7</div>
+                            <div class="board-label">6</div>
+                            <div class="board-label">5</div>
+                            <div class="board-label">4</div>
+                            <div class="board-label">3</div>
+                            <div class="board-label">2</div>
+                            <div class="board-label">1</div>
                         </div>
-                        <div class="board" id="board"></div>
+                        <div class="chessboard" id="chessboard"></div>
                     </div>
                 </div>
             </div>
-            <div class="info">
+
+            <!-- Info Panel -->
+            <div class="info-panel">
                 <div class="info-card">
-                    <div class="badge" id="badge">Easy</div>
+                    <div class="difficulty-badge" id="difficultyBadge">Easy</div>
                     <h3>📊 Progress</h3>
-                    <div class="xp-bar">
-                        <div class="xp-fill" id="xpbar" style="width:0%">0/100 XP</div>
+                    <div class="xp-bar-container">
+                        <div class="xp-bar" id="xpBar" style="width: 0%">0/100 XP</div>
                     </div>
                 </div>
                 <div class="info-card">
-                    <h3>🔥 Streak</h3>
-                    <div class="streak" id="streakinfo">0 Days</div>
+                    <h3>🔥 Daily Streak</h3>
+                    <div class="streak-display" id="streakDisplay">0 Days</div>
                 </div>
-                <button class="btn btn-primary" onclick="hint()" id="hintbtn">💡 Hint</button>
-                <button class="btn btn-secondary" onclick="reset()">🔄 Reset</button>
-                <button class="btn btn-danger" onclick="toMenu()">🏠 Menu</button>
+                <button class="action-button btn-primary" onclick="showHint()" id="hintButton">💡 Show Hint</button>
+                <button class="action-button btn-secondary" onclick="resetBoard()">🔄 Reset Board</button>
+                <button class="action-button btn-danger" onclick="backToMenu()">🏠 Main Menu</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-        <div class="modal-box">
+    <!-- ABOUT MODAL -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content">
             <div class="modal-header">
                 <h2>About</h2>
-                <button class="close" onclick="closeAbout()">&times;</button>
+                <button class="close-button" onclick="closeAboutModal()">&times;</button>
             </div>
-            <div class="about-text">
+            <div class="about-content">
                 <h3>Made with Love ❤️</h3>
                 <p>Made with love for friends by <strong>Mohamad Zubeir</strong>, a student and the owner of <strong>Zuaki</strong> – the learning app made easy for IIT JEE and Mains with all features for free.</p>
                 <p>His goal is to create useful apps for free and believes money is not happiness. Others' happiness is the real happiness.</p>
                 <p>He also builds multiple apps for different purposes to help people.</p>
-                <div class="yt-section">
+                
+                <div class="youtube-section">
                     <h3>🎬 Request an App!</h3>
                     <p>Have an app idea? Comment on YouTube and I will try to build it!</p>
-                    <button class="yt-btn" onclick="openYT('MZA')">📺 MZA Multiverse</button>
-                    <button class="yt-btn" onclick="openYT('Zaira')">📺 Zaira Multiverse</button>
+                    <button class="youtube-button" onclick="openYouTube('MZA')">📺 MZA Multiverse</button>
+                    <button class="youtube-button" onclick="openYouTube('Zaira')">📺 Zaira Multiverse</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="celebrate" id="cel">🎉</div>
-
     <script>
-        const pc = {
-            'K':'♔','Q':'♕','R':'♖','B':'♗','N':'♘','P':'♙',
-            'k':'♚','q':'♛','r':'♜','b':'♝','n':'♞','p':'♟'
+        // Chess pieces
+        const pieces = {
+            'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
+            'k': '♚', 'q': '♛', 'r': '♜', 'b': '♝', 'n': '♞', 'p': '♟'
         };
 
-        let b=[],sel=null,turn='white',dif='easy',active=false,xpval=0,lvl=1,strk=0,last=null;
+        // Game state
+        let board = [];
+        let selectedSquare = null;
+        let currentTurn = 'white';
+        let difficulty = 'easy';
+        let gameActive = false;
+        let xp = 0;
+        let level = 1;
+        let streak = 0;
 
-        const msg = {
+        // Zaira messages
+        const zairaMessages = {
             easy: {
-                hi: "Hi! I'm Zaira! Let's learn chess step by step! 🎉",
-                good: ["Nice move! 🔥","Great! 💡","Perfect! ✨","Amazing! 🌟"],
-                bad: ["Oops! Try again! 🤔","Not quite! 💭","Think carefully! ⚠️"],
+                greeting: "Hi! I'm Zaira! Let's learn chess step by step! 🎉",
+                correct: ["Nice move! 🔥", "Great thinking! 💡", "You're improving! 🌟", "Perfect! ✨"],
+                wrong: ["Oops! Try again! 🤔", "Not quite! Think carefully! 💭", "That's risky! ⚠️"],
                 hint: "See the glowing square? That's a good move! ✨"
             },
             medium: {
-                hi: "Ready to play? I'll give simple feedback! 😊",
-                good: ["Good move! 👍","Nice! 😊","Interesting! 🤔"],
-                risky: ["Risky! ⚠️","Careful! 😬","Bold! 😮"]
+                greeting: "Ready to play? I'll give simple feedback! 😊",
+                good: ["Good move! 👍", "Nice! 😊", "Interesting! 🤔"],
+                risky: ["That was risky! ⚠️", "Careful! 😬", "Bold choice! 😮"]
             },
             hard: {
-                hi: "Let's play serious chess! No hints! 🔥",
+                greeting: "Let's play serious chess! No hints! 🔥",
                 win: "Impressive. Well played. 🏆",
-                loss: "Keep practicing! 💪"
+                loss: "Keep practicing. You'll get better! 💪"
             }
         };
 
-        setTimeout(()=>{
-            document.getElementById('splash').classList.add('hide');
-            setTimeout(()=>{
-                document.getElementById('menu').classList.add('active');
-            },500);
-        },3000);
+        // Initialize - Show splash for 3 seconds
+        setTimeout(function() {
+            document.getElementById('splashScreen').classList.add('fade-out');
+            setTimeout(function() {
+                document.getElementById('mainMenu').classList.add('active');
+            }, 500);
+        }, 3000);
 
-        function start(d){
-            dif=d;
-            document.getElementById('menu').classList.remove('active');
-            document.getElementById('game').classList.add('active');
-            const badge=document.getElementById('badge');
-            badge.className=`badge ${d}`;
-            badge.textContent=d.charAt(0).toUpperCase()+d.slice(1);
-            document.getElementById('hintbtn').style.display=d==='easy'?'block':'none';
-            init();
-            upZaira('😊',msg[d].hi);
+        function startGame(mode) {
+            difficulty = mode;
+            document.getElementById('mainMenu').classList.remove('active');
+            document.getElementById('gameScreen').classList.add('active');
+            
+            const badge = document.getElementById('difficultyBadge');
+            badge.className = 'difficulty-badge ' + mode;
+            badge.textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
+            
+            document.getElementById('hintButton').style.display = mode === 'easy' ? 'block' : 'none';
+            
+            initializeBoard();
+            updateZaira('😊', zairaMessages[mode].greeting);
         }
 
-        function toMenu(){
-            if(active&&!confirm('Leave game?'))return;
-            document.getElementById('game').classList.remove('active');
-            document.getElementById('menu').classList.add('active');
-            active=false;
+        function backToMenu() {
+            if (gameActive && !confirm('Leave current game?')) return;
+            document.getElementById('gameScreen').classList.remove('active');
+            document.getElementById('mainMenu').classList.add('active');
+            gameActive = false;
         }
 
-        function init(){
-            b=[
+        function initializeBoard() {
+            board = [
                 ['r','n','b','q','k','b','n','r'],
                 ['p','p','p','p','p','p','p','p'],
                 ['','','','','','','',''],
@@ -868,283 +730,272 @@
                 ['P','P','P','P','P','P','P','P'],
                 ['R','N','B','Q','K','B','N','R']
             ];
-            sel=null;
-            turn='white';
-            active=true;
-            last=null;
-            draw();
-            upStats();
+            selectedSquare = null;
+            currentTurn = 'white';
+            gameActive = true;
+            renderBoard();
+            updateStats();
         }
 
-        function reset(){
-            if(confirm('Reset?')){
-                init();
-                upZaira('😊','Board reset! Let\'s go! 🔄');
+        function resetBoard() {
+            if (confirm('Reset the board?')) {
+                initializeBoard();
+                updateZaira('😊', 'Board reset! Let\'s start fresh! 🔄');
             }
         }
 
-        function draw(){
-            const bd=document.getElementById('board');
-            bd.innerHTML='';
-            for(let r=0;r<8;r++){
-                for(let c=0;c<8;c++){
-                    const s=document.createElement('div');
-                    s.className=`sq ${(r+c)%2===0?'light':'dark'}`;
-                    s.dataset.r=r;
-                    s.dataset.c=c;
-                    s.onclick=()=>click(r,c);
-                    const p=b[r][c];
-                    if(p){
-                        s.textContent=pc[p];
-                        s.style.color=p===p.toUpperCase()?'#fff':'#000';
+        function renderBoard() {
+            const boardElement = document.getElementById('chessboard');
+            boardElement.innerHTML = '';
+
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = 'square ' + ((row + col) % 2 === 0 ? 'light' : 'dark');
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+                    square.onclick = function() { handleSquareClick(row, col); };
+                    
+                    const piece = board[row][col];
+                    if (piece) {
+                        square.textContent = pieces[piece];
+                        square.style.color = piece === piece.toUpperCase() ? '#fff' : '#000';
                     }
-                    bd.appendChild(s);
+                    
+                    boardElement.appendChild(square);
                 }
             }
         }
 
-        function click(r,c){
-            if(!active||turn!=='white')return;
-            if(sel){
-                const[sr,sc]=sel;
-                if(valid(sr,sc,r,c)){
-                    move(sr,sc,r,c);
-                    if(dif==='easy'){
-                        showCorrect(r,c);
+        function handleSquareClick(row, col) {
+            if (!gameActive || currentTurn !== 'white') return;
+
+            if (selectedSquare) {
+                const fromRow = selectedSquare[0];
+                const fromCol = selectedSquare[1];
+                
+                if (isValidMove(fromRow, fromCol, row, col)) {
+                    makeMove(fromRow, fromCol, row, col);
+                    
+                    if (difficulty === 'easy') {
                         addXP(10);
-                        upZaira('😊',rand(msg.easy.good));
-                        cel();
-                    }else if(dif==='medium'){
-                        upZaira('😊',rand(msg.medium.good));
+                        updateZaira('😊', randomMessage(zairaMessages.easy.correct));
+                    } else if (difficulty === 'medium') {
+                        updateZaira('😊', randomMessage(zairaMessages.medium.good));
                     }
-                }else{
-                    if(dif==='easy'){
-                        showWrong(r,c);
-                        upZaira('🤨',rand(msg.easy.bad));
+                } else {
+                    if (difficulty === 'easy') {
+                        updateZaira('🤨', randomMessage(zairaMessages.easy.wrong));
                         return;
                     }
-                    sel=null;
-                    draw();
                 }
-            }else{
-                const p=b[r][c];
-                if(p&&p===p.toUpperCase()){
-                    sel=[r,c];
-                    draw();
-                    high(r,c,'selected');
-                    if(dif==='easy')showValid(r,c);
+                
+                selectedSquare = null;
+                renderBoard();
+            } else {
+                const piece = board[row][col];
+                if (piece && piece === piece.toUpperCase()) {
+                    selectedSquare = [row, col];
+                    renderBoard();
+                    highlightSquare(row, col, 'selected');
+                    if (difficulty === 'easy') {
+                        showValidMoves(row, col);
+                    }
                 }
             }
         }
 
-        function valid(fr,fc,tr,tc){
-            if(fr===tr&&fc===tc)return false;
-            const p=b[fr][fc];
-            const t=b[tr][tc];
-            if(t&&((turn==='white'&&t===t.toUpperCase())||(turn==='black'&&t===t.toLowerCase())))return false;
-            const pt=p.toLowerCase();
-            const rd=Math.abs(tr-fr);
-            const cd=Math.abs(tc-fc);
-            switch(pt){
-                case'p':return validPawn(p,fr,fc,tr,tc);
-                case'r':return(fr===tr||fc===tc)&&clear(fr,fc,tr,tc);
-                case'n':return(rd===2&&cd===1)||(rd===1&&cd===2);
-                case'b':return rd===cd&&clear(fr,fc,tr,tc);
-                case'q':return(fr===tr||fc===tc||rd===cd)&&clear(fr,fc,tr,tc);
-                case'k':return rd<=1&&cd<=1;
+        function isValidMove(fromRow, fromCol, toRow, toCol) {
+            if (fromRow === toRow && fromCol === toCol) return false;
+            
+            const piece = board[fromRow][fromCol];
+            const targetPiece = board[toRow][toCol];
+            
+            if (targetPiece && targetPiece === targetPiece.toUpperCase()) return false;
+
+            const pieceType = piece.toLowerCase();
+            const rowDiff = Math.abs(toRow - fromRow);
+            const colDiff = Math.abs(toCol - fromCol);
+
+            switch(pieceType) {
+                case 'p':
+                    const direction = -1;
+                    const startRow = 6;
+                    if (fromCol === toCol && !targetPiece) {
+                        if (toRow === fromRow + direction) return true;
+                        if (fromRow === startRow && toRow === fromRow + 2 * direction) return true;
+                    }
+                    if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + direction && targetPiece) {
+                        return true;
+                    }
+                    return false;
+                case 'r':
+                    return (fromRow === toRow || fromCol === toCol);
+                case 'n':
+                    return (rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2);
+                case 'b':
+                    return rowDiff === colDiff;
+                case 'q':
+                    return fromRow === toRow || fromCol === toCol || rowDiff === colDiff;
+                case 'k':
+                    return rowDiff <= 1 && colDiff <= 1;
             }
             return false;
         }
 
-        function validPawn(p,fr,fc,tr,tc){
-            const d=p===p.toUpperCase()?-1:1;
-            const sr=p===p.toUpperCase()?6:1;
-            const t=b[tr][tc];
-            if(fc===tc&&!t){
-                if(tr===fr+d)return true;
-                if(fr===sr&&tr===fr+2*d&&!b[fr+d][fc])return true;
-            }
-            if(Math.abs(tc-fc)===1&&tr===fr+d&&t)return true;
-            return false;
-        }
-
-        function clear(fr,fc,tr,tc){
-            const rs=fr===tr?0:(tr-fr)/Math.abs(tr-fr);
-            const cs=fc===tc?0:(tc-fc)/Math.abs(tc-fc);
-            let r=fr+rs,c=fc+cs;
-            while(r!==tr||c!==tc){
-                if(b[r][c])return false;
-                r+=rs;c+=cs;
-            }
-            return true;
-        }
-
-        function move(fr,fc,tr,tc){
-            const p=b[fr][fc];
-            const cap=b[tr][tc];
-            b[tr][tc]=p;
-            b[fr][fc]='';
-            last={from:[fr,fc],to:[tr,tc]};
-            sel=null;
-            draw();
-            if(cap&&cap.toLowerCase()==='k'){
-                win();
+        function makeMove(fromRow, fromCol, toRow, toCol) {
+            const piece = board[fromRow][fromCol];
+            const capturedPiece = board[toRow][toCol];
+            
+            board[toRow][toCol] = piece;
+            board[fromRow][fromCol] = '';
+            
+            if (capturedPiece && capturedPiece.toLowerCase() === 'k') {
+                gameWon();
                 return;
             }
-            if(dif!=='easy')setTimeout(ai,1000);
+            
+            renderBoard();
+            
+            if (difficulty !== 'easy') {
+                setTimeout(makeAIMove, 1000);
+            }
         }
 
-        function ai(){
-            upZaira('🤔','');
-            document.getElementById('think').classList.add('active');
-            setTimeout(()=>{
-                document.getElementById('think').classList.remove('active');
-                let moves=[];
-                for(let fr=0;fr<8;fr++){
-                    for(let fc=0;fc<8;fc++){
-                        const p=b[fr][fc];
-                        if(p&&p===p.toLowerCase()){
-                            for(let tr=0;tr<8;tr++){
-                                for(let tc=0;tc<8;tc++){
-                                    if(valid(fr,fc,tr,tc)){
-                                        moves.push({
-                                            from:[fr,fc],
-                                            to:[tr,tc],
-                                            score:b[tr][tc]?val(b[tr][tc]):0
-                                        });
-                                    }
+        function makeAIMove() {
+            const moves = [];
+            
+            for (let fromRow = 0; fromRow < 8; fromRow++) {
+                for (let fromCol = 0; fromCol < 8; fromCol++) {
+                    const piece = board[fromRow][fromCol];
+                    if (piece && piece === piece.toLowerCase()) {
+                        for (let toRow = 0; toRow < 8; toRow++) {
+                            for (let toCol = 0; toCol < 8; toCol++) {
+                                if (isValidMove(fromRow, fromCol, toRow, toCol)) {
+                                    moves.push({ from: [fromRow, fromCol], to: [toRow, toCol] });
                                 }
                             }
                         }
                     }
                 }
-                if(moves.length>0){
-                    moves.sort((a,b)=>b.score-a.score);
-                    const m=dif==='hard'?moves[0]:moves[Math.floor(Math.random()*Math.min(3,moves.length))];
-                    const cap=b[m.to[0]][m.to[1]];
-                    b[m.to[0]][m.to[1]]=b[m.from[0]][m.from[1]];
-                    b[m.from[0]][m.from[1]]='';
-                    last=m;
-                    draw();
-                    if(cap&&cap.toLowerCase()==='k')lose();
+            }
+
+            if (moves.length > 0) {
+                const randomMove = moves[Math.floor(Math.random() * moves.length)];
+                const capturedPiece = board[randomMove.to[0]][randomMove.to[1]];
+                
+                board[randomMove.to[0]][randomMove.to[1]] = board[randomMove.from[0]][randomMove.from[1]];
+                board[randomMove.from[0]][randomMove.from[1]] = '';
+                
+                renderBoard();
+                
+                if (capturedPiece && capturedPiece.toLowerCase() === 'k') {
+                    gameLost();
                 }
-            },dif==='hard'?500:1500);
+            }
         }
 
-        function val(p){
-            const v={'p':1,'n':3,'b':3,'r':5,'q':9,'k':100};
-            return v[p.toLowerCase()]||0;
-        }
-
-        function high(r,c,cls){
-            document.querySelectorAll('.sq').forEach(s=>{
-                if(+s.dataset.r===r&&+s.dataset.c===c)s.classList.add(cls);
+        function highlightSquare(row, col, className) {
+            const squares = document.querySelectorAll('.square');
+            squares.forEach(function(square) {
+                const r = parseInt(square.dataset.row);
+                const c = parseInt(square.dataset.col);
+                if (r === row && c === col) {
+                    square.classList.add(className);
+                }
             });
         }
 
-        function showValid(r,c){
-            for(let tr=0;tr<8;tr++){
-                for(let tc=0;tc<8;tc++){
-                    if(valid(r,c,tr,tc))high(tr,tc,'valid');
-                }
-            }
-        }
-
-        function showWrong(r,c){
-            high(r,c,'wrong');
-            setTimeout(()=>draw(),500);
-        }
-
-        function showCorrect(r,c){
-            high(r,c,'correct');
-        }
-
-        function hint(){
-            if(dif!=='easy')return;
-            if(!sel){
-                upZaira('💡','Select a piece first! Click white pieces! ✨');
-                return;
-            }
-            const[r,c]=sel;
-            for(let tr=0;tr<8;tr++){
-                for(let tc=0;tc<8;tc++){
-                    if(valid(r,c,tr,tc)){
-                        high(tr,tc,'hint');
-                        upZaira('💡',msg.easy.hint);
-                        return;
+        function showValidMoves(row, col) {
+            for (let toRow = 0; toRow < 8; toRow++) {
+                for (let toCol = 0; toCol < 8; toCol++) {
+                    if (isValidMove(row, col, toRow, toCol)) {
+                        highlightSquare(toRow, toCol, 'valid-move');
                     }
                 }
             }
         }
 
-        function cel(){
-            const c=document.getElementById('cel');
-            c.classList.add('active');
-            setTimeout(()=>c.classList.remove('active'),2000);
-        }
-
-        function upZaira(mood,txt){
-            document.getElementById('mood').textContent=mood;
-            document.getElementById('face').textContent=mood;
-            if(txt)document.getElementById('speech').textContent=txt;
-        }
-
-        function win(){
-            active=false;
-            addXP(100);
-            strk++;
-            cel();
-            upZaira('🎉',dif==='hard'?msg.hard.win:'You won! Amazing! 🏆');
-            setTimeout(()=>alert('🎉 You Won! +100 XP'),500);
-        }
-
-        function lose(){
-            active=false;
-            upZaira('😊',dif==='hard'?msg.hard.loss:'Good game! Keep practicing! 💪');
-            setTimeout(()=>alert('Game Over! Try again! 💪'),500);
-        }
-
-        function addXP(amt){
-            xpval+=amt;
-            const need=lvl*100;
-            if(xpval>=need){
-                lvl++;
-                xpval=0;
-                cel();
-                upZaira('🎉',`Level Up! Level ${lvl}! 🌟`);
+        function showHint() {
+            if (difficulty !== 'easy') return;
+            
+            if (!selectedSquare) {
+                updateZaira('💡', 'Select a white piece first! ✨');
+                return;
             }
-            upStats();
+            
+            updateZaira('💡', zairaMessages.easy.hint);
         }
 
-        function upStats(){
-            document.getElementById('xp').textContent=xpval+' XP';
-            document.getElementById('level').textContent='Lvl '+lvl;
-            document.getElementById('streak').textContent=strk+' Days';
-            document.getElementById('streakinfo').textContent=strk+' Days';
-            const need=lvl*100;
-            const bar=document.getElementById('xpbar');
-            const pct=(xpval/need)*100;
-            bar.style.width=pct+'%';
-            bar.textContent=`${xpval}/${need} XP`;
+        function updateZaira(mood, message) {
+            document.getElementById('zairaMood').textContent = mood;
+            document.getElementById('zairaFace').textContent = mood;
+            document.getElementById('zairaSpeech').textContent = message;
         }
 
-        function showAbout(){
-            document.getElementById('modal').classList.add('active');
+        function addXP(amount) {
+            xp += amount;
+            const xpNeeded = level * 100;
+            
+            if (xp >= xpNeeded) {
+                level++;
+                xp = 0;
+                updateZaira('🎉', 'Level Up! You are now Level ' + level + '! 🌟');
+            }
+            
+            updateStats();
         }
 
-        function closeAbout(){
-            document.getElementById('modal').classList.remove('active');
+        function updateStats() {
+            document.getElementById('xpStat').textContent = xp + ' XP';
+            document.getElementById('levelStat').textContent = 'Level ' + level;
+            document.getElementById('streakStat').textContent = streak + ' Days';
+            document.getElementById('streakDisplay').textContent = streak + ' Days';
+            
+            const xpNeeded = level * 100;
+            const percentage = (xp / xpNeeded) * 100;
+            const xpBar = document.getElementById('xpBar');
+            xpBar.style.width = percentage + '%';
+            xpBar.textContent = xp + '/' + xpNeeded + ' XP';
         }
 
-        function openYT(ch){
-            alert(`Opening ${ch} YouTube!\n\nComment your app ideas! 🚀`);
+        function gameWon() {
+            gameActive = false;
+            addXP(100);
+            streak++;
+            updateZaira('🎉', difficulty === 'hard' ? zairaMessages.hard.win : 'You won! Amazing game! 🏆');
+            setTimeout(function() {
+                alert('🎉 Congratulations! You Won! +100 XP');
+            }, 500);
         }
 
-        function rand(arr){
-            return arr[Math.floor(Math.random()*arr.length)];
+        function gameLost() {
+            gameActive = false;
+            updateZaira('😊', difficulty === 'hard' ? zairaMessages.hard.loss : 'Good game! Keep practicing! 💪');
+            setTimeout(function() {
+                alert('Game Over! Keep practicing and you will improve! 💪');
+            }, 500);
         }
 
-        upStats();
+        function randomMessage(messages) {
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function showAboutModal() {
+            document.getElementById('aboutModal').classList.add('active');
+        }
+
+        function closeAboutModal() {
+            document.getElementById('aboutModal').classList.remove('active');
+        }
+
+        function openYouTube(channel) {
+            const message = 'Opening ' + channel + ' YouTube channel!\n\nComment your app ideas and I will build them! 🚀';
+            alert(message);
+        }
+
+        // Initialize stats
+        updateStats();
     </script>
 </body>
 </html>
