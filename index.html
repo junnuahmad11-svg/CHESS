@@ -15,8 +15,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #1a1a2e;
             color: #e0e0e0;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
         }
 
         /* ==================== SPLASH SCREEN ==================== */
@@ -47,34 +47,30 @@
 
         .chess-icon {
             font-size: 8em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             animation: bounce 2s infinite;
         }
 
-        .splash-title {
-            font-size: 4em;
-            font-weight: 700;
+        .made-by {
+            font-size: 2.5em;
             color: white;
-            margin-bottom: 30px;
-            text-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-weight: 300;
+            margin-bottom: 20px;
         }
 
-        .made-by {
-            font-size: 1.8em;
-            color: white;
-            margin-top: 40px;
-            animation: pulse 2s infinite;
+        .made-by .highlight {
+            font-size: 1.3em;
+            font-weight: 700;
+            display: block;
+            margin-top: 15px;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         .made-by .heart {
             color: #ff6b6b;
             display: inline-block;
             animation: heartbeat 1.5s infinite;
-        }
-
-        .made-by .name {
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 1.2em;
         }
 
         .loading-bar {
@@ -82,7 +78,7 @@
             height: 6px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            margin-top: 40px;
+            margin-top: 50px;
             overflow: hidden;
         }
 
@@ -90,7 +86,7 @@
             height: 100%;
             background: white;
             width: 0%;
-            animation: loading 2s ease forwards;
+            animation: loading 2.5s ease forwards;
         }
 
         @keyframes fadeInUp {
@@ -103,14 +99,9 @@
             50% { transform: translateY(-20px); }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.2); }
+            25% { transform: scale(1.3); }
             50% { transform: scale(1); }
         }
 
@@ -131,6 +122,7 @@
             align-items: center;
             z-index: 9998;
             padding: 20px;
+            overflow-y: auto;
         }
 
         .onboarding-screen.active {
@@ -140,8 +132,8 @@
         .onboarding-content {
             background: #16213e;
             border-radius: 30px;
-            padding: 50px;
-            max-width: 600px;
+            padding: 40px;
+            max-width: 550px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             animation: slideDown 0.5s ease;
@@ -154,7 +146,7 @@
 
         .onboarding-content h2 {
             color: #667eea;
-            font-size: 2.5em;
+            font-size: 2.2em;
             margin-bottom: 30px;
             text-align: center;
         }
@@ -167,17 +159,17 @@
             display: block;
             color: #a0a0a0;
             margin-bottom: 10px;
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
         .form-group input {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background: #0f3460;
             border: 2px solid #667eea;
             border-radius: 12px;
             color: white;
-            font-size: 1.1em;
+            font-size: 1em;
             transition: all 0.3s;
         }
 
@@ -189,24 +181,24 @@
 
         .gender-options {
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .gender-btn {
             flex: 1;
-            padding: 15px;
+            padding: 14px;
             background: #0f3460;
             border: 2px solid #667eea;
             border-radius: 12px;
             color: white;
-            font-size: 1.1em;
+            font-size: 1em;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
         }
 
         .gender-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
@@ -215,14 +207,10 @@
             border-color: #764ba2;
         }
 
-        .avatar-selection {
-            margin-top: 20px;
-        }
-
         .avatar-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 12px;
             margin-top: 15px;
         }
 
@@ -231,7 +219,7 @@
             background: #0f3460;
             border: 3px solid #667eea;
             border-radius: 50%;
-            font-size: 3em;
+            font-size: 2.5em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -252,19 +240,19 @@
 
         .start-btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, #28a745, #20c997);
             border: none;
             border-radius: 15px;
             color: white;
-            font-size: 1.3em;
+            font-size: 1.2em;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 30px;
+            margin-top: 25px;
             transition: all 0.3s;
         }
 
-        .start-btn:hover {
+        .start-btn:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
         }
@@ -274,100 +262,212 @@
             cursor: not-allowed;
         }
 
+        /* ==================== HOME SCREEN ==================== */
+        .home-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a2e;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9997;
+            padding: 20px;
+        }
+
+        .home-screen.active {
+            display: flex;
+        }
+
+        .home-content {
+            text-align: center;
+            max-width: 600px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .home-title {
+            font-size: 4em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message {
+            font-size: 1.8em;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .user-info {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #667eea;
+        }
+
+        .user-avatar-large {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            margin: 0 auto 20px;
+            border: 5px solid #0f3460;
+        }
+
+        .user-details {
+            color: #a0a0a0;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .coach-preview {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .coach-avatar-preview {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            flex-shrink: 0;
+        }
+
+        .coach-intro {
+            text-align: left;
+            color: white;
+        }
+
+        .coach-intro h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .coach-intro p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .play-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.5em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .play-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
         /* ==================== MAIN GAME ==================== */
         .main-game {
             display: none;
-            min-height: 100vh;
-            padding: 20px;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .main-game.active {
             display: block;
         }
 
-        .game-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
+        .game-layout {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            height: 100vh;
         }
 
         .game-header {
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 30px;
+            background: #16213e;
+            padding: 15px 20px;
+            border-bottom: 2px solid #667eea;
         }
 
-        .game-header h1 {
-            font-size: 3em;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .player-info-bar {
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #16213e;
-            padding: 20px 30px;
-            border-radius: 20px;
-            margin-bottom: 30px;
         }
 
-        .player-card {
+        .player-info {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .player-avatar {
-            width: 70px;
-            height: 70px;
+        .player-avatar-small {
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5em;
-            border: 4px solid #0f3460;
+            font-size: 1.8em;
         }
 
-        .player-details h3 {
+        .player-name {
+            font-size: 1.2em;
             color: white;
-            font-size: 1.5em;
-            margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        .player-details p {
-            color: #a0a0a0;
-        }
-
-        .game-timer {
-            text-align: center;
+        .timer-box {
+            background: #0f3460;
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: 2px solid #667eea;
         }
 
         .timer-display {
-            font-size: 3em;
+            font-size: 2em;
             font-weight: 700;
             color: #667eea;
             font-family: 'Courier New', monospace;
         }
 
-        .timer-label {
-            color: #a0a0a0;
-            margin-top: 5px;
-        }
-
-        .game-container {
+        .game-body {
             display: grid;
-            grid-template-columns: 350px 1fr 350px;
-            gap: 30px;
-            align-items: start;
+            grid-template-columns: 320px 1fr 320px;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            overflow-y: auto;
         }
 
         @media (max-width: 1200px) {
-            .game-container {
+            .game-body {
                 grid-template-columns: 1fr;
+                overflow-y: auto;
             }
             .coach-panel { order: 1; }
             .board-section { order: 2; }
@@ -378,29 +478,27 @@
         .coach-panel {
             background: #16213e;
             border-radius: 20px;
-            padding: 25px;
+            padding: 20px;
             border: 2px solid #667eea;
-            position: sticky;
-            top: 20px;
+            height: fit-content;
         }
 
         .coach-character {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .coach-avatar-large {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 15px;
             background: linear-gradient(135deg, #f093fb, #f5576c);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5em;
-            border: 5px solid #0f3460;
-            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+            font-size: 4em;
+            border: 4px solid #0f3460;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -410,23 +508,22 @@
         }
 
         .coach-name {
-            font-size: 2em;
+            font-size: 1.6em;
             color: white;
             font-weight: 700;
-            margin-bottom: 5px;
         }
 
-        .coach-title {
-            color: #a0a0a0;
-            font-size: 1.1em;
+        .coach-mood {
+            text-align: center;
+            font-size: 3em;
+            margin: 15px 0;
         }
 
         .coach-expression {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 20px;
+            padding: 18px;
             border-radius: 15px;
-            margin-bottom: 20px;
-            min-height: 120px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -434,21 +531,15 @@
 
         .expression-text {
             color: white;
-            font-size: 1.2em;
+            font-size: 1.05em;
             text-align: center;
-            line-height: 1.6;
-        }
-
-        .coach-mood {
-            text-align: center;
-            font-size: 4em;
-            margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .thinking-animation {
             display: none;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         .thinking-animation.active {
@@ -456,7 +547,7 @@
         }
 
         .thinking-dots {
-            font-size: 3em;
+            font-size: 2.5em;
             animation: thinking 1.5s infinite;
         }
 
@@ -467,7 +558,7 @@
 
         .thinking-text {
             color: #a0a0a0;
-            margin-top: 10px;
+            margin-top: 8px;
             font-style: italic;
         }
 
@@ -475,20 +566,20 @@
         .board-section {
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .board-container {
             background: #16213e;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 20px;
         }
 
-        .board-labels {
+        .board-labels-top {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding: 0 10px;
+            justify-content: space-around;
+            margin-bottom: 8px;
+            padding: 0 8px;
         }
 
         .board-label {
@@ -496,25 +587,25 @@
             text-align: center;
             color: #667eea;
             font-weight: 700;
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
         .board-with-labels {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .row-labels {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 8px 0;
         }
 
         .row-label {
             color: #667eea;
             font-weight: 700;
-            font-size: 1.1em;
+            font-size: 1em;
             height: 12.5%;
             display: flex;
             align-items: center;
@@ -524,26 +615,24 @@
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             gap: 0;
-            border: 6px solid #667eea;
-            border-radius: 12px;
+            border: 5px solid #667eea;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.4);
-            width: 600px;
-            height: 600px;
-            background: #0f3460;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+            width: 520px;
+            height: 520px;
         }
 
         .square {
-            width: 75px;
-            height: 75px;
+            width: 65px;
+            height: 65px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4em;
+            font-size: 3.5em;
             cursor: pointer;
             transition: all 0.2s;
             user-select: none;
-            position: relative;
         }
 
         .square.light {
@@ -556,7 +645,7 @@
 
         .square.selected {
             background: #baca44 !important;
-            box-shadow: inset 0 0 0 5px #829709;
+            box-shadow: inset 0 0 0 4px #829709;
         }
 
         .square.valid-move {
@@ -565,9 +654,9 @@
 
         .square.valid-move::after {
             content: '';
-            width: 30%;
-            height: 30%;
-            background: rgba(0, 0, 0, 0.2);
+            width: 25%;
+            height: 25%;
+            background: rgba(0, 0, 0, 0.25);
             border-radius: 50%;
             position: absolute;
         }
@@ -580,48 +669,42 @@
             filter: brightness(1.1);
         }
 
-        /* Chess Pieces with better visibility */
         .square {
             text-shadow: 
                 -1px -1px 0 #000,
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
                 1px 1px 0 #000,
-                0 0 5px rgba(0,0,0,0.5);
+                0 0 3px rgba(0,0,0,0.5);
         }
 
         /* ==================== INFO PANEL ==================== */
         .info-panel {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            position: sticky;
-            top: 20px;
+            gap: 15px;
         }
 
         .info-card {
             background: #16213e;
-            padding: 25px;
+            padding: 18px;
             border-radius: 15px;
             border: 2px solid #667eea;
         }
 
         .info-card h3 {
             color: #667eea;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.2em;
+            margin-bottom: 12px;
         }
 
         .turn-indicator {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 10px;
             text-align: center;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: 700;
         }
 
@@ -629,25 +712,18 @@
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
-            min-height: 50px;
+            min-height: 45px;
         }
 
         .captured-piece {
-            font-size: 2em;
-            opacity: 0.8;
-        }
-
-        .control-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            font-size: 1.8em;
         }
 
         .btn {
-            padding: 15px;
+            padding: 14px;
             border: none;
             border-radius: 12px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
@@ -659,22 +735,22 @@
         }
 
         .btn-new-game:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
         }
 
-        .btn-analysis {
+        .btn-home {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
 
-        .btn-analysis:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
 
-        /* ==================== GAME OVER MODAL ==================== */
-        .game-over-modal {
+        /* ==================== MODALS ==================== */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
@@ -682,43 +758,83 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            z-index: 9997;
+            z-index: 10000;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
 
-        .game-over-modal.active {
+        .modal.active {
             display: flex;
         }
 
-        .game-over-content {
+        .modal-content {
             background: #16213e;
-            border-radius: 30px;
-            padding: 50px;
+            border-radius: 25px;
+            padding: 35px;
             max-width: 600px;
             width: 100%;
-            text-align: center;
-            border: 3px solid #667eea;
-            animation: slideDown 0.5s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid #667eea;
+            animation: slideDown 0.4s ease;
         }
 
-        .game-over-content h2 {
-            font-size: 3em;
+        .modal-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #0f3460;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .modal-header h2 {
             color: #667eea;
-            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .close-btn {
+            font-size: 2.5em;
+            cursor: pointer;
+            color: #a0a0a0;
+            transition: all 0.3s;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #f5576c;
+            transform: rotate(90deg);
+        }
+
+        .game-over-content {
+            text-align: center;
         }
 
         .winner-avatar {
-            font-size: 8em;
+            font-size: 6em;
             margin: 20px 0;
         }
 
         .game-stats {
             background: #0f3460;
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
-            margin: 25px 0;
+            margin: 20px 0;
         }
 
         .stat-row {
@@ -741,127 +857,52 @@
             font-weight: 700;
         }
 
-        /* ==================== ANALYSIS MODAL ==================== */
-        .analysis-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 9996;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .analysis-modal.active {
-            display: flex;
-        }
-
-        .analysis-content {
-            background: #16213e;
-            border-radius: 25px;
-            padding: 40px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            border: 2px solid #667eea;
-        }
-
-        .analysis-content::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .analysis-content::-webkit-scrollbar-track {
-            background: #0f3460;
-            border-radius: 10px;
-        }
-
-        .analysis-content::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 10px;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #667eea;
-        }
-
-        .modal-header h2 {
-            color: #667eea;
-            font-size: 2.5em;
-        }
-
-        .close-btn {
-            font-size: 3em;
-            cursor: pointer;
-            color: #a0a0a0;
-            transition: all 0.3s;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: #f5576c;
-            transform: rotate(90deg);
-        }
-
         .mistake-item {
             background: #0f3460;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
             border-left: 5px solid #f5576c;
         }
 
         .mistake-item h4 {
             color: #f5576c;
-            font-size: 1.4em;
-            margin-bottom: 15px;
-        }
-
-        .mistake-item p {
-            color: #e0e0e0;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            font-size: 1.2em;
+            margin-bottom: 12px;
         }
 
         .suggestion {
             color: #28a745;
             font-weight: 600;
-            margin-top: 15px;
+            margin-top: 12px;
             display: block;
-            padding: 15px;
+            padding: 12px;
             background: rgba(40, 167, 69, 0.1);
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         .perfect-game {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
         }
 
         .perfect-game .trophy {
-            font-size: 8em;
-            margin-bottom: 30px;
+            font-size: 6em;
+            margin-bottom: 25px;
             animation: bounce 2s infinite;
         }
 
         .perfect-game h3 {
             color: #28a745;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 2em;
+            margin-bottom: 15px;
         }
 
-        .perfect-game p {
-            color: #a0a0a0;
-            font-size: 1.3em;
+        .control-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -870,10 +911,9 @@
     <div class="splash-screen" id="splashScreen">
         <div class="splash-content">
             <div class="chess-icon">♟️</div>
-            <div class="splash-title">Chess Master</div>
             <div class="made-by">
-                Made with <span class="heart">❤️</span> by<br>
-                <span class="name">Mohammad Zubair Ahmed</span>
+                Made with <span class="heart">❤️</span> by
+                <span class="highlight">Mohammad Zubair Ahmed</span>
             </div>
             <div class="loading-bar">
                 <div class="loading-progress"></div>
@@ -884,7 +924,7 @@
     <!-- ==================== ONBOARDING SCREEN ==================== -->
     <div class="onboarding-screen" id="onboardingScreen">
         <div class="onboarding-content">
-            <h2>👋 Welcome to Chess Master!</h2>
+            <h2>👋 Welcome!</h2>
             
             <div class="form-group">
                 <label>What's your name?</label>
@@ -899,19 +939,13 @@
             <div class="form-group">
                 <label>Gender</label>
                 <div class="gender-options">
-                    <div class="gender-btn" onclick="selectGender('male')">
-                        👨 Male
-                    </div>
-                    <div class="gender-btn" onclick="selectGender('female')">
-                        👩 Female
-                    </div>
-                    <div class="gender-btn" onclick="selectGender('other')">
-                        👤 Other
-                    </div>
+                    <div class="gender-btn" onclick="selectGender('male')">👨 Male</div>
+                    <div class="gender-btn" onclick="selectGender('female')">👩 Female</div>
+                    <div class="gender-btn" onclick="selectGender('other')">👤 Other</div>
                 </div>
             </div>
 
-            <div class="avatar-selection">
+            <div class="form-group">
                 <label>Choose your avatar</label>
                 <div class="avatar-grid">
                     <div class="avatar-option" onclick="selectAvatar('😊')">😊</div>
@@ -925,58 +959,77 @@
                 </div>
             </div>
 
-            <button class="start-btn" id="startBtn" onclick="startGame()" disabled>
-                🚀 Start Playing!
+            <button class="start-btn" id="startBtn" onclick="goToHome()" disabled>
+                Continue →
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== HOME SCREEN ==================== -->
+    <div class="home-screen" id="homeScreen">
+        <div class="home-content">
+            <div class="home-title">♟️ Chess Master</div>
+            <div class="welcome-message">Welcome back, <span id="welcomeName"></span>! 👋</div>
+            
+            <div class="user-info">
+                <div class="user-avatar-large" id="homeAvatar">😊</div>
+                <div class="user-details" id="userDetails"></div>
+            </div>
+
+            <div class="coach-preview">
+                <div class="coach-avatar-preview">👩‍🏫</div>
+                <div class="coach-intro">
+                    <h3>Meet Coach Zaira</h3>
+                    <p>Your friendly chess mentor is ready to play and teach you amazing strategies!</p>
+                </div>
+            </div>
+
+            <button class="play-btn" onclick="startPlaying()">
+                🎮 Start Playing with Zaira
             </button>
         </div>
     </div>
 
     <!-- ==================== MAIN GAME ==================== -->
     <div class="main-game" id="mainGame">
-        <div class="game-wrapper">
+        <div class="game-layout">
             <div class="game-header">
-                <h1>♟️ Chess Master</h1>
-            </div>
-
-            <div class="player-info-bar">
-                <div class="player-card">
-                    <div class="player-avatar" id="playerAvatar">😊</div>
-                    <div class="player-details">
-                        <h3 id="playerNameDisplay">Player</h3>
-                        <p>⚪ White Pieces</p>
+                <div class="header-content">
+                    <div class="player-info">
+                        <div class="player-avatar-small" id="headerAvatar">😊</div>
+                        <div>
+                            <div class="player-name" id="headerName">Player</div>
+                            <div style="color: #a0a0a0; font-size: 0.9em;">⚪ White</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="game-timer">
-                    <div class="timer-display" id="timerDisplay">10:00</div>
-                    <div class="timer-label">Time Remaining</div>
-                </div>
-
-                <div class="player-card">
-                    <div class="player-details" style="text-align: right;">
-                        <h3>Coach Zaira</h3>
-                        <p>⚫ Black Pieces</p>
+                    <div class="timer-box">
+                        <div class="timer-display" id="timerDisplay">10:00</div>
                     </div>
-                    <div class="player-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
-                        👩‍🏫
+
+                    <div class="player-info">
+                        <div style="text-align: right;">
+                            <div class="player-name">Coach Zaira</div>
+                            <div style="color: #a0a0a0; font-size: 0.9em;">⚫ Black</div>
+                        </div>
+                        <div class="player-avatar-small" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👩‍🏫</div>
                     </div>
                 </div>
             </div>
 
-            <div class="game-container">
+            <div class="game-body">
                 <!-- Coach Panel -->
                 <div class="coach-panel">
                     <div class="coach-character">
                         <div class="coach-avatar-large">👩‍🏫</div>
                         <div class="coach-name">Coach Zaira</div>
-                        <div class="coach-title">Your Chess Mentor</div>
                     </div>
 
                     <div class="coach-mood" id="coachMood">😊</div>
 
                     <div class="coach-expression">
                         <div class="expression-text" id="coachExpression">
-                            Hi there! I'm so excited to play chess with you today! Let's have a great game! 🎉
+                            Hi! Let's have an amazing chess game together! 🎉
                         </div>
                     </div>
 
@@ -989,7 +1042,7 @@
                 <!-- Chess Board -->
                 <div class="board-section">
                     <div class="board-container">
-                        <div class="board-labels">
+                        <div class="board-labels-top">
                             <div class="board-label">a</div>
                             <div class="board-label">b</div>
                             <div class="board-label">c</div>
@@ -1018,31 +1071,27 @@
                 <!-- Info Panel -->
                 <div class="info-panel">
                     <div class="info-card">
-                        <h3>🎯 Current Turn</h3>
+                        <h3>🎯 Turn</h3>
                         <div class="turn-indicator" id="turnIndicator">⚪ Your Turn!</div>
                     </div>
 
                     <div class="info-card">
                         <h3>⚪ Your Captures</h3>
                         <div class="captured-display" id="whiteCaptured">
-                            <span style="color: #666;">No captures yet</span>
+                            <span style="color: #666;">None yet</span>
                         </div>
                     </div>
 
                     <div class="info-card">
                         <h3>⚫ Zaira's Captures</h3>
                         <div class="captured-display" id="blackCaptured">
-                            <span style="color: #666;">No captures yet</span>
+                            <span style="color: #666;">None yet</span>
                         </div>
                     </div>
 
                     <div class="control-buttons">
-                        <button class="btn btn-new-game" onclick="resetGame()">
-                            🔄 New Game
-                        </button>
-                        <button class="btn btn-analysis" onclick="showAnalysis()">
-                            📊 View Analysis
-                        </button>
+                        <button class="btn btn-new-game" onclick="resetGame()">🔄 New Game</button>
+                        <button class="btn btn-home" onclick="backToHome()">🏠 Home</button>
                     </div>
                 </div>
             </div>
@@ -1050,38 +1099,40 @@
     </div>
 
     <!-- ==================== GAME OVER MODAL ==================== -->
-    <div class="game-over-modal" id="gameOverModal">
-        <div class="game-over-content">
-            <h2 id="gameOverTitle">Game Over!</h2>
-            <div class="winner-avatar" id="winnerAvatar">🏆</div>
-            <div class="game-stats">
-                <div class="stat-row">
-                    <span class="stat-label">Total Moves:</span>
-                    <span class="stat-value" id="totalMoves">0</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">Game Duration:</span>
-                    <span class="stat-value" id="gameDuration">0:00</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">Pieces Captured:</span>
-                    <span class="stat-value" id="piecesCaptured">0</span>
-                </div>
+    <div class="modal" id="gameOverModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="gameOverTitle">Game Over!</h2>
+                <span class="close-btn" onclick="closeGameOver()">&times;</span>
             </div>
-            <div class="control-buttons">
-                <button class="btn btn-analysis" onclick="showAnalysis()">
-                    📚 View Game Analysis
-                </button>
-                <button class="btn btn-new-game" onclick="closeGameOver(); resetGame();">
-                    🔄 Play Again
-                </button>
+            <div class="game-over-content">
+                <div class="winner-avatar" id="winnerAvatar">🏆</div>
+                <div class="game-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Total Moves:</span>
+                        <span class="stat-value" id="totalMoves">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Game Duration:</span>
+                        <span class="stat-value" id="gameDuration">0:00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Pieces Captured:</span>
+                        <span class="stat-value" id="piecesCaptured">0</span>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="btn btn-new-game" onclick="showAnalysis()">📚 View Analysis</button>
+                    <button class="btn btn-new-game" onclick="closeGameOver(); resetGame();">🔄 Play Again</button>
+                    <button class="btn btn-home" onclick="closeGameOver(); backToHome();">🏠 Home</button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- ==================== ANALYSIS MODAL ==================== -->
-    <div class="analysis-modal" id="analysisModal">
-        <div class="analysis-content">
+    <div class="modal" id="analysisModal">
+        <div class="modal-content">
             <div class="modal-header">
                 <h2>📚 Game Analysis</h2>
                 <span class="close-btn" onclick="closeAnalysis()">&times;</span>
@@ -1105,75 +1156,33 @@
         let whiteCaptured = [];
         let blackCaptured = [];
         let gameActive = false;
-        let playerData = {
-            name: '',
-            age: 0,
-            gender: '',
-            avatar: ''
-        };
+        let playerData = { name: '', age: 0, gender: '', avatar: '' };
         let lastMove = null;
         let gameStartTime = null;
         let timerInterval = null;
-        let timeRemaining = 600; // 10 minutes in seconds
+        let timeRemaining = 600;
 
-        // Coach expressions
         const coachExpressions = {
-            greeting: {
-                mood: '😊',
-                text: "Hi there! I'm so excited to play chess with you today! Let's have a great game! 🎉"
-            },
-            thinking: {
-                mood: '🤔',
-                text: "Hmm... let me think about this carefully..."
-            },
-            impressed: {
-                mood: '😮',
-                text: "Wow! That was a brilliant move! You're getting really good at this! 💫"
-            },
-            challenge: {
-                mood: '😏',
-                text: "Interesting choice! But can you handle my counter-attack? 😈"
-            },
-            mistake: {
-                mood: '🤨',
-                text: "Oops! That might not have been the best move. Don't worry, we all make mistakes! 💪"
-            },
-            winning: {
-                mood: '😊',
-                text: "I'm doing well, but you're making this challenging! Keep it up! 🌟"
-            },
-            losing: {
-                mood: '😤',
-                text: "You're playing amazingly! I need to step up my game! 🔥"
-            },
-            capture: {
-                mood: '😲',
-                text: "Oh no! You got my piece! Nice capture! 👏"
-            },
-            captured: {
-                mood: '😅',
-                text: "Got your piece! But don't worry, the game is still on! 💪"
-            },
-            checkmate: {
-                mood: '😢',
-                text: "Congratulations! You've won! That was an excellent game! You've improved so much! 🏆"
-            },
-            victory: {
-                mood: '😊',
-                text: "I won this time, but you played wonderfully! Want to try again? You're so close! 🌟"
-            },
-            encouragement: {
-                mood: '😊',
-                text: "You're doing great! Keep thinking ahead and you'll get even better! 💡"
-            }
+            greeting: { mood: '😊', text: "Hi! Let's have an amazing chess game together! 🎉" },
+            thinking: { mood: '🤔', text: "Hmm... let me think about this carefully..." },
+            impressed: { mood: '😮', text: "Wow! That was brilliant! You're improving! 💫" },
+            challenge: { mood: '😏', text: "Interesting! But can you handle this? 😈" },
+            mistake: { mood: '🤨', text: "Oops! That wasn't ideal. Keep trying! 💪" },
+            winning: { mood: '😊', text: "I'm doing well, but you're challenging me! 🌟" },
+            losing: { mood: '😤', text: "You're playing great! I need to focus! 🔥" },
+            capture: { mood: '😲', text: "Oh no! Nice capture! 👏" },
+            captured: { mood: '😅', text: "Got it! But the game continues! 💪" },
+            checkmate: { mood: '😢', text: "Congratulations! You won! Amazing game! 🏆" },
+            victory: { mood: '😊', text: "I won, but you played wonderfully! Try again? 🌟" },
+            encouragement: { mood: '😊', text: "You're doing great! Keep thinking ahead! 💡" }
         };
 
-        // ==================== SPLASH SCREEN ====================
+        // ==================== INITIALIZATION ====================
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('splashScreen').classList.add('hidden');
                 document.getElementById('onboardingScreen').classList.add('active');
-            }, 2500);
+            }, 2800);
         });
 
         // ==================== ONBOARDING ====================
@@ -1201,27 +1210,44 @@
             const name = document.getElementById('playerName').value.trim();
             const age = document.getElementById('playerAge').value;
             const startBtn = document.getElementById('startBtn');
-            
-            if (name && age && selectedGender && selectedAvatarEmoji) {
-                startBtn.disabled = false;
-            } else {
-                startBtn.disabled = true;
-            }
+            startBtn.disabled = !(name && age && selectedGender && selectedAvatarEmoji);
         }
 
-        function startGame() {
+        function goToHome() {
             playerData.name = document.getElementById('playerName').value.trim();
             playerData.age = document.getElementById('playerAge').value;
             playerData.gender = selectedGender;
             playerData.avatar = selectedAvatarEmoji;
 
-            document.getElementById('playerNameDisplay').textContent = playerData.name;
-            document.getElementById('playerAvatar').textContent = playerData.avatar;
+            document.getElementById('welcomeName').textContent = playerData.name;
+            document.getElementById('homeAvatar').textContent = playerData.avatar;
+            document.getElementById('userDetails').innerHTML = `
+                ${playerData.age} years old • ${playerData.gender.charAt(0).toUpperCase() + playerData.gender.slice(1)}
+            `;
 
             document.getElementById('onboardingScreen').classList.remove('active');
+            document.getElementById('homeScreen').classList.add('active');
+        }
+
+        function startPlaying() {
+            document.getElementById('headerName').textContent = playerData.name;
+            document.getElementById('headerAvatar').textContent = playerData.avatar;
+
+            document.getElementById('homeScreen').classList.remove('active');
             document.getElementById('mainGame').classList.add('active');
 
             initializeGame();
+        }
+
+        function backToHome() {
+            if (gameActive) {
+                if (!confirm('Are you sure? Current game will be lost.')) return;
+            }
+            if (timerInterval) clearInterval(timerInterval);
+            gameActive = false;
+            
+            document.getElementById('mainGame').classList.remove('active');
+            document.getElementById('homeScreen').classList.add('active');
         }
 
         // ==================== GAME INITIALIZATION ====================
@@ -1251,7 +1277,6 @@
             gameActive = true;
             lastMove = null;
             
-            // Reset timer
             timeRemaining = 600;
             gameStartTime = Date.now();
             if (timerInterval) clearInterval(timerInterval);
@@ -1281,7 +1306,6 @@
             document.getElementById('timerDisplay').textContent = 
                 `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-            // Change color when time is running out
             if (timeRemaining <= 60) {
                 document.getElementById('timerDisplay').style.color = '#f5576c';
             } else {
@@ -1305,15 +1329,9 @@
                     const piece = board[row][col];
                     if (piece) {
                         square.textContent = pieces[piece];
-                        // Add color styling for better visibility
-                        if (piece === piece.toUpperCase()) {
-                            square.style.color = '#ffffff'; // White pieces
-                        } else {
-                            square.style.color = '#000000'; // Black pieces
-                        }
+                        square.style.color = piece === piece.toUpperCase() ? '#ffffff' : '#000000';
                     }
 
-                    // Highlight last move
                     if (lastMove && 
                         ((lastMove.from[0] === row && lastMove.from[1] === col) ||
                          (lastMove.to[0] === row && lastMove.to[1] === col))) {
@@ -1371,11 +1389,7 @@
         }
 
         function isPieceOfCurrentPlayer(piece) {
-            if (currentTurn === 'white') {
-                return piece === piece.toUpperCase();
-            } else {
-                return piece === piece.toLowerCase();
-            }
+            return currentTurn === 'white' ? piece === piece.toUpperCase() : piece === piece.toLowerCase();
         }
 
         // ==================== MOVE VALIDATION ====================
@@ -1385,28 +1399,19 @@
             const piece = board[fromRow][fromCol];
             const targetPiece = board[toRow][toCol];
             
-            if (targetPiece && isPieceOfCurrentPlayer(targetPiece)) {
-                return false;
-            }
+            if (targetPiece && isPieceOfCurrentPlayer(targetPiece)) return false;
 
             const pieceType = piece.toLowerCase();
             const rowDiff = Math.abs(toRow - fromRow);
             const colDiff = Math.abs(toCol - fromCol);
 
             switch (pieceType) {
-                case 'p':
-                    return isValidPawnMove(piece, fromRow, fromCol, toRow, toCol);
-                case 'r':
-                    return (fromRow === toRow || fromCol === toCol) && isPathClear(fromRow, fromCol, toRow, toCol);
-                case 'n':
-                    return (rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2);
-                case 'b':
-                    return rowDiff === colDiff && isPathClear(fromRow, fromCol, toRow, toCol);
-                case 'q':
-                    return (fromRow === toRow || fromCol === toCol || rowDiff === colDiff) && 
-                           isPathClear(fromRow, fromCol, toRow, toCol);
-                case 'k':
-                    return rowDiff <= 1 && colDiff <= 1;
+                case 'p': return isValidPawnMove(piece, fromRow, fromCol, toRow, toCol);
+                case 'r': return (fromRow === toRow || fromCol === toCol) && isPathClear(fromRow, fromCol, toRow, toCol);
+                case 'n': return (rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2);
+                case 'b': return rowDiff === colDiff && isPathClear(fromRow, fromCol, toRow, toCol);
+                case 'q': return (fromRow === toRow || fromCol === toCol || rowDiff === colDiff) && isPathClear(fromRow, fromCol, toRow, toCol);
+                case 'k': return rowDiff <= 1 && colDiff <= 1;
             }
             return false;
         }
@@ -1418,14 +1423,10 @@
 
             if (fromCol === toCol && !targetPiece) {
                 if (toRow === fromRow + direction) return true;
-                if (fromRow === startRow && toRow === fromRow + 2 * direction && !board[fromRow + direction][fromCol]) {
-                    return true;
-                }
+                if (fromRow === startRow && toRow === fromRow + 2 * direction && !board[fromRow + direction][fromCol]) return true;
             }
 
-            if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + direction && targetPiece) {
-                return true;
-            }
+            if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + direction && targetPiece) return true;
 
             return false;
         }
@@ -1451,19 +1452,11 @@
             const piece = board[fromRow][fromCol];
             const capturedPiece = board[toRow][toCol];
 
-            const move = {
-                piece: piece,
-                from: [fromRow, fromCol],
-                to: [toRow, toCol],
-                captured: capturedPiece,
-                player: currentTurn
-            };
+            const move = { piece, from: [fromRow, fromCol], to: [toRow, toCol], captured: capturedPiece, player: currentTurn };
             moveHistory.push(move);
             lastMove = move;
 
-            if (currentTurn === 'white') {
-                analyzeMoveForMistakes(move);
-            }
+            if (currentTurn === 'white') analyzeMoveForMistakes(move);
 
             if (capturedPiece) {
                 if (currentTurn === 'white') {
@@ -1475,27 +1468,17 @@
                 }
                 updateCapturedPieces();
             } else if (currentTurn === 'white') {
-                // Random positive feedback
-                const randomFeedback = Math.random();
-                if (randomFeedback > 0.7) {
-                    updateCoachExpression(coachExpressions.impressed);
-                } else if (randomFeedback > 0.4) {
-                    updateCoachExpression(coachExpressions.challenge);
-                }
+                const random = Math.random();
+                if (random > 0.7) updateCoachExpression(coachExpressions.impressed);
+                else if (random > 0.4) updateCoachExpression(coachExpressions.challenge);
             }
 
             board[toRow][toCol] = piece;
             board[fromRow][fromCol] = '';
 
-            // Check for checkmate
             if (capturedPiece && capturedPiece.toLowerCase() === 'k') {
-                if (currentTurn === 'white') {
-                    endGame('🎉 Congratulations! You Won!', true);
-                    updateCoachExpression(coachExpressions.checkmate);
-                } else {
-                    endGame('😢 Coach Zaira Wins!', false);
-                    updateCoachExpression(coachExpressions.victory);
-                }
+                endGame(currentTurn === 'white' ? '🎉 You Won!' : '😢 Zaira Wins!', currentTurn === 'white');
+                updateCoachExpression(currentTurn === 'white' ? coachExpressions.checkmate : coachExpressions.victory);
                 return;
             }
 
@@ -1503,20 +1486,16 @@
             updateTurnIndicator();
             clearSelection();
 
-            if (currentTurn === 'black') {
-                setTimeout(makeCoachMove, 2000);
-            }
+            if (currentTurn === 'black') setTimeout(makeCoachMove, 2000);
         }
 
         // ==================== COACH AI ====================
         function makeCoachMove() {
             if (!gameActive) return;
 
-            // Show thinking animation
             document.getElementById('thinkingAnimation').classList.add('active');
             updateCoachExpression(coachExpressions.thinking);
 
-            // Simulate thinking time (2-4 seconds)
             const thinkingTime = 2000 + Math.random() * 2000;
 
             setTimeout(() => {
@@ -1536,8 +1515,8 @@
                                         possibleMoves.push({
                                             from: [fromRow, fromCol],
                                             to: [toRow, toCol],
-                                            piece: piece,
-                                            captureValue: captureValue,
+                                            piece,
+                                            captureValue,
                                             priority: captureValue - (willBeUnderAttack(toRow, toCol, piece) ? pieceValue : 0)
                                         });
                                     }
@@ -1548,13 +1527,9 @@
                 }
 
                 if (possibleMoves.length > 0) {
-                    // Sort by priority (captures and safe moves)
                     possibleMoves.sort((a, b) => b.priority - a.priority);
-                    
-                    // Select from top 3 moves for variety
                     const topMoves = possibleMoves.slice(0, Math.min(3, possibleMoves.length));
                     const move = topMoves[Math.floor(Math.random() * topMoves.length)];
-
                     makeMove(move.from[0], move.from[1], move.to[0], move.to[1]);
                 }
             }, thinkingTime);
@@ -1585,9 +1560,8 @@
             return false;
         }
 
-        // ==================== MISTAKE ANALYSIS ====================
+        // ==================== ANALYSIS ====================
         function analyzeMoveForMistakes(move) {
-            // Check for bad trades
             if (move.captured) {
                 const capturedValue = getPieceValue(move.captured);
                 const movedValue = getPieceValue(move.piece);
@@ -1595,42 +1569,34 @@
                 if (movedValue > capturedValue + 2) {
                     mistakes.push({
                         move: `Move ${moveHistory.length}`,
-                        description: `You traded your ${getPieceName(move.piece)} (value: ${movedValue}) for a ${getPieceName(move.captured)} (value: ${capturedValue}). This is an unequal trade.`,
-                        suggestion: "Try to capture pieces of equal or greater value. In chess, maintaining material advantage is crucial!"
+                        description: `You traded your ${getPieceName(move.piece)} (value: ${movedValue}) for ${getPieceName(move.captured)} (value: ${capturedValue})`,
+                        suggestion: "Try to capture pieces of equal or greater value!"
                     });
                     updateCoachExpression(coachExpressions.mistake);
                 }
             }
 
-            // Check if moved into danger
             const [toRow, toCol] = move.to;
-            if (willBeUnderAttack(toRow, toCol, move.piece)) {
-                const pieceValue = getPieceValue(move.piece);
-                if (pieceValue > 1) { // Don't warn about pawns as much
-                    mistakes.push({
-                        move: `Move ${moveHistory.length}`,
-                        description: `You moved your ${getPieceName(move.piece)} to a square where it can be captured by Zaira.`,
-                        suggestion: "Always check if your piece will be safe after moving. Look for enemy pieces that can attack that square!"
-                    });
-                }
+            if (willBeUnderAttack(toRow, toCol, move.piece) && getPieceValue(move.piece) > 1) {
+                mistakes.push({
+                    move: `Move ${moveHistory.length}`,
+                    description: `Your ${getPieceName(move.piece)} moved to a threatened square`,
+                    suggestion: "Always check if your piece will be safe after moving!"
+                });
             }
         }
 
         function getPieceName(piece) {
-            const names = {
-                'p': 'Pawn', 'n': 'Knight', 'b': 'Bishop', 
-                'r': 'Rook', 'q': 'Queen', 'k': 'King'
-            };
+            const names = { 'p': 'Pawn', 'n': 'Knight', 'b': 'Bishop', 'r': 'Rook', 'q': 'Queen', 'k': 'King' };
             return names[piece.toLowerCase()] || 'Piece';
         }
 
-        // ==================== COACH EXPRESSIONS ====================
+        // ==================== UI UPDATES ====================
         function updateCoachExpression(expression) {
             document.getElementById('coachMood').textContent = expression.mood;
             document.getElementById('coachExpression').textContent = expression.text;
         }
 
-        // ==================== UI UPDATES ====================
         function updateTurnIndicator() {
             const indicator = document.getElementById('turnIndicator');
             if (currentTurn === 'white') {
@@ -1646,21 +1612,13 @@
             const whiteDiv = document.getElementById('whiteCaptured');
             const blackDiv = document.getElementById('blackCaptured');
             
-            if (whiteCaptured.length > 0) {
-                whiteDiv.innerHTML = whiteCaptured.map(p => 
-                    `<span class="captured-piece">${pieces[p]}</span>`
-                ).join('');
-            } else {
-                whiteDiv.innerHTML = '<span style="color: #666;">No captures yet</span>';
-            }
-
-            if (blackCaptured.length > 0) {
-                blackDiv.innerHTML = blackCaptured.map(p => 
-                    `<span class="captured-piece">${pieces[p]}</span>`
-                ).join('');
-            } else {
-                blackDiv.innerHTML = '<span style="color: #666;">No captures yet</span>';
-            }
+            whiteDiv.innerHTML = whiteCaptured.length > 0 ? 
+                whiteCaptured.map(p => `<span class="captured-piece">${pieces[p]}</span>`).join('') : 
+                '<span style="color: #666;">None yet</span>';
+            
+            blackDiv.innerHTML = blackCaptured.length > 0 ? 
+                blackCaptured.map(p => `<span class="captured-piece">${pieces[p]}</span>`).join('') : 
+                '<span style="color: #666;">None yet</span>';
         }
 
         // ==================== GAME END ====================
@@ -1685,7 +1643,6 @@
             document.getElementById('gameOverModal').classList.remove('active');
         }
 
-        // ==================== ANALYSIS ====================
         function showAnalysis() {
             const modal = document.getElementById('analysisModal');
             const analysisList = document.getElementById('analysisList');
@@ -1694,15 +1651,15 @@
                 analysisList.innerHTML = `
                     <div class="perfect-game">
                         <div class="trophy">🏆</div>
-                        <h3>Outstanding Performance!</h3>
-                        <p>Coach Zaira didn't detect any major mistakes in your game. You're playing brilliantly!</p>
+                        <h3>Outstanding!</h3>
+                        <p>No major mistakes detected. You played brilliantly!</p>
                     </div>
                 `;
             } else {
-                analysisList.innerHTML = mistakes.map((mistake, index) => `
+                analysisList.innerHTML = mistakes.map(mistake => `
                     <div class="mistake-item">
                         <h4>⚠️ ${mistake.move}: ${mistake.description}</h4>
-                        <span class="suggestion">💡 Coach Zaira's Tip: ${mistake.suggestion}</span>
+                        <span class="suggestion">💡 ${mistake.suggestion}</span>
                     </div>
                 `).join('');
             }
@@ -1714,17 +1671,12 @@
             document.getElementById('analysisModal').classList.remove('active');
         }
 
-        // Close modals on outside click
         document.getElementById('analysisModal').addEventListener('click', (e) => {
-            if (e.target.id === 'analysisModal') {
-                closeAnalysis();
-            }
+            if (e.target.id === 'analysisModal') closeAnalysis();
         });
 
         document.getElementById('gameOverModal').addEventListener('click', (e) => {
-            if (e.target.id === 'gameOverModal') {
-                closeGameOver();
-            }
+            if (e.target.id === 'gameOverModal') closeGameOver();
         });
     </script>
 </body>
