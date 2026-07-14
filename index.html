@@ -5,215 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zaira Chess Coach</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-
         body {
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #58cc02 0%, #46a302 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
-        }
-
-        /* ==================== SPLASH ==================== */
-        .splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1cb0f6 0%, #1899d6 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            transition: opacity 0.5s;
-        }
-
-        .splash.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .splash-icon {
-            font-size: 10em;
-            margin-bottom: 30px;
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
-
-        .splash-title {
-            font-size: 3.5em;
             color: white;
-            font-weight: 800;
-            margin-bottom: 15px;
+            overflow-x: hidden;
         }
 
-        .splash-made {
-            font-size: 1.3em;
-            color: white;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .heart {
-            color: #ff4757;
-            font-size: 1.4em;
-        }
-
-        /* ==================== MENU ==================== */
-        .menu {
-            display: none;
-            min-height: 100vh;
-            background: white;
-        }
-
-        .menu.active {
-            display: block;
-        }
-
-        .menu-header {
-            background: linear-gradient(135deg, #58cc02 0%, #46a302 100%);
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .menu-title {
-            font-size: 3em;
-            color: white;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .menu-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .menu-card {
-            background: white;
-            border-radius: 25px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            border: 4px solid transparent;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            border-color: #58cc02;
-        }
-
-        .card-icon {
-            font-size: 5em;
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-size: 2em;
-            font-weight: 800;
-            color: #3c3c3c;
-            margin-bottom: 15px;
-        }
-
-        .card-desc {
-            color: #777;
-            line-height: 1.7;
-            font-size: 1.1em;
-        }
-
-        /* ==================== GAME ==================== */
-        .game {
-            display: none;
-            min-height: 100vh;
-            background: #f7f7f7;
-        }
-
-        .game.active {
-            display: block;
-        }
-
-        .game-header {
-            background: white;
-            padding: 20px 30px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        /* ==================== TOP BAR ==================== */
+        .top-bar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .back-btn {
-            background: #ff4b4b;
-            color: white;
+        .close-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 800;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5em;
             cursor: pointer;
-            font-size: 1.1em;
             transition: all 0.3s;
-        }
-
-        .back-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255,75,75,0.3);
-        }
-
-        .stats {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            justify-content: center;
         }
 
-        .stat {
-            background: #f7f7f7;
+        .close-btn:hover {
+            background: rgba(255,75,75,0.3);
+            transform: rotate(90deg);
+        }
+
+        .points-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(88,204,2,0.2);
             padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 1.1em;
+            border-radius: 25px;
+            border: 2px solid #58cc02;
         }
 
-        .game-body {
-            display: grid;
-            grid-template-columns: 350px 1fr 350px;
-            gap: 25px;
-            padding: 25px;
+        .points-icon {
+            font-size: 1.8em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .points-text {
+            font-size: 1.3em;
+            font-weight: 800;
+            color: #58cc02;
+        }
+
+        .timer-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,193,7,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid #ffc107;
+        }
+
+        .timer-icon {
+            font-size: 1.8em;
+        }
+
+        .timer-text {
+            font-size: 1.3em;
+            font-weight: 800;
+            color: #ffc107;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ==================== MAIN SECTION ==================== */
+        .main-container {
             max-width: 1600px;
             margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .game-title {
+            text-align: center;
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #58cc02, #46a302);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(88,204,2,0.3);
+        }
+
+        .game-area {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
         @media (max-width: 1200px) {
-            .game-body {
+            .game-area {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* ==================== ZAIRA (DUOLINGO STYLE) ==================== */
-        .zaira {
-            background: white;
-            border-radius: 25px;
+        /* ==================== ZAIRA CHARACTER ==================== */
+        .zaira-container {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
             padding: 30px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            position: relative;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            border: 2px solid rgba(88,204,2,0.2);
+            position: sticky;
+            top: 100px;
         }
 
         .zaira-character {
@@ -222,784 +151,626 @@
         }
 
         .zaira-avatar {
-            width: 180px;
-            height: 180px;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 20px;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border-radius: 50%;
-            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6em;
-            border: 6px solid white;
-            box-shadow: 0 10px 40px rgba(240,147,251,0.4);
-            animation: float 3s ease-in-out infinite;
             position: relative;
+            box-shadow: 
+                0 0 0 8px rgba(240,147,251,0.2),
+                0 0 0 16px rgba(240,147,251,0.1),
+                0 20px 60px rgba(240,147,251,0.4);
+            animation: characterFloat 4s ease-in-out infinite;
             overflow: hidden;
         }
 
-        @keyframes float {
+        @keyframes characterFloat {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-12px) scale(1.02); }
+            50% { transform: translateY(-15px) scale(1.02); }
         }
 
-        .zaira-eyes {
-            position: absolute;
-            top: 35%;
+        .zaira-face {
+            position: relative;
             width: 100%;
+            height: 100%;
+        }
+
+        /* Face features */
+        .face-base {
+            width: 140px;
+            height: 160px;
+            background: #FFE0BD;
+            border-radius: 50% 50% 60% 60%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: inset 0 -20px 30px rgba(0,0,0,0.1);
+        }
+
+        .hair {
+            width: 160px;
+            height: 100px;
+            background: #8B4513;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .eyes {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: center;
             gap: 35px;
         }
 
         .eye {
-            width: 25px;
-            height: 25px;
+            width: 28px;
+            height: 28px;
             background: white;
             border-radius: 50%;
             position: relative;
-            animation: blink 4s infinite;
-        }
-
-        .eye::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #333;
-            border-radius: 50%;
-            top: 6px;
-            left: 6px;
-            animation: eyeMove 3s infinite;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+            animation: blink 5s infinite;
         }
 
         @keyframes blink {
-            0%, 90%, 100% { height: 25px; }
-            95% { height: 2px; }
+            0%, 90%, 100% { height: 28px; }
+            95% { height: 3px; }
+        }
+
+        .pupil {
+            width: 14px;
+            height: 14px;
+            background: #2c3e50;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            animation: eyeMove 4s infinite;
         }
 
         @keyframes eyeMove {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(3px); }
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(3px, -2px); }
+            75% { transform: translate(-3px, 2px); }
         }
 
-        .zaira-mouth {
+        .pupil::after {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
             position: absolute;
-            bottom: 30%;
+            top: 3px;
+            left: 3px;
+        }
+
+        .eyebrows {
+            position: absolute;
+            top: 38%;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 30px;
-            border: 4px solid white;
-            border-top: none;
-            border-radius: 0 0 60px 60px;
+            display: flex;
+            gap: 35px;
         }
 
+        .eyebrow {
+            width: 25px;
+            height: 4px;
+            background: #6b3410;
+            border-radius: 2px;
+            animation: eyebrowMove 3s infinite;
+        }
+
+        @keyframes eyebrowMove {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-2px) rotate(-5deg); }
+        }
+
+        .nose {
+            width: 8px;
+            height: 12px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 0 50% 50% 50%;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mouth {
+            width: 40px;
+            height: 20px;
+            border: 3px solid #ff6b9d;
+            border-top: none;
+            border-radius: 0 0 40px 40px;
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: smile 3s infinite;
+        }
+
+        @keyframes smile {
+            0%, 100% { width: 40px; }
+            50% { width: 50px; }
+        }
+
+        .blush {
+            width: 20px;
+            height: 15px;
+            background: rgba(255,182,193,0.6);
+            border-radius: 50%;
+            position: absolute;
+            top: 58%;
+        }
+
+        .blush.left { left: 15%; }
+        .blush.right { right: 15%; }
+
+        /* Zaira name and status */
         .zaira-name {
             text-align: center;
-            font-size: 1.8em;
-            font-weight: 800;
-            color: #3c3c3c;
-            margin-bottom: 5px;
+            font-size: 2em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
         }
 
-        .zaira-role {
+        .zaira-status {
             text-align: center;
-            color: #777;
+            color: rgba(255,255,255,0.7);
             font-size: 1.1em;
             margin-bottom: 20px;
         }
 
-        .zaira-mood {
+        /* Mood indicator */
+        .mood-indicator {
             text-align: center;
             font-size: 3em;
             margin: 20px 0;
-            animation: moodBounce 0.5s ease;
+            animation: moodBounce 0.6s ease;
         }
 
         @keyframes moodBounce {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            0% { transform: scale(0.8) rotate(-10deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
 
-        .zaira-speech {
-            background: linear-gradient(135deg, #58cc02 0%, #46a302 100%);
-            color: white;
+        /* Speech bubble */
+        .speech-bubble {
+            background: linear-gradient(135deg, #58cc02, #46a302);
             padding: 25px;
             border-radius: 20px;
-            font-size: 1.15em;
-            line-height: 1.7;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
             position: relative;
-            box-shadow: 0 8px 25px rgba(88,204,2,0.3);
-            font-weight: 600;
-            animation: speechPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 30px rgba(88,204,2,0.3);
+            animation: bubblePop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-top: 20px;
         }
 
-        @keyframes speechPop {
-            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+        @keyframes bubblePop {
+            0% { transform: scale(0.5) translateY(30px); opacity: 0; }
             100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
-        .zaira-speech::before {
+        .speech-bubble::before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 15px solid #58cc02;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid #58cc02;
         }
 
-        .thinking {
+        .speech-text {
+            color: white;
+            font-size: 1.2em;
+            line-height: 1.7;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Voice indicator */
+        .voice-indicator {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .voice-indicator.active {
+            display: flex;
+        }
+
+        .voice-wave {
+            width: 4px;
+            height: 20px;
+            background: #58cc02;
+            border-radius: 2px;
+            animation: voiceWave 0.8s ease-in-out infinite;
+        }
+
+        .voice-wave:nth-child(2) { animation-delay: 0.1s; }
+        .voice-wave:nth-child(3) { animation-delay: 0.2s; }
+        .voice-wave:nth-child(4) { animation-delay: 0.3s; }
+        .voice-wave:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes voiceWave {
+            0%, 100% { height: 20px; opacity: 0.3; }
+            50% { height: 35px; opacity: 1; }
+        }
+
+        /* Thinking animation */
+        .thinking-dots {
             display: none;
             text-align: center;
-            padding: 20px;
-            background: #f7f7f7;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
             border-radius: 15px;
             margin-top: 15px;
         }
 
-        .thinking.active {
+        .thinking-dots.active {
             display: block;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
         }
 
         .dots {
             font-size: 2.5em;
+            animation: thinking 1.5s infinite;
         }
 
-        /* ==================== BEAUTIFUL CHESS BOARD ==================== */
-        .board-area {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        @keyframes thinking {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
-        .board-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
+        /* ==================== CHESS BOARD ==================== */
+        .board-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
             border-radius: 30px;
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.3);
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            border: 2px solid rgba(88,204,2,0.2);
+        }
+
+        .board-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
         }
 
         .board-labels-top {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 12px;
-            padding: 0 10px;
+            margin-bottom: 15px;
+            padding: 0 12px;
         }
 
-        .label {
+        .board-label {
             width: 12.5%;
             text-align: center;
-            color: white;
-            font-weight: 800;
-            font-size: 1.2em;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            color: #58cc02;
+            font-weight: 900;
+            font-size: 1.3em;
+            text-shadow: 0 0 10px rgba(88,204,2,0.5);
         }
 
-        .board-main {
+        .board-container {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
 
         .board-labels-left {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 12px 0;
         }
 
-        .board {
+        .chessboard {
             display: grid;
-            grid-template-columns: repeat(8, 70px);
-            grid-template-rows: repeat(8, 70px);
-            border: 8px solid white;
+            grid-template-columns: repeat(8, 75px);
+            grid-template-rows: repeat(8, 75px);
+            border: 6px solid #58cc02;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 
-                0 15px 50px rgba(0,0,0,0.4),
-                inset 0 0 0 1px rgba(255,255,255,0.2);
+                0 0 0 3px #1e293b,
+                0 0 60px rgba(88,204,2,0.4),
+                inset 0 0 20px rgba(0,0,0,0.3);
         }
 
-        .sq {
-            width: 70px;
-            height: 70px;
+        .square {
+            width: 75px;
+            height: 75px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5em;
+            font-size: 4em;
             cursor: pointer;
             user-select: none;
-            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             position: relative;
         }
 
-        .sq.light {
-            background: linear-gradient(135deg, #f0d9b5 0%, #e8d1ad 100%);
+        .square.light {
+            background: linear-gradient(135deg, #475569, #64748b);
         }
 
-        .sq.dark {
-            background: linear-gradient(135deg, #b58863 0%, #a07555 100%);
+        .square.dark {
+            background: linear-gradient(135deg, #1e293b, #334155);
         }
 
-        .sq.selected {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%) !important;
+        .square.selected {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
             box-shadow: 
-                inset 0 0 0 5px #58cc02,
-                0 0 30px rgba(255,215,0,0.6);
-            transform: scale(1.05);
+                inset 0 0 0 4px #58cc02,
+                0 0 30px rgba(251,191,36,0.6);
+            transform: scale(1.08);
         }
 
-        .sq.valid-move {
-            background: linear-gradient(135deg, #7fa650 0%, #6d9042 100%) !important;
+        .square.valid-move {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
             animation: validPulse 1.5s infinite;
         }
 
         @keyframes validPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(88,204,2,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(88,204,2,0); }
-        }
-
-        .sq.valid-move::after {
-            content: '';
-            width: 35%;
-            height: 35%;
-            background: radial-gradient(circle, rgba(88,204,2,0.8) 0%, rgba(88,204,2,0.4) 100%);
-            border-radius: 50%;
-            position: absolute;
-            animation: dotGlow 1s infinite;
-        }
-
-        @keyframes dotGlow {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.3); opacity: 1; }
-        }
-
-        .sq.wrong-move {
-            animation: shake 0.5s, wrongFlash 0.5s;
-            background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%) !important;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px) rotate(-2deg); }
-            75% { transform: translateX(8px) rotate(2deg); }
-        }
-
-        @keyframes wrongFlash {
-            0%, 100% { box-shadow: none; }
-            50% { box-shadow: 0 0 30px #ff4757; }
-        }
-
-        .sq.correct-move {
-            animation: correctPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes correctPop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2) rotate(5deg); }
-            100% { transform: scale(1); }
-        }
-
-        .sq.hint-glow {
-            animation: hintPulse 1.5s infinite;
-            box-shadow: 0 0 30px rgba(88,204,2,0.8);
-        }
-
-        @keyframes hintPulse {
             0%, 100% { 
-                box-shadow: 0 0 20px rgba(88,204,2,0.8);
+                box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
                 transform: scale(1);
             }
             50% { 
-                box-shadow: 0 0 40px rgba(88,204,2,1);
-                transform: scale(1.08);
+                box-shadow: 0 0 0 15px rgba(16,185,129,0);
+                transform: scale(1.05);
             }
         }
 
-        .sq:hover:not(.selected) {
-            transform: scale(1.05);
-            filter: brightness(1.15);
+        .square.valid-move::after {
+            content: '✓';
+            position: absolute;
+            font-size: 0.4em;
+            color: white;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            animation: checkPulse 1s infinite;
         }
 
-        .sq {
+        @keyframes checkPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .square:hover:not(.selected) {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .square {
             text-shadow: 
                 -2px -2px 0 #000,
                 2px -2px 0 #000,
                 -2px 2px 0 #000,
                 2px 2px 0 #000,
-                0 0 10px rgba(0,0,0,0.5);
+                0 0 15px rgba(0,0,0,0.8);
         }
 
-        /* Piece movement arrow */
-        .move-arrow {
-            position: absolute;
-            pointer-events: none;
-            z-index: 100;
-            font-size: 4em;
-            color: #58cc02;
-            text-shadow: 0 0 10px rgba(88,204,2,0.8);
-            animation: arrowBounce 1s infinite;
+        /* Move animations */
+        .square.last-move {
+            animation: lastMovePulse 1s ease-out;
         }
 
-        @keyframes arrowBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        @keyframes lastMovePulse {
+            0% { box-shadow: 0 0 0 0 rgba(88,204,2,0.7); }
+            100% { box-shadow: 0 0 0 20px rgba(88,204,2,0); }
         }
 
-        /* ==================== INFO PANEL ==================== */
-        .info {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .info-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .info-card h3 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            color: #3c3c3c;
-            font-weight: 800;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            font-size: 1em;
-        }
-
-        .badge.easy {
-            background: linear-gradient(135deg, #58cc02, #46a302);
-            color: white;
-        }
-
-        .badge.medium {
-            background: linear-gradient(135deg, #ffc800, #ff9900);
-            color: white;
-        }
-
-        .badge.hard {
-            background: linear-gradient(135deg, #ff4757, #c0392b);
-            color: white;
-        }
-
-        .xp-container {
-            background: #e0e0e0;
-            height: 35px;
-            border-radius: 18px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .xp-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #58cc02, #46a302);
-            transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 1em;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-        }
-
-        .streak {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-            color: white;
-            padding: 18px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 1.6em;
-            font-weight: 800;
-            box-shadow: 0 5px 20px rgba(255,107,107,0.3);
-        }
-
-        .btn {
-            padding: 15px;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1em;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #58cc02, #46a302);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, #1cb0f6, #1899d6);
-            color: white;
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #ff4757, #c0392b);
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        /* ==================== MODAL ==================== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 10001;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-box {
-            background: white;
-            border-radius: 25px;
-            padding: 40px;
-            max-width: 650px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #58cc02;
-        }
-
-        .modal-header h2 {
-            font-size: 2.2em;
-            font-weight: 800;
-        }
-
-        .close {
-            font-size: 2.5em;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #999;
-            transition: all 0.3s;
-        }
-
-        .close:hover {
-            color: #ff4757;
-            transform: rotate(90deg);
-        }
-
-        .about-text {
-            line-height: 1.9;
-            color: #3c3c3c;
-            font-size: 1.1em;
-        }
-
-        .about-text h3 {
-            color: #58cc02;
-            margin: 25px 0 15px;
-            font-size: 1.6em;
-        }
-
-        .yt-section {
-            background: #f7f7f7;
-            padding: 25px;
-            border-radius: 20px;
-            margin: 25px 0;
-            text-align: center;
-        }
-
-        .yt-btn {
-            background: #ff0000;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 800;
-            cursor: pointer;
-            margin: 8px;
-            font-size: 1.1em;
-            transition: all 0.3s;
-        }
-
-        .yt-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 25px rgba(255,0,0,0.3);
-        }
-
-        /* Celebration */
-        .celebrate {
+        /* Sound effect indicator */
+        .sound-effect {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 12em;
+            font-size: 8em;
             pointer-events: none;
-            z-index: 10002;
-            animation: celebrate 2s ease;
+            z-index: 1000;
+            animation: soundPop 0.8s ease-out;
             display: none;
         }
 
-        .celebrate.active {
+        .sound-effect.active {
             display: block;
         }
 
-        @keyframes celebrate {
-            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.3) rotate(180deg); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0; }
+        @keyframes soundPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.7; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+
+        /* Progress feedback */
+        .feedback {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #58cc02, #46a302);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            font-size: 1.2em;
+            font-weight: 800;
+            box-shadow: 0 10px 40px rgba(88,204,2,0.4);
+            animation: slideInRight 0.5s ease;
+            display: none;
+        }
+
+        .feedback.active {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <!-- SPLASH -->
-    <div class="splash" id="splash">
-        <div class="splash-icon">♟️</div>
-        <div class="splash-title">Zaira Chess Coach</div>
-        <div class="splash-made">
-            Made with <span class="heart">❤️</span> for friends by<br>
-            <strong>Mohamad Zubeir</strong>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <button class="close-btn" onclick="closeApp()">✕</button>
+        
+        <div class="points-display">
+            <div class="points-icon">⭐</div>
+            <div class="points-text"><span id="points">0</span> POINTS</div>
+        </div>
+
+        <div class="timer-display">
+            <div class="timer-icon">⏱️</div>
+            <div class="timer-text" id="timer">20:00</div>
         </div>
     </div>
 
-    <!-- MENU -->
-    <div class="menu" id="menu">
-        <div class="menu-header">
-            <div class="menu-title">
-                <span>♟️</span>
-                <span>Zaira Chess Coach</span>
-            </div>
-        </div>
-        <div class="menu-cards">
-            <div class="menu-card" onclick="start('easy')">
-                <div class="card-icon">🌱</div>
-                <div class="card-title">Learn Mode</div>
-                <div class="card-desc">Full support with hints, arrows, and step-by-step guidance. Perfect for beginners!</div>
-            </div>
-            <div class="menu-card" onclick="start('medium')">
-                <div class="card-icon">⚡</div>
-                <div class="card-title">Play Mode</div>
-                <div class="card-desc">Play freely with simple reactions. No hints, just encouragement!</div>
-            </div>
-            <div class="menu-card" onclick="start('hard')">
-                <div class="card-icon">🔥</div>
-                <div class="card-title">Hard Mode</div>
-                <div class="card-desc">Pure chess. Zero support. Real competitive play!</div>
-            </div>
-            <div class="menu-card" onclick="showAbout()">
-                <div class="card-icon">ℹ️</div>
-                <div class="card-title">About</div>
-                <div class="card-desc">Learn about the creator and request new apps!</div>
-            </div>
-        </div>
-    </div>
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <h1 class="game-title">Play Chess</h1>
 
-    <!-- GAME -->
-    <div class="game" id="game">
-        <div class="game-header">
-            <button class="back-btn" onclick="toMenu()">← Back</button>
-            <div class="stats">
-                <div class="stat">⭐ <span id="xp">0 XP</span></div>
-                <div class="stat">🔥 <span id="streak">0 Days</span></div>
-                <div class="stat">📊 <span id="level">Lvl 1</span></div>
-            </div>
-        </div>
-        <div class="game-body">
-            <!-- ZAIRA -->
-            <div class="zaira">
+        <div class="game-area">
+            <!-- ZAIRA CHARACTER -->
+            <div class="zaira-container">
                 <div class="zaira-character">
                     <div class="zaira-avatar">
-                        <div class="zaira-eyes">
-                            <div class="eye"></div>
-                            <div class="eye"></div>
+                        <div class="zaira-face">
+                            <div class="hair"></div>
+                            <div class="face-base"></div>
+                            <div class="eyebrows">
+                                <div class="eyebrow"></div>
+                                <div class="eyebrow"></div>
+                            </div>
+                            <div class="eyes">
+                                <div class="eye">
+                                    <div class="pupil"></div>
+                                </div>
+                                <div class="eye">
+                                    <div class="pupil"></div>
+                                </div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth"></div>
+                            <div class="blush left"></div>
+                            <div class="blush right"></div>
                         </div>
-                        <div class="zaira-mouth"></div>
                     </div>
-                    <div class="zaira-name">Coach Zaira</div>
-                    <div class="zaira-role">Your Chess Teacher</div>
-                </div>
-                <div class="zaira-mood" id="mood">😊</div>
-                <div class="zaira-speech" id="speech">
-                    Hi! I'm Zaira! Let's play chess together! 🎉
-                </div>
-                <div class="thinking" id="think">
-                    <div class="dots">🤔 💭 ⏳</div>
-                    <div style="color:#666;margin-top:10px;font-weight:600">Thinking deeply...</div>
+
+                    <div class="zaira-name">ZAIRA</div>
+                    <div class="zaira-status">Your Chess Coach</div>
+
+                    <div class="mood-indicator" id="moodIndicator">😊</div>
+
+                    <div class="speech-bubble">
+                        <div class="speech-text" id="speechText">
+                            I'll go easy on you until I find your level.
+                        </div>
+                    </div>
+
+                    <div class="voice-indicator" id="voiceIndicator">
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                    </div>
+
+                    <div class="thinking-dots" id="thinkingDots">
+                        <div class="dots">🤔 💭 ⏳</div>
+                        <div style="color: rgba(255,255,255,0.7); margin-top: 10px; font-weight: 600;">Thinking...</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- BOARD -->
-            <div class="board-area">
-                <div class="board-box">
+            <!-- CHESS BOARD -->
+            <div class="board-section">
+                <div class="board-wrapper">
                     <div class="board-labels-top">
-                        <div class="label">a</div>
-                        <div class="label">b</div>
-                        <div class="label">c</div>
-                        <div class="label">d</div>
-                        <div class="label">e</div>
-                        <div class="label">f</div>
-                        <div class="label">g</div>
-                        <div class="label">h</div>
+                        <div class="board-label">a</div>
+                        <div class="board-label">b</div>
+                        <div class="board-label">c</div>
+                        <div class="board-label">d</div>
+                        <div class="board-label">e</div>
+                        <div class="board-label">f</div>
+                        <div class="board-label">g</div>
+                        <div class="board-label">h</div>
                     </div>
-                    <div class="board-main">
+                    <div class="board-container">
                         <div class="board-labels-left">
-                            <div class="label">8</div>
-                            <div class="label">7</div>
-                            <div class="label">6</div>
-                            <div class="label">5</div>
-                            <div class="label">4</div>
-                            <div class="label">3</div>
-                            <div class="label">2</div>
-                            <div class="label">1</div>
+                            <div class="board-label">8</div>
+                            <div class="board-label">7</div>
+                            <div class="board-label">6</div>
+                            <div class="board-label">5</div>
+                            <div class="board-label">4</div>
+                            <div class="board-label">3</div>
+                            <div class="board-label">2</div>
+                            <div class="board-label">1</div>
                         </div>
-                        <div class="board" id="board"></div>
+                        <div class="chessboard" id="chessboard"></div>
                     </div>
-                </div>
-            </div>
-
-            <!-- INFO -->
-            <div class="info">
-                <div class="info-card">
-                    <div class="badge" id="badge">Easy</div>
-                    <h3>📊 Progress</h3>
-                    <div class="xp-container">
-                        <div class="xp-fill" id="xpbar" style="width:0%">0/100 XP</div>
-                    </div>
-                </div>
-                <div class="info-card">
-                    <h3>🔥 Streak</h3>
-                    <div class="streak" id="streakinfo">0 Days</div>
-                </div>
-                <button class="btn btn-primary" onclick="hint()" id="hintbtn">💡 Hint</button>
-                <button class="btn btn-secondary" onclick="reset()">🔄 Reset</button>
-                <button class="btn btn-danger" onclick="toMenu()">🏠 Menu</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h2>About</h2>
-                <button class="close" onclick="closeAbout()">&times;</button>
-            </div>
-            <div class="about-text">
-                <h3>Made with Love ❤️</h3>
-                <p>Made with love for friends by <strong>Mohamad Zubeir</strong>, a student and the owner of <strong>Zuaki</strong> – the learning app made easy for IIT JEE and Mains with all features for free.</p>
-                <p>His goal is to create useful apps for free and believes money is not happiness. Others' happiness is the real happiness.</p>
-                <p>He also builds multiple apps for different purposes to help people.</p>
-                <div class="yt-section">
-                    <h3>🎬 Request an App!</h3>
-                    <p>Have an app idea? Comment on YouTube and I will try to build it!</p>
-                    <button class="yt-btn" onclick="openYT('MZA')">📺 MZA Multiverse</button>
-                    <button class="yt-btn" onclick="openYT('Zaira')">📺 Zaira Multiverse</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="celebrate" id="cel">🎉</div>
+    <!-- Sound effect indicator -->
+    <div class="sound-effect" id="soundEffect"></div>
+
+    <!-- Feedback -->
+    <div class="feedback" id="feedback"></div>
 
     <script>
-        const pc = {
-            'K':'♔','Q':'♕','R':'♖','B':'♗','N':'♘','P':'♙',
-            'k':'♚','q':'♛','r':'♜','b':'♝','n':'♞','p':'♟'
+        // Chess pieces
+        const pieces = {
+            'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
+            'k': '♚', 'q': '♛', 'r': '♜', 'b': '♝', 'n': '♞', 'p': '♟'
         };
 
-        let b=[],sel=null,turn='white',dif='easy',active=false,xpval=0,lvl=1,strk=0;
+        // Game state
+        let board = [];
+        let selectedSquare = null;
+        let currentTurn = 'white';
+        let points = 0;
+        let timeLeft = 1200; // 20 minutes
+        let gameActive = true;
 
-        const msg = {
-            easy: {
-                hi: "Hi! I'm Zaira! Let's learn chess step by step! 🎉",
-                good: ["Nice move! 🔥","Great thinking! 💡","Perfect! ✨","You're improving! 🌟"],
-                bad: ["Oops! Try again! 🤔","Not quite! 💭","Think carefully! ⚠️","That's risky! 😬"],
-                hint: "See the glowing square? That's where you should move! ✨"
-            },
-            medium: {
-                hi: "Ready to play? I'll give simple feedback! 😊",
-                good: ["Good move! 👍","Nice! 😊","Interesting! 🤔","Smart! 🎯"],
-                risky: ["Risky! ⚠️","Careful! 😬","Bold! 😮"]
-            },
-            hard: {
-                hi: "Let's play serious chess! No hints! 🔥",
-                win: "Impressive. Well played. 🏆",
-                loss: "Keep practicing. You'll get better! 💪"
-            }
+        // Zaira's voice lines
+        const zairaLines = {
+            greeting: ["I'll go easy on you until I find your level.", "Let's play! I'm excited! 😊", "Ready to learn? Let's go!"],
+            goodMove: ["Nice move! You're learning fast! 🌟", "Great thinking! 💡", "You're getting stronger 💪", "Impressive! Keep it up! ✨"],
+            badMove: ["Oops! That piece was hanging. 😅", "Hmm... try thinking about your king's safety.", "That was risky! Be careful! ⚠️"],
+            thinking: ["Let me think... 🤔", "Hmm... what should I do? 💭", "Interesting position..."],
+            capture: ["Oh no! You got me! 😲", "Nice capture! 👏", "You're playing well! 🎯"],
+            check: ["Check! Watch your king! 👑", "Your king is in danger! ⚠️"],
+            encouragement: ["Don't give up! You can do it! 💪", "Keep trying! You're improving! 🌟", "Think before you move... 🧠"]
         };
 
-        setTimeout(()=>{
-            document.getElementById('splash').classList.add('hide');
-            setTimeout(()=>document.getElementById('menu').classList.add('active'),500);
-        },3000);
-
-        function start(d){
-            dif=d;
-            document.getElementById('menu').classList.remove('active');
-            document.getElementById('game').classList.add('active');
-            const badge=document.getElementById('badge');
-            badge.className='badge '+d;
-            badge.textContent=d.charAt(0).toUpperCase()+d.slice(1);
-            document.getElementById('hintbtn').style.display=d==='easy'?'block':'none';
-            init();
-            upZaira('😊',msg[d].hi);
-        }
-
-        function toMenu(){
-            if(active&&!confirm('Leave game?'))return;
-            document.getElementById('game').classList.remove('active');
-            document.getElementById('menu').classList.add('active');
-            active=false;
-        }
-
-        function init(){
-            b=[
+        // Initialize board
+        function initBoard() {
+            board = [
                 ['r','n','b','q','k','b','n','r'],
                 ['p','p','p','p','p','p','p','p'],
                 ['','','','','','','',''],
@@ -1009,302 +780,279 @@
                 ['P','P','P','P','P','P','P','P'],
                 ['R','N','B','Q','K','B','N','R']
             ];
-            sel=null;
-            turn='white';
-            active=true;
-            draw();
-            upStats();
+            renderBoard();
+            speak(randomLine(zairaLines.greeting));
         }
 
-        function reset(){
-            if(confirm('Reset board?')){
-                init();
-                upZaira('😊','Board reset! Let\'s go! 🔄');
-            }
-        }
+        // Render board
+        function renderBoard() {
+            const boardElement = document.getElementById('chessboard');
+            boardElement.innerHTML = '';
 
-        function draw(){
-            const bd=document.getElementById('board');
-            bd.innerHTML='';
-            for(let r=0;r<8;r++){
-                for(let c=0;c<8;c++){
-                    const s=document.createElement('div');
-                    s.className='sq '+((r+c)%2===0?'light':'dark');
-                    s.dataset.r=r;
-                    s.dataset.c=c;
-                    s.onclick=()=>click(r,c);
-                    const p=b[r][c];
-                    if(p){
-                        s.textContent=pc[p];
-                        s.style.color=p===p.toUpperCase()?'#fff':'#000';
+            for (let row = 0; row < 8; row++) {
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = 'square ' + ((row + col) % 2 === 0 ? 'light' : 'dark');
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+                    square.onclick = () => handleSquareClick(row, col);
+                    
+                    const piece = board[row][col];
+                    if (piece) {
+                        square.textContent = pieces[piece];
+                        square.style.color = piece === piece.toUpperCase() ? '#ffffff' : '#1a1a1a';
                     }
-                    bd.appendChild(s);
+                    
+                    boardElement.appendChild(square);
                 }
             }
         }
 
-        function click(r,c){
-            if(!active||turn!=='white')return;
-            if(sel){
-                const[sr,sc]=sel;
-                if(valid(sr,sc,r,c)){
-                    move(sr,sc,r,c);
-                    if(dif==='easy'){
-                        showCorrect(r,c);
-                        addXP(10);
-                        upZaira('😊',rand(msg.easy.good));
-                        cel();
-                    }else if(dif==='medium'){
-                        upZaira('😊',rand(msg.medium.good));
-                    }
-                }else{
-                    if(dif==='easy'){
-                        showWrong(r,c);
-                        upZaira('🤨',rand(msg.easy.bad));
-                        setTimeout(()=>draw(),500);
-                        return;
-                    }
-                    sel=null;
-                    draw();
+        // Handle square click
+        function handleSquareClick(row, col) {
+            if (!gameActive || currentTurn !== 'white') return;
+
+            if (selectedSquare) {
+                const [fromRow, fromCol] = selectedSquare;
+                if (isValidMove(fromRow, fromCol, row, col)) {
+                    makeMove(fromRow, fromCol, row, col);
+                    playSound('move');
+                } else {
+                    selectedSquare = null;
+                    renderBoard();
                 }
-            }else{
-                const p=b[r][c];
-                if(p&&p===p.toUpperCase()){
-                    sel=[r,c];
-                    draw();
-                    high(r,c,'selected');
-                    if(dif==='easy')showValid(r,c);
+            } else {
+                const piece = board[row][col];
+                if (piece && piece === piece.toUpperCase()) {
+                    selectedSquare = [row, col];
+                    highlightSquare(row, col, 'selected');
+                    showValidMoves(row, col);
                 }
             }
         }
 
-        function valid(fr,fc,tr,tc){
-            if(fr===tr&&fc===tc)return false;
-            const p=b[fr][fc];
-            const t=b[tr][tc];
-            if(t&&((turn==='white'&&t===t.toUpperCase())||(turn==='black'&&t===t.toLowerCase())))return false;
+        // Check valid move (simplified)
+        function isValidMove(fromRow, fromCol, toRow, toCol) {
+            const piece = board[fromRow][fromCol];
+            const target = board[toRow][toCol];
             
-            // Check path is clear for sliding pieces
-            if(!pathClear(p,fr,fc,tr,tc))return false;
+            if (target && target === target.toUpperCase()) return false;
+            if (fromRow === toRow && fromCol === toCol) return false;
 
-            const pt=p.toLowerCase();
-            const rd=Math.abs(tr-fr);
-            const cd=Math.abs(tc-fc);
+            // Basic movement rules
+            const pieceType = piece.toLowerCase();
+            const rowDiff = Math.abs(toRow - fromRow);
+            const colDiff = Math.abs(toCol - fromCol);
 
-            switch(pt){
-                case'p':return validPawn(p,fr,fc,tr,tc,t);
-                case'r':return fr===tr||fc===tc;
-                case'n':return(rd===2&&cd===1)||(rd===1&&cd===2);
-                case'b':return rd===cd&&rd>0;
-                case'q':return fr===tr||fc===tc||rd===cd;
-                case'k':return rd<=1&&cd<=1;
+            switch(pieceType) {
+                case 'p':
+                    const direction = -1;
+                    if (fromCol === toCol && !target) {
+                        if (toRow === fromRow + direction) return true;
+                        if (fromRow === 6 && toRow === fromRow + 2 * direction) return true;
+                    }
+                    if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + direction && target) return true;
+                    return false;
+                case 'r':
+                    return fromRow === toRow || fromCol === toCol;
+                case 'n':
+                    return (rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2);
+                case 'b':
+                    return rowDiff === colDiff;
+                case 'q':
+                    return fromRow === toRow || fromCol === toCol || rowDiff === colDiff;
+                case 'k':
+                    return rowDiff <= 1 && colDiff <= 1;
             }
             return false;
         }
 
-        function validPawn(p,fr,fc,tr,tc,t){
-            const d=p===p.toUpperCase()?-1:1;
-            const sr=p===p.toUpperCase()?6:1;
-            // Move forward
-            if(fc===tc&&!t){
-                if(tr===fr+d)return true;
-                if(fr===sr&&tr===fr+2*d&&!b[fr+d][fc])return true;
+        // Make move
+        function makeMove(fromRow, fromCol, toRow, toCol) {
+            const piece = board[fromRow][fromCol];
+            const captured = board[toRow][toCol];
+
+            board[toRow][toCol] = piece;
+            board[fromRow][fromCol] = '';
+            selectedSquare = null;
+            renderBoard();
+
+            if (captured) {
+                addPoints(10);
+                speak(randomLine(zairaLines.capture));
+                showFeedback('+10 points! Nice capture! 🎯');
+                playSound('capture');
+            } else {
+                addPoints(5);
+                speak(randomLine(zairaLines.goodMove));
+                playSound('move');
             }
-            // Capture diagonally
-            if(Math.abs(tc-fc)===1&&tr===fr+d&&t)return true;
-            return false;
+
+            currentTurn = 'black';
+            setTimeout(makeAIMove, 1500);
         }
 
-        function pathClear(p,fr,fc,tr,tc){
-            const pt=p.toLowerCase();
-            // Knights and kings don't need path check
-            if(pt==='n'||pt==='k'||pt==='p')return true;
-            
-            const rs=fr===tr?0:(tr-fr)/Math.abs(tr-fr);
-            const cs=fc===tc?0:(tc-fc)/Math.abs(tc-fc);
-            let r=fr+rs,c=fc+cs;
-            
-            while(r!==tr||c!==tc){
-                if(b[r][c])return false;
-                r+=rs;c+=cs;
-            }
-            return true;
-        }
+        // AI move
+        function makeAIMove() {
+            updateMood('🤔');
+            document.getElementById('thinkingDots').classList.add('active');
+            speak(randomLine(zairaLines.thinking));
 
-        function move(fr,fc,tr,tc){
-            const p=b[fr][fc];
-            const cap=b[tr][tc];
-            b[tr][tc]=p;
-            b[fr][fc]='';
-            sel=null;
-            draw();
-            
-            if(cap&&cap.toLowerCase()==='k'){
-                win();
-                return;
-            }
-            
-            turn='black';
-            if(dif!=='easy')setTimeout(ai,1000);
-            else turn='white'; // In easy mode, player continues
-        }
-
-        function ai(){
-            upZaira('🤔','');
-            document.getElementById('think').classList.add('active');
-            
-            const delay=dif==='hard'?500:1500;
-            
-            setTimeout(()=>{
-                document.getElementById('think').classList.remove('active');
-                let moves=[];
+            setTimeout(() => {
+                document.getElementById('thinkingDots').classList.remove('active');
                 
-                for(let fr=0;fr<8;fr++){
-                    for(let fc=0;fc<8;fc++){
-                        const p=b[fr][fc];
-                        if(p&&p===p.toLowerCase()){
-                            for(let tr=0;tr<8;tr++){
-                                for(let tc=0;tc<8;tc++){
-                                    if(valid(fr,fc,tr,tc)){
-                                        const capVal=b[tr][tc]?val(b[tr][tc]):0;
-                                        moves.push({from:[fr,fc],to:[tr,tc],score:capVal});
+                // Simple random AI
+                const moves = [];
+                for (let fromRow = 0; fromRow < 8; fromRow++) {
+                    for (let fromCol = 0; fromCol < 8; fromCol++) {
+                        const piece = board[fromRow][fromCol];
+                        if (piece && piece === piece.toLowerCase()) {
+                            for (let toRow = 0; toRow < 8; toRow++) {
+                                for (let toCol = 0; toCol < 8; toCol++) {
+                                    if (isValidMove(fromRow, fromCol, toRow, toCol)) {
+                                        moves.push({ from: [fromRow, fromCol], to: [toRow, toCol] });
                                     }
                                 }
                             }
                         }
                     }
                 }
-                
-                if(moves.length>0){
-                    moves.sort((a,b)=>b.score-a.score);
-                    const m=dif==='hard'?moves[0]:moves[Math.floor(Math.random()*Math.min(3,moves.length))];
-                    const cap=b[m.to[0]][m.to[1]];
-                    b[m.to[0]][m.to[1]]=b[m.from[0]][m.from[1]];
-                    b[m.from[0]][m.from[1]]='';
-                    draw();
+
+                if (moves.length > 0) {
+                    const move = moves[Math.floor(Math.random() * moves.length)];
+                    const captured = board[move.to[0]][move.to[1]];
                     
-                    if(cap&&cap.toLowerCase()==='k'){
-                        lose();
-                        return;
+                    board[move.to[0]][move.to[1]] = board[move.from[0]][move.from[1]];
+                    board[move.from[0]][move.from[1]] = '';
+                    renderBoard();
+
+                    if (captured) {
+                        updateMood('😊');
+                        playSound('capture');
+                    } else {
+                        updateMood('😊');
+                        speak(randomLine(zairaLines.encouragement));
+                        playSound('move');
                     }
-                    
-                    turn='white';
                 }
-            },delay);
+
+                currentTurn = 'white';
+            }, 2000);
         }
 
-        function val(p){
-            const v={'p':1,'n':3,'b':3,'r':5,'q':9,'k':100};
-            return v[p.toLowerCase()]||0;
-        }
-
-        function high(r,c,cls){
-            document.querySelectorAll('.sq').forEach(s=>{
-                if(+s.dataset.r===r&&+s.dataset.c===c)s.classList.add(cls);
+        // Highlight square
+        function highlightSquare(row, col, className) {
+            const squares = document.querySelectorAll('.square');
+            squares.forEach(sq => {
+                if (parseInt(sq.dataset.row) === row && parseInt(sq.dataset.col) === col) {
+                    sq.classList.add(className);
+                }
             });
         }
 
-        function showValid(r,c){
-            for(let tr=0;tr<8;tr++){
-                for(let tc=0;tc<8;tc++){
-                    if(valid(r,c,tr,tc))high(tr,tc,'valid-move');
-                }
-            }
-        }
-
-        function showWrong(r,c){
-            high(r,c,'wrong-move');
-        }
-
-        function showCorrect(r,c){
-            high(r,c,'correct-move');
-        }
-
-        function hint(){
-            if(dif!=='easy')return;
-            if(!sel){
-                upZaira('💡','Select a white piece first! Click on your pieces! ✨');
-                return;
-            }
-            const[r,c]=sel;
-            for(let tr=0;tr<8;tr++){
-                for(let tc=0;tc<8;tc++){
-                    if(valid(r,c,tr,tc)){
-                        high(tr,tc,'hint-glow');
-                        upZaira('💡',msg.easy.hint);
-                        return;
+        // Show valid moves
+        function showValidMoves(row, col) {
+            for (let toRow = 0; toRow < 8; toRow++) {
+                for (let toCol = 0; toCol < 8; toCol++) {
+                    if (isValidMove(row, col, toRow, toCol)) {
+                        highlightSquare(toRow, toCol, 'valid-move');
                     }
                 }
             }
         }
 
-        function cel(){
-            const c=document.getElementById('cel');
-            c.classList.add('active');
-            setTimeout(()=>c.classList.remove('active'),2000);
+        // Update Zaira's mood
+        function updateMood(emoji) {
+            const mood = document.getElementById('moodIndicator');
+            mood.textContent = emoji;
+            mood.style.animation = 'none';
+            setTimeout(() => mood.style.animation = 'moodBounce 0.6s ease', 10);
         }
 
-        function upZaira(mood,txt){
-            document.getElementById('mood').textContent=mood;
-            if(txt)document.getElementById('speech').textContent=txt;
-        }
+        // Speak (simulated)
+        function speak(text) {
+            document.getElementById('speechText').textContent = text;
+            
+            // Simulate voice with indicator
+            const voiceIndicator = document.getElementById('voiceIndicator');
+            voiceIndicator.classList.add('active');
+            
+            setTimeout(() => {
+                voiceIndicator.classList.remove('active');
+            }, 2000);
 
-        function win(){
-            active=false;
-            addXP(100);
-            strk++;
-            cel();
-            upZaira('🎉',dif==='hard'?msg.hard.win:'You won! Amazing! 🏆');
-            setTimeout(()=>alert('🎉 You Won! +100 XP'),500);
-        }
-
-        function lose(){
-            active=false;
-            upZaira('😊',dif==='hard'?msg.hard.loss:'Good game! Keep practicing! 💪');
-            setTimeout(()=>alert('Game Over! Try again! 💪'),500);
-        }
-
-        function addXP(amt){
-            xpval+=amt;
-            const need=lvl*100;
-            if(xpval>=need){
-                lvl++;
-                xpval=0;
-                cel();
-                upZaira('🎉','Level Up! Level '+lvl+'! 🌟');
+            // Text-to-speech (if supported)
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                utterance.pitch = 1.2;
+                utterance.volume = 0.8;
+                speechSynthesis.speak(utterance);
             }
-            upStats();
         }
 
-        function upStats(){
-            document.getElementById('xp').textContent=xpval+' XP';
-            document.getElementById('level').textContent='Lvl '+lvl;
-            document.getElementById('streak').textContent=strk+' Days';
-            document.getElementById('streakinfo').textContent=strk+' Days';
-            const need=lvl*100;
-            const bar=document.getElementById('xpbar');
-            const pct=(xpval/need)*100;
-            bar.style.width=pct+'%';
-            bar.textContent=xpval+'/'+need+' XP';
+        // Random line
+        function randomLine(lines) {
+            return lines[Math.floor(Math.random() * lines.length)];
         }
 
-        function showAbout(){
-            document.getElementById('modal').classList.add('active');
+        // Add points
+        function addPoints(pts) {
+            points += pts;
+            document.getElementById('points').textContent = points;
         }
 
-        function closeAbout(){
-            document.getElementById('modal').classList.remove('active');
+        // Show feedback
+        function showFeedback(text) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = text;
+            feedback.classList.add('active');
+            setTimeout(() => feedback.classList.remove('active'), 3000);
         }
 
-        function openYT(ch){
-            alert('Opening '+ch+' YouTube!\n\nComment your app ideas! 🚀');
+        // Play sound
+        function playSound(type) {
+            const soundEffect = document.getElementById('soundEffect');
+            soundEffect.textContent = type === 'capture' ? '💥' : '✨';
+            soundEffect.classList.add('active');
+            setTimeout(() => soundEffect.classList.remove('active'), 800);
+
+            // Haptic feedback (mobile)
+            if ('vibrate' in navigator) {
+                navigator.vibrate(type === 'capture' ? [50, 100, 50] : [30]);
+            }
         }
 
-        function rand(arr){
-            return arr[Math.floor(Math.random()*arr.length)];
+        // Timer
+        function startTimer() {
+            setInterval(() => {
+                if (!gameActive) return;
+                
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    gameActive = false;
+                    speak("Time's up! Great game! 🎉");
+                    updateMood('😊');
+                }
+            }, 1000);
         }
 
-        upStats();
+        // Close app
+        function closeApp() {
+            if (confirm('Are you sure you want to quit?')) {
+                speak("Thanks for playing! See you next time! 👋");
+                setTimeout(() => window.close(), 2000);
+            }
+        }
+
+        // Initialize game
+        initBoard();
+        startTimer();
     </script>
 </body>
 </html>
