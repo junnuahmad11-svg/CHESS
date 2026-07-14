@@ -11,20 +11,22 @@
             box-sizing: border-box;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #58cc02 0%, #46a302 100%);
             min-height: 100vh;
         }
 
-        /* SPLASH SCREEN */
-        .splash-screen {
+        /* ==================== SPLASH ==================== */
+        .splash {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #58cc02, #46a302);
+            background: linear-gradient(135deg, #1cb0f6 0%, #1899d6 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -33,381 +35,622 @@
             transition: opacity 0.5s;
         }
 
-        .splash-screen.fade-out {
+        .splash.hide {
             opacity: 0;
             pointer-events: none;
         }
 
         .splash-icon {
-            font-size: 8em;
-            margin-bottom: 20px;
+            font-size: 10em;
+            margin-bottom: 30px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
         }
 
         .splash-title {
-            font-size: 3em;
+            font-size: 3.5em;
             color: white;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .splash-made {
-            font-size: 1.2em;
+            font-size: 1.3em;
             color: white;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .heart {
-            color: #ff6b6b;
-            font-size: 1.3em;
+            color: #ff4757;
+            font-size: 1.4em;
         }
 
-        /* MAIN MENU */
-        .main-menu {
+        /* ==================== MENU ==================== */
+        .menu {
             display: none;
             min-height: 100vh;
-            background: #f7f7f7;
+            background: white;
         }
 
-        .main-menu.active {
+        .menu.active {
             display: block;
         }
 
         .menu-header {
-            background: linear-gradient(135deg, #58cc02, #46a302);
-            padding: 25px;
-            color: white;
+            background: linear-gradient(135deg, #58cc02 0%, #46a302 100%);
+            padding: 30px;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .menu-title {
-            font-size: 2.5em;
+            font-size: 3em;
+            color: white;
             font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
         .menu-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 40px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .menu-card {
             background: white;
-            border-radius: 20px;
-            padding: 35px;
+            border-radius: 25px;
+            padding: 40px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border: 4px solid transparent;
         }
 
         .menu-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: #58cc02;
         }
 
         .card-icon {
-            font-size: 4em;
-            margin-bottom: 15px;
+            font-size: 5em;
+            margin-bottom: 20px;
         }
 
         .card-title {
-            font-size: 1.8em;
+            font-size: 2em;
             font-weight: 800;
-            color: #333;
-            margin-bottom: 10px;
+            color: #3c3c3c;
+            margin-bottom: 15px;
         }
 
         .card-desc {
-            color: #666;
-            line-height: 1.6;
+            color: #777;
+            line-height: 1.7;
+            font-size: 1.1em;
         }
 
-        /* GAME SCREEN */
-        .game-screen {
+        /* ==================== GAME ==================== */
+        .game {
             display: none;
             min-height: 100vh;
             background: #f7f7f7;
         }
 
-        .game-screen.active {
+        .game.active {
             display: block;
         }
 
         .game-header {
             background: white;
-            padding: 15px 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .back-button {
+        .back-btn {
             background: #ff4b4b;
             color: white;
             border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,75,75,0.3);
+        }
+
+        .stats {
+            display: flex;
+            gap: 25px;
+        }
+
+        .stat {
+            background: #f7f7f7;
             padding: 10px 20px;
             border-radius: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 1em;
+            font-weight: 800;
+            font-size: 1.1em;
         }
 
-        .game-stats {
-            display: flex;
-            gap: 20px;
-        }
-
-        .stat-badge {
-            background: #f7f7f7;
-            padding: 8px 15px;
-            border-radius: 15px;
-            font-weight: 700;
-        }
-
-        .game-container {
+        .game-body {
             display: grid;
-            grid-template-columns: 300px 1fr 300px;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1400px;
+            grid-template-columns: 350px 1fr 350px;
+            gap: 25px;
+            padding: 25px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
-        @media (max-width: 1100px) {
-            .game-container {
+        @media (max-width: 1200px) {
+            .game-body {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* ZAIRA PANEL */
-        .zaira-panel {
+        /* ==================== ZAIRA (DUOLINGO STYLE) ==================== */
+        .zaira {
             background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            position: relative;
+        }
+
+        .zaira-character {
+            position: relative;
+            margin-bottom: 25px;
         }
 
         .zaira-avatar {
-            width: 130px;
-            height: 130px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border-radius: 50%;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4.5em;
-            margin: 0 auto 15px;
-            border: 5px solid white;
-            box-shadow: 0 8px 20px rgba(240,147,251,0.4);
+            font-size: 6em;
+            border: 6px solid white;
+            box-shadow: 0 10px 40px rgba(240,147,251,0.4);
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.02); }
+        }
+
+        .zaira-eyes {
+            position: absolute;
+            top: 35%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+        }
+
+        .eye {
+            width: 25px;
+            height: 25px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            animation: blink 4s infinite;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            top: 6px;
+            left: 6px;
+            animation: eyeMove 3s infinite;
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { height: 25px; }
+            95% { height: 2px; }
+        }
+
+        @keyframes eyeMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(3px); }
+        }
+
+        .zaira-mouth {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 30px;
+            border: 4px solid white;
+            border-top: none;
+            border-radius: 0 0 60px 60px;
         }
 
         .zaira-name {
             text-align: center;
-            font-size: 1.6em;
+            font-size: 1.8em;
             font-weight: 800;
+            color: #3c3c3c;
             margin-bottom: 5px;
         }
 
         .zaira-role {
             text-align: center;
-            color: #666;
-            margin-bottom: 15px;
+            color: #777;
+            font-size: 1.1em;
+            margin-bottom: 20px;
         }
 
         .zaira-mood {
             text-align: center;
-            font-size: 2.5em;
-            margin: 15px 0;
+            font-size: 3em;
+            margin: 20px 0;
+            animation: moodBounce 0.5s ease;
+        }
+
+        @keyframes moodBounce {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         .zaira-speech {
-            background: linear-gradient(135deg, #58cc02, #46a302);
+            background: linear-gradient(135deg, #58cc02 0%, #46a302 100%);
             color: white;
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            min-height: 90px;
+            padding: 25px;
+            border-radius: 20px;
+            font-size: 1.15em;
+            line-height: 1.7;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(88,204,2,0.3);
+            font-weight: 600;
+            animation: speechPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        /* BOARD */
-        .board-section {
+        @keyframes speechPop {
+            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .zaira-speech::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #58cc02;
+        }
+
+        .thinking {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #f7f7f7;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .thinking.active {
+            display: block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .dots {
+            font-size: 2.5em;
+        }
+
+        /* ==================== BEAUTIFUL CHESS BOARD ==================== */
+        .board-area {
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
-        .board-container {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        .board-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 
+                0 20px 60px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
         }
 
         .board-labels-top {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            padding: 0 10px;
         }
 
-        .board-label {
+        .label {
             width: 12.5%;
             text-align: center;
-            color: #58cc02;
+            color: white;
             font-weight: 800;
+            font-size: 1.2em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        .board-wrapper {
+        .board-main {
             display: flex;
-            gap: 8px;
+            gap: 12px;
         }
 
         .board-labels-left {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            padding: 10px 0;
         }
 
-        .chessboard {
+        .board {
             display: grid;
-            grid-template-columns: repeat(8, 60px);
-            grid-template-rows: repeat(8, 60px);
-            border: 5px solid #58cc02;
-            border-radius: 12px;
+            grid-template-columns: repeat(8, 70px);
+            grid-template-rows: repeat(8, 70px);
+            border: 8px solid white;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 0 25px rgba(88,204,2,0.3);
+            box-shadow: 
+                0 15px 50px rgba(0,0,0,0.4),
+                inset 0 0 0 1px rgba(255,255,255,0.2);
         }
 
-        .square {
-            width: 60px;
-            height: 60px;
+        .sq {
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3em;
+            font-size: 3.5em;
             cursor: pointer;
             user-select: none;
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
         }
 
-        .square.light {
-            background: #f0d9b5;
+        .sq.light {
+            background: linear-gradient(135deg, #f0d9b5 0%, #e8d1ad 100%);
         }
 
-        .square.dark {
-            background: #b58863;
+        .sq.dark {
+            background: linear-gradient(135deg, #b58863 0%, #a07555 100%);
         }
 
-        .square.selected {
-            background: #ffc800 !important;
-            box-shadow: inset 0 0 0 4px #58cc02;
+        .sq.selected {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%) !important;
+            box-shadow: 
+                inset 0 0 0 5px #58cc02,
+                0 0 30px rgba(255,215,0,0.6);
+            transform: scale(1.05);
         }
 
-        .square.valid-move {
-            background: #7fa650 !important;
+        .sq.valid-move {
+            background: linear-gradient(135deg, #7fa650 0%, #6d9042 100%) !important;
+            animation: validPulse 1.5s infinite;
         }
 
-        .square.valid-move::after {
+        @keyframes validPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(88,204,2,0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(88,204,2,0); }
+        }
+
+        .sq.valid-move::after {
             content: '';
-            width: 25%;
-            height: 25%;
-            background: rgba(88,204,2,0.7);
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, rgba(88,204,2,0.8) 0%, rgba(88,204,2,0.4) 100%);
             border-radius: 50%;
             position: absolute;
+            animation: dotGlow 1s infinite;
         }
 
-        .square:hover {
-            filter: brightness(1.1);
+        @keyframes dotGlow {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.3); opacity: 1; }
         }
 
-        /* INFO PANEL */
-        .info-panel {
+        .sq.wrong-move {
+            animation: shake 0.5s, wrongFlash 0.5s;
+            background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%) !important;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px) rotate(-2deg); }
+            75% { transform: translateX(8px) rotate(2deg); }
+        }
+
+        @keyframes wrongFlash {
+            0%, 100% { box-shadow: none; }
+            50% { box-shadow: 0 0 30px #ff4757; }
+        }
+
+        .sq.correct-move {
+            animation: correctPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes correctPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+
+        .sq.hint-glow {
+            animation: hintPulse 1.5s infinite;
+            box-shadow: 0 0 30px rgba(88,204,2,0.8);
+        }
+
+        @keyframes hintPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(88,204,2,0.8);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(88,204,2,1);
+                transform: scale(1.08);
+            }
+        }
+
+        .sq:hover:not(.selected) {
+            transform: scale(1.05);
+            filter: brightness(1.15);
+        }
+
+        .sq {
+            text-shadow: 
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* Piece movement arrow */
+        .move-arrow {
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 4em;
+            color: #58cc02;
+            text-shadow: 0 0 10px rgba(88,204,2,0.8);
+            animation: arrowBounce 1s infinite;
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ==================== INFO PANEL ==================== */
+        .info {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
         }
 
         .info-card {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .info-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 12px;
-            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #3c3c3c;
+            font-weight: 800;
         }
 
-        .difficulty-badge {
+        .badge {
             display: inline-block;
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-weight: 700;
-            margin-bottom: 10px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            font-size: 1em;
         }
 
-        .difficulty-badge.easy {
+        .badge.easy {
             background: linear-gradient(135deg, #58cc02, #46a302);
             color: white;
         }
 
-        .difficulty-badge.medium {
+        .badge.medium {
             background: linear-gradient(135deg, #ffc800, #ff9900);
             color: white;
         }
 
-        .difficulty-badge.hard {
-            background: linear-gradient(135deg, #ff4b4b, #cc0000);
+        .badge.hard {
+            background: linear-gradient(135deg, #ff4757, #c0392b);
             color: white;
         }
 
-        .xp-bar-container {
+        .xp-container {
             background: #e0e0e0;
-            height: 28px;
-            border-radius: 14px;
+            height: 35px;
+            border-radius: 18px;
             overflow: hidden;
+            position: relative;
         }
 
-        .xp-bar {
+        .xp-fill {
             height: 100%;
             background: linear-gradient(90deg, #58cc02, #46a302);
-            transition: width 0.5s;
+            transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 800;
-        }
-
-        .streak-display {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.4em;
-            font-weight: 800;
-        }
-
-        .action-button {
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
             font-size: 1em;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        .streak {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 18px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: 800;
+            box-shadow: 0 5px 20px rgba(255,107,107,0.3);
+        }
+
+        .btn {
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
             font-weight: 800;
             cursor: pointer;
             transition: all 0.3s;
-            margin-bottom: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
         .btn-primary {
@@ -416,21 +659,25 @@
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, #1cb0f6, #0099d6);
+            background: linear-gradient(135deg, #1cb0f6, #1899d6);
             color: white;
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, #ff4b4b, #cc0000);
+            background: linear-gradient(135deg, #ff4757, #c0392b);
             color: white;
         }
 
-        .action-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
 
-        /* MODAL */
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* ==================== MODAL ==================== */
         .modal {
             display: none;
             position: fixed;
@@ -438,7 +685,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.92);
             z-index: 10001;
             align-items: center;
             justify-content: center;
@@ -449,75 +696,110 @@
             display: flex;
         }
 
-        .modal-content {
+        .modal-box {
             background: white;
-            border-radius: 20px;
-            padding: 35px;
-            max-width: 600px;
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 650px;
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
             border-bottom: 3px solid #58cc02;
         }
 
         .modal-header h2 {
-            font-size: 2em;
+            font-size: 2.2em;
             font-weight: 800;
         }
 
-        .close-button {
-            font-size: 2em;
+        .close {
+            font-size: 2.5em;
             cursor: pointer;
             background: none;
             border: none;
             color: #999;
+            transition: all 0.3s;
         }
 
-        .close-button:hover {
-            color: #ff4b4b;
+        .close:hover {
+            color: #ff4757;
+            transform: rotate(90deg);
         }
 
-        .about-content {
-            line-height: 1.8;
-            color: #333;
+        .about-text {
+            line-height: 1.9;
+            color: #3c3c3c;
+            font-size: 1.1em;
         }
 
-        .about-content h3 {
+        .about-text h3 {
             color: #58cc02;
-            margin: 20px 0 10px;
+            margin: 25px 0 15px;
+            font-size: 1.6em;
         }
 
-        .youtube-section {
+        .yt-section {
             background: #f7f7f7;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
             text-align: center;
         }
 
-        .youtube-button {
+        .yt-btn {
             background: #ff0000;
             color: white;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             font-weight: 800;
             cursor: pointer;
-            margin: 5px;
+            margin: 8px;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .yt-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(255,0,0,0.3);
+        }
+
+        /* Celebration */
+        .celebrate {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12em;
+            pointer-events: none;
+            z-index: 10002;
+            animation: celebrate 2s ease;
+            display: none;
+        }
+
+        .celebrate.active {
+            display: block;
+        }
+
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.3) rotate(180deg); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- SPLASH SCREEN -->
-    <div class="splash-screen" id="splashScreen">
+    <!-- SPLASH -->
+    <div class="splash" id="splash">
         <div class="splash-icon">♟️</div>
         <div class="splash-title">Zaira Chess Coach</div>
         <div class="splash-made">
@@ -526,28 +808,31 @@
         </div>
     </div>
 
-    <!-- MAIN MENU -->
-    <div class="main-menu" id="mainMenu">
+    <!-- MENU -->
+    <div class="menu" id="menu">
         <div class="menu-header">
-            <div class="menu-title">♟️ Zaira Chess Coach</div>
+            <div class="menu-title">
+                <span>♟️</span>
+                <span>Zaira Chess Coach</span>
+            </div>
         </div>
         <div class="menu-cards">
-            <div class="menu-card" onclick="startGame('easy')">
+            <div class="menu-card" onclick="start('easy')">
                 <div class="card-icon">🌱</div>
                 <div class="card-title">Learn Mode</div>
                 <div class="card-desc">Full support with hints, arrows, and step-by-step guidance. Perfect for beginners!</div>
             </div>
-            <div class="menu-card" onclick="startGame('medium')">
+            <div class="menu-card" onclick="start('medium')">
                 <div class="card-icon">⚡</div>
                 <div class="card-title">Play Mode</div>
                 <div class="card-desc">Play freely with simple reactions. No hints, just encouragement!</div>
             </div>
-            <div class="menu-card" onclick="startGame('hard')">
+            <div class="menu-card" onclick="start('hard')">
                 <div class="card-icon">🔥</div>
                 <div class="card-title">Hard Mode</div>
-                <div class="card-desc">Pure chess experience. Zero support. Real competitive play!</div>
+                <div class="card-desc">Pure chess. Zero support. Real competitive play!</div>
             </div>
-            <div class="menu-card" onclick="showAboutModal()">
+            <div class="menu-card" onclick="showAbout()">
                 <div class="card-icon">ℹ️</div>
                 <div class="card-title">About</div>
                 <div class="card-desc">Learn about the creator and request new apps!</div>
@@ -555,172 +840,166 @@
         </div>
     </div>
 
-    <!-- GAME SCREEN -->
-    <div class="game-screen" id="gameScreen">
+    <!-- GAME -->
+    <div class="game" id="game">
         <div class="game-header">
-            <button class="back-button" onclick="backToMenu()">← Back</button>
-            <div class="game-stats">
-                <div class="stat-badge">⭐ <span id="xpStat">0 XP</span></div>
-                <div class="stat-badge">🔥 <span id="streakStat">0 Days</span></div>
-                <div class="stat-badge">📊 <span id="levelStat">Level 1</span></div>
+            <button class="back-btn" onclick="toMenu()">← Back</button>
+            <div class="stats">
+                <div class="stat">⭐ <span id="xp">0 XP</span></div>
+                <div class="stat">🔥 <span id="streak">0 Days</span></div>
+                <div class="stat">📊 <span id="level">Lvl 1</span></div>
             </div>
         </div>
-
-        <div class="game-container">
-            <!-- Zaira Panel -->
-            <div class="zaira-panel">
-                <div class="zaira-avatar">
-                    <div id="zairaFace">👩‍🏫</div>
+        <div class="game-body">
+            <!-- ZAIRA -->
+            <div class="zaira">
+                <div class="zaira-character">
+                    <div class="zaira-avatar">
+                        <div class="zaira-eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="zaira-mouth"></div>
+                    </div>
+                    <div class="zaira-name">Coach Zaira</div>
+                    <div class="zaira-role">Your Chess Teacher</div>
                 </div>
-                <div class="zaira-name">Coach Zaira</div>
-                <div class="zaira-role">Your Chess Teacher</div>
-                <div class="zaira-mood" id="zairaMood">😊</div>
-                <div class="zaira-speech" id="zairaSpeech">
+                <div class="zaira-mood" id="mood">😊</div>
+                <div class="zaira-speech" id="speech">
                     Hi! I'm Zaira! Let's play chess together! 🎉
                 </div>
+                <div class="thinking" id="think">
+                    <div class="dots">🤔 💭 ⏳</div>
+                    <div style="color:#666;margin-top:10px;font-weight:600">Thinking deeply...</div>
+                </div>
             </div>
 
-            <!-- Chess Board -->
-            <div class="board-section">
-                <div class="board-container">
+            <!-- BOARD -->
+            <div class="board-area">
+                <div class="board-box">
                     <div class="board-labels-top">
-                        <div class="board-label">a</div>
-                        <div class="board-label">b</div>
-                        <div class="board-label">c</div>
-                        <div class="board-label">d</div>
-                        <div class="board-label">e</div>
-                        <div class="board-label">f</div>
-                        <div class="board-label">g</div>
-                        <div class="board-label">h</div>
+                        <div class="label">a</div>
+                        <div class="label">b</div>
+                        <div class="label">c</div>
+                        <div class="label">d</div>
+                        <div class="label">e</div>
+                        <div class="label">f</div>
+                        <div class="label">g</div>
+                        <div class="label">h</div>
                     </div>
-                    <div class="board-wrapper">
+                    <div class="board-main">
                         <div class="board-labels-left">
-                            <div class="board-label">8</div>
-                            <div class="board-label">7</div>
-                            <div class="board-label">6</div>
-                            <div class="board-label">5</div>
-                            <div class="board-label">4</div>
-                            <div class="board-label">3</div>
-                            <div class="board-label">2</div>
-                            <div class="board-label">1</div>
+                            <div class="label">8</div>
+                            <div class="label">7</div>
+                            <div class="label">6</div>
+                            <div class="label">5</div>
+                            <div class="label">4</div>
+                            <div class="label">3</div>
+                            <div class="label">2</div>
+                            <div class="label">1</div>
                         </div>
-                        <div class="chessboard" id="chessboard"></div>
+                        <div class="board" id="board"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Info Panel -->
-            <div class="info-panel">
+            <!-- INFO -->
+            <div class="info">
                 <div class="info-card">
-                    <div class="difficulty-badge" id="difficultyBadge">Easy</div>
+                    <div class="badge" id="badge">Easy</div>
                     <h3>📊 Progress</h3>
-                    <div class="xp-bar-container">
-                        <div class="xp-bar" id="xpBar" style="width: 0%">0/100 XP</div>
+                    <div class="xp-container">
+                        <div class="xp-fill" id="xpbar" style="width:0%">0/100 XP</div>
                     </div>
                 </div>
                 <div class="info-card">
-                    <h3>🔥 Daily Streak</h3>
-                    <div class="streak-display" id="streakDisplay">0 Days</div>
+                    <h3>🔥 Streak</h3>
+                    <div class="streak" id="streakinfo">0 Days</div>
                 </div>
-                <button class="action-button btn-primary" onclick="showHint()" id="hintButton">💡 Show Hint</button>
-                <button class="action-button btn-secondary" onclick="resetBoard()">🔄 Reset Board</button>
-                <button class="action-button btn-danger" onclick="backToMenu()">🏠 Main Menu</button>
+                <button class="btn btn-primary" onclick="hint()" id="hintbtn">💡 Hint</button>
+                <button class="btn btn-secondary" onclick="reset()">🔄 Reset</button>
+                <button class="btn btn-danger" onclick="toMenu()">🏠 Menu</button>
             </div>
         </div>
     </div>
 
-    <!-- ABOUT MODAL -->
-    <div class="modal" id="aboutModal">
-        <div class="modal-content">
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-box">
             <div class="modal-header">
                 <h2>About</h2>
-                <button class="close-button" onclick="closeAboutModal()">&times;</button>
+                <button class="close" onclick="closeAbout()">&times;</button>
             </div>
-            <div class="about-content">
+            <div class="about-text">
                 <h3>Made with Love ❤️</h3>
                 <p>Made with love for friends by <strong>Mohamad Zubeir</strong>, a student and the owner of <strong>Zuaki</strong> – the learning app made easy for IIT JEE and Mains with all features for free.</p>
                 <p>His goal is to create useful apps for free and believes money is not happiness. Others' happiness is the real happiness.</p>
                 <p>He also builds multiple apps for different purposes to help people.</p>
-                
-                <div class="youtube-section">
+                <div class="yt-section">
                     <h3>🎬 Request an App!</h3>
                     <p>Have an app idea? Comment on YouTube and I will try to build it!</p>
-                    <button class="youtube-button" onclick="openYouTube('MZA')">📺 MZA Multiverse</button>
-                    <button class="youtube-button" onclick="openYouTube('Zaira')">📺 Zaira Multiverse</button>
+                    <button class="yt-btn" onclick="openYT('MZA')">📺 MZA Multiverse</button>
+                    <button class="yt-btn" onclick="openYT('Zaira')">📺 Zaira Multiverse</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="celebrate" id="cel">🎉</div>
+
     <script>
-        // Chess pieces
-        const pieces = {
-            'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
-            'k': '♚', 'q': '♛', 'r': '♜', 'b': '♝', 'n': '♞', 'p': '♟'
+        const pc = {
+            'K':'♔','Q':'♕','R':'♖','B':'♗','N':'♘','P':'♙',
+            'k':'♚','q':'♛','r':'♜','b':'♝','n':'♞','p':'♟'
         };
 
-        // Game state
-        let board = [];
-        let selectedSquare = null;
-        let currentTurn = 'white';
-        let difficulty = 'easy';
-        let gameActive = false;
-        let xp = 0;
-        let level = 1;
-        let streak = 0;
+        let b=[],sel=null,turn='white',dif='easy',active=false,xpval=0,lvl=1,strk=0;
 
-        // Zaira messages
-        const zairaMessages = {
+        const msg = {
             easy: {
-                greeting: "Hi! I'm Zaira! Let's learn chess step by step! 🎉",
-                correct: ["Nice move! 🔥", "Great thinking! 💡", "You're improving! 🌟", "Perfect! ✨"],
-                wrong: ["Oops! Try again! 🤔", "Not quite! Think carefully! 💭", "That's risky! ⚠️"],
-                hint: "See the glowing square? That's a good move! ✨"
+                hi: "Hi! I'm Zaira! Let's learn chess step by step! 🎉",
+                good: ["Nice move! 🔥","Great thinking! 💡","Perfect! ✨","You're improving! 🌟"],
+                bad: ["Oops! Try again! 🤔","Not quite! 💭","Think carefully! ⚠️","That's risky! 😬"],
+                hint: "See the glowing square? That's where you should move! ✨"
             },
             medium: {
-                greeting: "Ready to play? I'll give simple feedback! 😊",
-                good: ["Good move! 👍", "Nice! 😊", "Interesting! 🤔"],
-                risky: ["That was risky! ⚠️", "Careful! 😬", "Bold choice! 😮"]
+                hi: "Ready to play? I'll give simple feedback! 😊",
+                good: ["Good move! 👍","Nice! 😊","Interesting! 🤔","Smart! 🎯"],
+                risky: ["Risky! ⚠️","Careful! 😬","Bold! 😮"]
             },
             hard: {
-                greeting: "Let's play serious chess! No hints! 🔥",
+                hi: "Let's play serious chess! No hints! 🔥",
                 win: "Impressive. Well played. 🏆",
                 loss: "Keep practicing. You'll get better! 💪"
             }
         };
 
-        // Initialize - Show splash for 3 seconds
-        setTimeout(function() {
-            document.getElementById('splashScreen').classList.add('fade-out');
-            setTimeout(function() {
-                document.getElementById('mainMenu').classList.add('active');
-            }, 500);
-        }, 3000);
+        setTimeout(()=>{
+            document.getElementById('splash').classList.add('hide');
+            setTimeout(()=>document.getElementById('menu').classList.add('active'),500);
+        },3000);
 
-        function startGame(mode) {
-            difficulty = mode;
-            document.getElementById('mainMenu').classList.remove('active');
-            document.getElementById('gameScreen').classList.add('active');
-            
-            const badge = document.getElementById('difficultyBadge');
-            badge.className = 'difficulty-badge ' + mode;
-            badge.textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
-            
-            document.getElementById('hintButton').style.display = mode === 'easy' ? 'block' : 'none';
-            
-            initializeBoard();
-            updateZaira('😊', zairaMessages[mode].greeting);
+        function start(d){
+            dif=d;
+            document.getElementById('menu').classList.remove('active');
+            document.getElementById('game').classList.add('active');
+            const badge=document.getElementById('badge');
+            badge.className='badge '+d;
+            badge.textContent=d.charAt(0).toUpperCase()+d.slice(1);
+            document.getElementById('hintbtn').style.display=d==='easy'?'block':'none';
+            init();
+            upZaira('😊',msg[d].hi);
         }
 
-        function backToMenu() {
-            if (gameActive && !confirm('Leave current game?')) return;
-            document.getElementById('gameScreen').classList.remove('active');
-            document.getElementById('mainMenu').classList.add('active');
-            gameActive = false;
+        function toMenu(){
+            if(active&&!confirm('Leave game?'))return;
+            document.getElementById('game').classList.remove('active');
+            document.getElementById('menu').classList.add('active');
+            active=false;
         }
 
-        function initializeBoard() {
-            board = [
+        function init(){
+            b=[
                 ['r','n','b','q','k','b','n','r'],
                 ['p','p','p','p','p','p','p','p'],
                 ['','','','','','','',''],
@@ -730,272 +1009,302 @@
                 ['P','P','P','P','P','P','P','P'],
                 ['R','N','B','Q','K','B','N','R']
             ];
-            selectedSquare = null;
-            currentTurn = 'white';
-            gameActive = true;
-            renderBoard();
-            updateStats();
+            sel=null;
+            turn='white';
+            active=true;
+            draw();
+            upStats();
         }
 
-        function resetBoard() {
-            if (confirm('Reset the board?')) {
-                initializeBoard();
-                updateZaira('😊', 'Board reset! Let\'s start fresh! 🔄');
+        function reset(){
+            if(confirm('Reset board?')){
+                init();
+                upZaira('😊','Board reset! Let\'s go! 🔄');
             }
         }
 
-        function renderBoard() {
-            const boardElement = document.getElementById('chessboard');
-            boardElement.innerHTML = '';
-
-            for (let row = 0; row < 8; row++) {
-                for (let col = 0; col < 8; col++) {
-                    const square = document.createElement('div');
-                    square.className = 'square ' + ((row + col) % 2 === 0 ? 'light' : 'dark');
-                    square.dataset.row = row;
-                    square.dataset.col = col;
-                    square.onclick = function() { handleSquareClick(row, col); };
-                    
-                    const piece = board[row][col];
-                    if (piece) {
-                        square.textContent = pieces[piece];
-                        square.style.color = piece === piece.toUpperCase() ? '#fff' : '#000';
+        function draw(){
+            const bd=document.getElementById('board');
+            bd.innerHTML='';
+            for(let r=0;r<8;r++){
+                for(let c=0;c<8;c++){
+                    const s=document.createElement('div');
+                    s.className='sq '+((r+c)%2===0?'light':'dark');
+                    s.dataset.r=r;
+                    s.dataset.c=c;
+                    s.onclick=()=>click(r,c);
+                    const p=b[r][c];
+                    if(p){
+                        s.textContent=pc[p];
+                        s.style.color=p===p.toUpperCase()?'#fff':'#000';
                     }
-                    
-                    boardElement.appendChild(square);
+                    bd.appendChild(s);
                 }
             }
         }
 
-        function handleSquareClick(row, col) {
-            if (!gameActive || currentTurn !== 'white') return;
-
-            if (selectedSquare) {
-                const fromRow = selectedSquare[0];
-                const fromCol = selectedSquare[1];
-                
-                if (isValidMove(fromRow, fromCol, row, col)) {
-                    makeMove(fromRow, fromCol, row, col);
-                    
-                    if (difficulty === 'easy') {
+        function click(r,c){
+            if(!active||turn!=='white')return;
+            if(sel){
+                const[sr,sc]=sel;
+                if(valid(sr,sc,r,c)){
+                    move(sr,sc,r,c);
+                    if(dif==='easy'){
+                        showCorrect(r,c);
                         addXP(10);
-                        updateZaira('😊', randomMessage(zairaMessages.easy.correct));
-                    } else if (difficulty === 'medium') {
-                        updateZaira('😊', randomMessage(zairaMessages.medium.good));
+                        upZaira('😊',rand(msg.easy.good));
+                        cel();
+                    }else if(dif==='medium'){
+                        upZaira('😊',rand(msg.medium.good));
                     }
-                } else {
-                    if (difficulty === 'easy') {
-                        updateZaira('🤨', randomMessage(zairaMessages.easy.wrong));
+                }else{
+                    if(dif==='easy'){
+                        showWrong(r,c);
+                        upZaira('🤨',rand(msg.easy.bad));
+                        setTimeout(()=>draw(),500);
                         return;
                     }
+                    sel=null;
+                    draw();
                 }
-                
-                selectedSquare = null;
-                renderBoard();
-            } else {
-                const piece = board[row][col];
-                if (piece && piece === piece.toUpperCase()) {
-                    selectedSquare = [row, col];
-                    renderBoard();
-                    highlightSquare(row, col, 'selected');
-                    if (difficulty === 'easy') {
-                        showValidMoves(row, col);
-                    }
+            }else{
+                const p=b[r][c];
+                if(p&&p===p.toUpperCase()){
+                    sel=[r,c];
+                    draw();
+                    high(r,c,'selected');
+                    if(dif==='easy')showValid(r,c);
                 }
             }
         }
 
-        function isValidMove(fromRow, fromCol, toRow, toCol) {
-            if (fromRow === toRow && fromCol === toCol) return false;
+        function valid(fr,fc,tr,tc){
+            if(fr===tr&&fc===tc)return false;
+            const p=b[fr][fc];
+            const t=b[tr][tc];
+            if(t&&((turn==='white'&&t===t.toUpperCase())||(turn==='black'&&t===t.toLowerCase())))return false;
             
-            const piece = board[fromRow][fromCol];
-            const targetPiece = board[toRow][toCol];
-            
-            if (targetPiece && targetPiece === targetPiece.toUpperCase()) return false;
+            // Check path is clear for sliding pieces
+            if(!pathClear(p,fr,fc,tr,tc))return false;
 
-            const pieceType = piece.toLowerCase();
-            const rowDiff = Math.abs(toRow - fromRow);
-            const colDiff = Math.abs(toCol - fromCol);
+            const pt=p.toLowerCase();
+            const rd=Math.abs(tr-fr);
+            const cd=Math.abs(tc-fc);
 
-            switch(pieceType) {
-                case 'p':
-                    const direction = -1;
-                    const startRow = 6;
-                    if (fromCol === toCol && !targetPiece) {
-                        if (toRow === fromRow + direction) return true;
-                        if (fromRow === startRow && toRow === fromRow + 2 * direction) return true;
-                    }
-                    if (Math.abs(toCol - fromCol) === 1 && toRow === fromRow + direction && targetPiece) {
-                        return true;
-                    }
-                    return false;
-                case 'r':
-                    return (fromRow === toRow || fromCol === toCol);
-                case 'n':
-                    return (rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2);
-                case 'b':
-                    return rowDiff === colDiff;
-                case 'q':
-                    return fromRow === toRow || fromCol === toCol || rowDiff === colDiff;
-                case 'k':
-                    return rowDiff <= 1 && colDiff <= 1;
+            switch(pt){
+                case'p':return validPawn(p,fr,fc,tr,tc,t);
+                case'r':return fr===tr||fc===tc;
+                case'n':return(rd===2&&cd===1)||(rd===1&&cd===2);
+                case'b':return rd===cd&&rd>0;
+                case'q':return fr===tr||fc===tc||rd===cd;
+                case'k':return rd<=1&&cd<=1;
             }
             return false;
         }
 
-        function makeMove(fromRow, fromCol, toRow, toCol) {
-            const piece = board[fromRow][fromCol];
-            const capturedPiece = board[toRow][toCol];
+        function validPawn(p,fr,fc,tr,tc,t){
+            const d=p===p.toUpperCase()?-1:1;
+            const sr=p===p.toUpperCase()?6:1;
+            // Move forward
+            if(fc===tc&&!t){
+                if(tr===fr+d)return true;
+                if(fr===sr&&tr===fr+2*d&&!b[fr+d][fc])return true;
+            }
+            // Capture diagonally
+            if(Math.abs(tc-fc)===1&&tr===fr+d&&t)return true;
+            return false;
+        }
+
+        function pathClear(p,fr,fc,tr,tc){
+            const pt=p.toLowerCase();
+            // Knights and kings don't need path check
+            if(pt==='n'||pt==='k'||pt==='p')return true;
             
-            board[toRow][toCol] = piece;
-            board[fromRow][fromCol] = '';
+            const rs=fr===tr?0:(tr-fr)/Math.abs(tr-fr);
+            const cs=fc===tc?0:(tc-fc)/Math.abs(tc-fc);
+            let r=fr+rs,c=fc+cs;
             
-            if (capturedPiece && capturedPiece.toLowerCase() === 'k') {
-                gameWon();
+            while(r!==tr||c!==tc){
+                if(b[r][c])return false;
+                r+=rs;c+=cs;
+            }
+            return true;
+        }
+
+        function move(fr,fc,tr,tc){
+            const p=b[fr][fc];
+            const cap=b[tr][tc];
+            b[tr][tc]=p;
+            b[fr][fc]='';
+            sel=null;
+            draw();
+            
+            if(cap&&cap.toLowerCase()==='k'){
+                win();
                 return;
             }
             
-            renderBoard();
-            
-            if (difficulty !== 'easy') {
-                setTimeout(makeAIMove, 1000);
-            }
+            turn='black';
+            if(dif!=='easy')setTimeout(ai,1000);
+            else turn='white'; // In easy mode, player continues
         }
 
-        function makeAIMove() {
-            const moves = [];
+        function ai(){
+            upZaira('🤔','');
+            document.getElementById('think').classList.add('active');
             
-            for (let fromRow = 0; fromRow < 8; fromRow++) {
-                for (let fromCol = 0; fromCol < 8; fromCol++) {
-                    const piece = board[fromRow][fromCol];
-                    if (piece && piece === piece.toLowerCase()) {
-                        for (let toRow = 0; toRow < 8; toRow++) {
-                            for (let toCol = 0; toCol < 8; toCol++) {
-                                if (isValidMove(fromRow, fromCol, toRow, toCol)) {
-                                    moves.push({ from: [fromRow, fromCol], to: [toRow, toCol] });
+            const delay=dif==='hard'?500:1500;
+            
+            setTimeout(()=>{
+                document.getElementById('think').classList.remove('active');
+                let moves=[];
+                
+                for(let fr=0;fr<8;fr++){
+                    for(let fc=0;fc<8;fc++){
+                        const p=b[fr][fc];
+                        if(p&&p===p.toLowerCase()){
+                            for(let tr=0;tr<8;tr++){
+                                for(let tc=0;tc<8;tc++){
+                                    if(valid(fr,fc,tr,tc)){
+                                        const capVal=b[tr][tc]?val(b[tr][tc]):0;
+                                        moves.push({from:[fr,fc],to:[tr,tc],score:capVal});
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-
-            if (moves.length > 0) {
-                const randomMove = moves[Math.floor(Math.random() * moves.length)];
-                const capturedPiece = board[randomMove.to[0]][randomMove.to[1]];
                 
-                board[randomMove.to[0]][randomMove.to[1]] = board[randomMove.from[0]][randomMove.from[1]];
-                board[randomMove.from[0]][randomMove.from[1]] = '';
-                
-                renderBoard();
-                
-                if (capturedPiece && capturedPiece.toLowerCase() === 'k') {
-                    gameLost();
+                if(moves.length>0){
+                    moves.sort((a,b)=>b.score-a.score);
+                    const m=dif==='hard'?moves[0]:moves[Math.floor(Math.random()*Math.min(3,moves.length))];
+                    const cap=b[m.to[0]][m.to[1]];
+                    b[m.to[0]][m.to[1]]=b[m.from[0]][m.from[1]];
+                    b[m.from[0]][m.from[1]]='';
+                    draw();
+                    
+                    if(cap&&cap.toLowerCase()==='k'){
+                        lose();
+                        return;
+                    }
+                    
+                    turn='white';
                 }
-            }
+            },delay);
         }
 
-        function highlightSquare(row, col, className) {
-            const squares = document.querySelectorAll('.square');
-            squares.forEach(function(square) {
-                const r = parseInt(square.dataset.row);
-                const c = parseInt(square.dataset.col);
-                if (r === row && c === col) {
-                    square.classList.add(className);
-                }
+        function val(p){
+            const v={'p':1,'n':3,'b':3,'r':5,'q':9,'k':100};
+            return v[p.toLowerCase()]||0;
+        }
+
+        function high(r,c,cls){
+            document.querySelectorAll('.sq').forEach(s=>{
+                if(+s.dataset.r===r&&+s.dataset.c===c)s.classList.add(cls);
             });
         }
 
-        function showValidMoves(row, col) {
-            for (let toRow = 0; toRow < 8; toRow++) {
-                for (let toCol = 0; toCol < 8; toCol++) {
-                    if (isValidMove(row, col, toRow, toCol)) {
-                        highlightSquare(toRow, toCol, 'valid-move');
+        function showValid(r,c){
+            for(let tr=0;tr<8;tr++){
+                for(let tc=0;tc<8;tc++){
+                    if(valid(r,c,tr,tc))high(tr,tc,'valid-move');
+                }
+            }
+        }
+
+        function showWrong(r,c){
+            high(r,c,'wrong-move');
+        }
+
+        function showCorrect(r,c){
+            high(r,c,'correct-move');
+        }
+
+        function hint(){
+            if(dif!=='easy')return;
+            if(!sel){
+                upZaira('💡','Select a white piece first! Click on your pieces! ✨');
+                return;
+            }
+            const[r,c]=sel;
+            for(let tr=0;tr<8;tr++){
+                for(let tc=0;tc<8;tc++){
+                    if(valid(r,c,tr,tc)){
+                        high(tr,tc,'hint-glow');
+                        upZaira('💡',msg.easy.hint);
+                        return;
                     }
                 }
             }
         }
 
-        function showHint() {
-            if (difficulty !== 'easy') return;
-            
-            if (!selectedSquare) {
-                updateZaira('💡', 'Select a white piece first! ✨');
-                return;
-            }
-            
-            updateZaira('💡', zairaMessages.easy.hint);
+        function cel(){
+            const c=document.getElementById('cel');
+            c.classList.add('active');
+            setTimeout(()=>c.classList.remove('active'),2000);
         }
 
-        function updateZaira(mood, message) {
-            document.getElementById('zairaMood').textContent = mood;
-            document.getElementById('zairaFace').textContent = mood;
-            document.getElementById('zairaSpeech').textContent = message;
+        function upZaira(mood,txt){
+            document.getElementById('mood').textContent=mood;
+            if(txt)document.getElementById('speech').textContent=txt;
         }
 
-        function addXP(amount) {
-            xp += amount;
-            const xpNeeded = level * 100;
-            
-            if (xp >= xpNeeded) {
-                level++;
-                xp = 0;
-                updateZaira('🎉', 'Level Up! You are now Level ' + level + '! 🌟');
-            }
-            
-            updateStats();
-        }
-
-        function updateStats() {
-            document.getElementById('xpStat').textContent = xp + ' XP';
-            document.getElementById('levelStat').textContent = 'Level ' + level;
-            document.getElementById('streakStat').textContent = streak + ' Days';
-            document.getElementById('streakDisplay').textContent = streak + ' Days';
-            
-            const xpNeeded = level * 100;
-            const percentage = (xp / xpNeeded) * 100;
-            const xpBar = document.getElementById('xpBar');
-            xpBar.style.width = percentage + '%';
-            xpBar.textContent = xp + '/' + xpNeeded + ' XP';
-        }
-
-        function gameWon() {
-            gameActive = false;
+        function win(){
+            active=false;
             addXP(100);
-            streak++;
-            updateZaira('🎉', difficulty === 'hard' ? zairaMessages.hard.win : 'You won! Amazing game! 🏆');
-            setTimeout(function() {
-                alert('🎉 Congratulations! You Won! +100 XP');
-            }, 500);
+            strk++;
+            cel();
+            upZaira('🎉',dif==='hard'?msg.hard.win:'You won! Amazing! 🏆');
+            setTimeout(()=>alert('🎉 You Won! +100 XP'),500);
         }
 
-        function gameLost() {
-            gameActive = false;
-            updateZaira('😊', difficulty === 'hard' ? zairaMessages.hard.loss : 'Good game! Keep practicing! 💪');
-            setTimeout(function() {
-                alert('Game Over! Keep practicing and you will improve! 💪');
-            }, 500);
+        function lose(){
+            active=false;
+            upZaira('😊',dif==='hard'?msg.hard.loss:'Good game! Keep practicing! 💪');
+            setTimeout(()=>alert('Game Over! Try again! 💪'),500);
         }
 
-        function randomMessage(messages) {
-            return messages[Math.floor(Math.random() * messages.length)];
+        function addXP(amt){
+            xpval+=amt;
+            const need=lvl*100;
+            if(xpval>=need){
+                lvl++;
+                xpval=0;
+                cel();
+                upZaira('🎉','Level Up! Level '+lvl+'! 🌟');
+            }
+            upStats();
         }
 
-        function showAboutModal() {
-            document.getElementById('aboutModal').classList.add('active');
+        function upStats(){
+            document.getElementById('xp').textContent=xpval+' XP';
+            document.getElementById('level').textContent='Lvl '+lvl;
+            document.getElementById('streak').textContent=strk+' Days';
+            document.getElementById('streakinfo').textContent=strk+' Days';
+            const need=lvl*100;
+            const bar=document.getElementById('xpbar');
+            const pct=(xpval/need)*100;
+            bar.style.width=pct+'%';
+            bar.textContent=xpval+'/'+need+' XP';
         }
 
-        function closeAboutModal() {
-            document.getElementById('aboutModal').classList.remove('active');
+        function showAbout(){
+            document.getElementById('modal').classList.add('active');
         }
 
-        function openYouTube(channel) {
-            const message = 'Opening ' + channel + ' YouTube channel!\n\nComment your app ideas and I will build them! 🚀';
-            alert(message);
+        function closeAbout(){
+            document.getElementById('modal').classList.remove('active');
         }
 
-        // Initialize stats
-        updateStats();
+        function openYT(ch){
+            alert('Opening '+ch+' YouTube!\n\nComment your app ideas! 🚀');
+        }
+
+        function rand(arr){
+            return arr[Math.floor(Math.random()*arr.length)];
+        }
+
+        upStats();
     </script>
 </body>
 </html>
